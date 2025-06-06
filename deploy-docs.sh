@@ -5,6 +5,9 @@
 
 set -e  # Exit on any error except where explicitly handled
 
+echo "Validating OpenAPI"
+npx mint openapi-check ./openapi.json
+
 echo "Adding all files to git..."
 git add .
 

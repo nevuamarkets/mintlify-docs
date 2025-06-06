@@ -84,12 +84,7 @@
     "/search": {
       "get": {
         "operationId": "searchEvents",
-        "security": [
-          [],
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [],
         "summary": "Search for events and markets",
         "tags": [
           "Search"
