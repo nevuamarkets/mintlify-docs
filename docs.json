@@ -39,9 +39,7 @@
         "groups": [
           {
             "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "openapi": "api-reference/openapi.json"
           },
           {
             "group": "Endpoint Examples",
