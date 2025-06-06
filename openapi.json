@@ -15,7 +15,58 @@
     }
   },
   "components": {
-    "schemas": {},
+    "schemas": {
+      "SearchJSONResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/MatchingEvent"
+        }
+      },
+      "MatchingEvent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "event",
+              "market"
+            ],
+            "type": "string"
+          },
+          "markets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "question": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "question"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "markets",
+          "title",
+          "type"
+        ]
+      }
+    },
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
@@ -29,6 +80,70 @@
       "bearerAuth": []
     }
   ],
-  "paths": {},
+  "paths": {
+    "/search": {
+      "get": {
+        "operationId": "searchEvents",
+        "security": [
+          [],
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Search for events and markets",
+        "tags": [
+          "Search"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "The search query terms.\n\nWill match query terms in event titles, market questions and tag labels.\n\nUse `matchAny=true` to match any of the search terms (OR), or `matchAny=false` to match all of the search terms (AND).\n"
+          },
+          {
+            "in": "query",
+            "name": "matchAny",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            },
+            "required": false,
+            "description": "Whether to match any of the search terms (OR) instead of all (AND)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchJSONResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
   "tags": []
 }
