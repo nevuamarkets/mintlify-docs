@@ -10,7 +10,7 @@ git add .
 
 # Check if there are any staged changes
 if git diff --cached --quiet; then
-    echo "No changes to commit. Repository is up to date."
+    echo "No OpenAPI docs changes to commit. Repository is up to date."
     exit 0
 fi
 
