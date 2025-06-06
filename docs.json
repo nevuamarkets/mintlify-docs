@@ -1,4 +1,5 @@
 {
+  "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Nevua Markets API",
   "colors": {
@@ -8,7 +9,63 @@
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "group": "API reference",
-    "openapi": "openapi.json"
+    "tabs": [
+      {
+        "tab": "API",
+        "groups": [
+          {
+            "group": "API Documentation",
+            "openapi": "https://nevua.markets/docs/openapi.json"
+          },
+          {
+            "group": "Endpoint Examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "App",
+          "href": "https://nevua.markets",
+          "icon": "app"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://blog.nevua.markets",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hi@mintlify.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.mintlify.com"
+    }
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
+    }
   }
 }
