@@ -1,38 +1,8 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Nevua Markets API",
-  "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "group": "API reference",
-    "openapi": "openapi.json"
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@nevua.markets"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+  "navigation": [
+    {
+      "group": "API reference",
+      "openapi": "openapi.json"
     }
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/nevuamarkets",
-      "github": "https://github.com/nevuamarkets"
-    }
-  }
+]
 }
