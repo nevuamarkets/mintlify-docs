@@ -8,12 +8,10 @@
     "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
-  "navigation": [
-    {
-      "group": "API reference",
-      "openapi": "openapi.json"
-    }
-  ],
+  "navigation": {
+    "group": "API reference",
+    "openapi": "openapi.json"
+  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
