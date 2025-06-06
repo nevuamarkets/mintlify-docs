@@ -14,7 +14,7 @@
         "groups": [
           {
             "group": "API Documentation",
-            "openapi": "https://nevua.markets/docs/openapi.json"
+            "openapi": "openapi.json"
           }
         ]
       }
@@ -35,6 +35,6 @@
     }
   },
   "api": {
-    "openapi": "https://nevua.markets/docs/openapi.json"
+    "openapi": "openapi.json"
   }
 }
