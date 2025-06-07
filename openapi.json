@@ -90,7 +90,12 @@
     "/search": {
       "get": {
         "operationId": "searchEvents",
-        "security": [],
+        "security": [
+          {},
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Search API",
         "description": "Search API for events\n",
         "tags": [
