@@ -93,6 +93,9 @@
         "operationId": "searchEvents",
         "security": [
           {
+            "none": []
+          },
+          {
             "apiKey": []
           }
         ],

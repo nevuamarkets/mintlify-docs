@@ -25,11 +25,6 @@
           "anchor": "App",
           "href": "https://nevua.markets",
           "icon": "n"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://blog.nevua.markets",
-          "icon": "newspaper"
         }
       ]
     }
