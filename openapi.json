@@ -26,12 +26,15 @@
         "type": "object",
         "properties": {
           "id": {
+            "description": "The event ID",
             "type": "string"
           },
           "title": {
+            "description": "The event title",
             "type": "string"
           },
           "type": {
+            "description": "The event type",
             "enum": [
               "event",
               "market"
@@ -86,6 +89,10 @@
         "operationId": "searchEvents",
         "security": [],
         "summary": "Search API",
+        "description": "Search API for events\n",
+        "tags": [
+          "Search API"
+        ],
         "parameters": [
           {
             "in": "query",
