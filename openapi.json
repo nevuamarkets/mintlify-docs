@@ -92,16 +92,12 @@
       "get": {
         "operationId": "searchEvents",
         "security": [
-          {},
-          {
-            "bearerAuth": []
-          },
           {
             "apiKey": []
           }
         ],
         "summary": "Search API",
-        "description": "Search API for events\n",
+        "description": "Search API for events\n\n**Authentication is optional.**\n",
         "tags": [
           "Search API"
         ],
