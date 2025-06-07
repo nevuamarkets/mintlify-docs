@@ -85,10 +85,7 @@
       "get": {
         "operationId": "searchEvents",
         "security": [],
-        "summary": "Search for events and markets",
-        "tags": [
-          "Search"
-        ],
+        "summary": "Search API",
         "parameters": [
           {
             "in": "query",
