@@ -97,17 +97,21 @@
               "type": "string"
             },
             "required": true,
-            "description": "The search query terms.\n\nWill match query terms in event titles, market questions and tag labels.\n\nUse `matchAny=true` to match any of the search terms (OR), or `matchAny=false` to match all of the search terms (AND).\n"
+            "description": "Search query keywords in **event titles**, **market questions** and **tag labels**.\n"
           },
           {
             "in": "query",
-            "name": "matchAny",
+            "name": "match",
             "schema": {
-              "type": "boolean",
-              "default": true
+              "type": "string",
+              "enum": [
+                "any",
+                "all"
+              ],
+              "default": "any"
             },
             "required": false,
-            "description": "Whether to match any of the search terms (OR) instead of all (AND)"
+            "description": "Use \n  - **`match=any`** to return events that match **any** of the search keywords.\n  - **`match=all`** to return events that match **all** of the search keywords.\n"
           }
         ],
         "responses": {
