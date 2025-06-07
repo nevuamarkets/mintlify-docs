@@ -81,11 +81,7 @@
       }
     }
   },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
+  "security": [],
   "paths": {
     "/search": {
       "get": {
