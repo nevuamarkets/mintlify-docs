@@ -97,7 +97,7 @@
           }
         ],
         "summary": "Search API",
-        "description": "Search API for events\n\n**Authentication is optional.**\n",
+        "description": "Search API for events\n**Authentication is optional.**\n",
         "tags": [
           "Search API"
         ],
