@@ -33,10 +33,6 @@
             "description": "The event title",
             "type": "string"
           },
-          "image": {
-            "description": "The event image",
-            "type": "string"
-          },
           "type": {
             "description": "The event type",
             "enum": [
@@ -55,33 +51,14 @@
                   "description": "The market ID",
                   "type": "string"
                 },
-                "image": {
-                  "description": "The market image",
-                  "type": "string"
-                },
                 "question": {
                   "description": "The market question",
-                  "type": "string"
-                },
-                "outcomes": {
-                  "description": "Outcomes and outcome prices",
-                  "type": "string"
-                },
-                "outcomePrices": {
-                  "type": "string"
-                },
-                "nevuaSVGLink": {
-                  "description": "SVG link",
                   "type": "string"
                 }
               },
               "additionalProperties": false,
               "required": [
                 "id",
-                "image",
-                "nevuaSVGLink",
-                "outcomePrices",
-                "outcomes",
                 "question"
               ]
             }
@@ -90,43 +67,9 @@
         "additionalProperties": false,
         "required": [
           "id",
-          "image",
           "markets",
           "title",
           "type"
-        ]
-      },
-      "SearchV2JSONRequest": {
-        "$ref": "#/components/schemas/SearchV2JSONRequest"
-      },
-      "SearchKeyphrase": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "type": {
-            "$ref": "#/components/schemas/SearchKeyphraseType"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "text",
-          "type"
-        ]
-      },
-      "SearchKeyphraseType": {
-        "type": "string",
-        "enum": [
-          "include",
-          "exclude"
-        ]
-      },
-      "SearchMatchOperator": {
-        "type": "string",
-        "enum": [
-          "AND",
-          "OR"
         ]
       }
     },
@@ -183,58 +126,6 @@
             "description": "Use \n  - **`match=any`** to return events that match **any** of the search keywords.\n  - **`match=all`** to return events that match **all** of the search keywords.\n"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "Successful search response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SearchJSONResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/v2/search": {
-      "post": {
-        "operationId": "searchEventsV2",
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Search API v2",
-        "description": "Search API v2 for events using structured keyphrases\n**Authentication is optional.**\n",
-        "tags": [
-          "Search API"
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SearchV2JSONRequest"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Successful search response",
