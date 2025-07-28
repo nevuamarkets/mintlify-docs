@@ -62,12 +62,21 @@
                 "question": {
                   "description": "The market question",
                   "type": "string"
+                },
+                "outcomes": {
+                  "description": "Outcomes and outcome prices",
+                  "type": "string"
+                },
+                "outcomePrices": {
+                  "type": "string"
                 }
               },
               "additionalProperties": false,
               "required": [
                 "id",
                 "image",
+                "outcomePrices",
+                "outcomes",
                 "question"
               ]
             }
