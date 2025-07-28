@@ -101,8 +101,8 @@
       "SearchMatchOperator": {
         "type": "string",
         "enum": [
-          "and",
-          "or"
+          "AND",
+          "OR"
         ]
       }
     },
