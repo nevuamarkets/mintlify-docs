@@ -97,6 +97,13 @@
           "include",
           "exclude"
         ]
+      },
+      "SearchMatchOperator": {
+        "type": "string",
+        "enum": [
+          "and",
+          "or"
+        ]
       }
     },
     "securitySchemes": {
