@@ -69,12 +69,17 @@
                 },
                 "outcomePrices": {
                   "type": "string"
+                },
+                "nevuaSVGLink": {
+                  "description": "SVG link",
+                  "type": "string"
                 }
               },
               "additionalProperties": false,
               "required": [
                 "id",
                 "image",
+                "nevuaSVGLink",
                 "outcomePrices",
                 "outcomes",
                 "question"
