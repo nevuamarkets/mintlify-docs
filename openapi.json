@@ -33,6 +33,10 @@
             "description": "The event title",
             "type": "string"
           },
+          "slug": {
+            "description": "The event slug",
+            "type": "string"
+          },
           "image": {
             "description": "The event image",
             "type": "string"
@@ -92,6 +96,7 @@
           "id",
           "image",
           "markets",
+          "slug",
           "title",
           "type"
         ]
