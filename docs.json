@@ -10,6 +10,15 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "User Guide",
+        "groups": [
+          {
+            "group": "Essentials",
+            "pages": ["essentials"]
+          }
+        ]
+      },
+      {
         "tab": "API",
         "groups": [
           {
@@ -22,7 +31,7 @@
     "global": {
       "anchors": [
         {
-          "anchor": "App",
+          "anchor": "Nevua Markets",
           "href": "https://nevua.markets",
           "icon": "n"
         }
