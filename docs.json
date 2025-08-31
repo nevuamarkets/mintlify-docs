@@ -33,7 +33,7 @@
           },
           {
             "group": "Development",
-            "icon": "notebook-text",
+            "icon": "code",
             "pages": [
               "development"
             ]
