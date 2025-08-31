@@ -55,7 +55,12 @@
         {
           "anchor": "Nevua Markets",
           "href": "https://nevua.markets",
-          "icon": "n"
+          "icon": "house"
+        },
+        {
+          "anchor": "Twitter",
+          "href": "https://x.com/NevuaMarkets",
+          "icon": "twitter"
         }
       ]
     }
