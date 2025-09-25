@@ -27,6 +27,13 @@
           },
           "include": {
             "type": "boolean"
+          },
+          "type": {
+            "enum": [
+              "exclude",
+              "include"
+            ],
+            "type": "string"
           }
         },
         "additionalProperties": false,
