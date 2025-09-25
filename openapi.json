@@ -35,22 +35,6 @@
           "text"
         ]
       },
-      "SearchTag": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string"
-          },
-          "include": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "include",
-          "text"
-        ]
-      },
       "SearchMatchOperator": {
         "type": "string",
         "enum": [
