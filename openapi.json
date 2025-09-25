@@ -127,6 +127,29 @@
           "exclude"
         ]
       },
+      "SearchTag": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SearchTagType"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "type"
+        ]
+      },
+      "SearchTagType": {
+        "type": "string",
+        "enum": [
+          "include",
+          "exclude"
+        ]
+      },
       "SearchMatchOperator": {
         "type": "string",
         "enum": [
