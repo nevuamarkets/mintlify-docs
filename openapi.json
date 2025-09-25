@@ -25,21 +25,14 @@
           "text": {
             "type": "string"
           },
-          "type": {
-            "$ref": "#/components/schemas/SearchKeyphraseType"
+          "include": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
         "required": [
-          "text",
-          "type"
-        ]
-      },
-      "SearchKeyphraseType": {
-        "type": "string",
-        "enum": [
           "include",
-          "exclude"
+          "text"
         ]
       },
       "SearchMatchOperator": {
