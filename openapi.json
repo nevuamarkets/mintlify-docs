@@ -1160,7 +1160,7 @@
           }
         ],
         "summary": "Get user's watchlists",
-        "description": "Retrieves all watchlists for the authenticated user, or a specific watchlist if ID is provided.\nReturns watchlists sorted by creation date (most recent first).\n",
+        "description": "Retrieves all watchlists for the authenticated user, or a specific watchlist if ID is provided. Watchlists are sorted by creation date (most recent first).\n",
         "tags": [
           "Watchlists"
         ],
