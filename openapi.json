@@ -17,23 +17,19 @@
   "components": {
     "schemas": {
       "SearchV2JSONRequest": {
-        "title": "SearchV2JSONRequest",
         "type": "object",
         "properties": {
           "keyphrases": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SearchKeyphrase"
-            },
-            "title": "keyphrases"
+            }
           },
           "searchMatchOperator": {
-            "$ref": "#/components/schemas/SearchMatchOperator",
-            "title": "searchMatchOperator"
+            "$ref": "#/components/schemas/SearchMatchOperator"
           },
           "partial": {
-            "type": "boolean",
-            "title": "partial"
+            "type": "boolean"
           }
         },
         "additionalProperties": false,
@@ -44,24 +40,20 @@
         ]
       },
       "SearchKeyphrase": {
-        "title": "SearchKeyphrase",
         "type": "object",
         "properties": {
           "text": {
-            "type": "string",
-            "title": "text"
+            "type": "string"
           },
           "include": {
-            "type": "boolean",
-            "title": "include"
+            "type": "boolean"
           },
           "type": {
             "enum": [
               "exclude",
               "include"
             ],
-            "type": "string",
-            "title": "type"
+            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -70,7 +62,6 @@
         ]
       },
       "SearchMatchOperator": {
-        "title": "SearchMatchOperator",
         "type": "string",
         "enum": [
           "AND",
@@ -84,28 +75,23 @@
         }
       },
       "MatchingEvent": {
-        "title": "MatchingEvent",
         "type": "object",
         "properties": {
           "id": {
             "description": "The event ID",
-            "type": "string",
-            "title": "id"
+            "type": "string"
           },
           "title": {
             "description": "The event title",
-            "type": "string",
-            "title": "title"
+            "type": "string"
           },
           "slug": {
             "description": "The event slug",
-            "type": "string",
-            "title": "slug"
+            "type": "string"
           },
           "image": {
             "description": "The event image",
-            "type": "string",
-            "title": "image"
+            "type": "string"
           },
           "type": {
             "description": "The event type",
@@ -113,8 +99,7 @@
               "event",
               "market"
             ],
-            "type": "string",
-            "title": "type"
+            "type": "string"
           },
           "markets": {
             "description": "The markets associated with the event",
@@ -124,32 +109,26 @@
               "properties": {
                 "id": {
                   "description": "The market ID",
-                  "type": "string",
-                  "title": "id"
+                  "type": "string"
                 },
                 "image": {
                   "description": "The market image",
-                  "type": "string",
-                  "title": "image"
+                  "type": "string"
                 },
                 "question": {
                   "description": "The market question",
-                  "type": "string",
-                  "title": "question"
+                  "type": "string"
                 },
                 "outcomes": {
                   "description": "Outcomes and outcome prices",
-                  "type": "string",
-                  "title": "outcomes"
+                  "type": "string"
                 },
                 "outcomePrices": {
-                  "type": "string",
-                  "title": "outcomePrices"
+                  "type": "string"
                 },
                 "nevuaSVGLink": {
                   "description": "SVG link",
-                  "type": "string",
-                  "title": "nevuaSVGLink"
+                  "type": "string"
                 }
               },
               "additionalProperties": false,
@@ -161,8 +140,7 @@
                 "outcomes",
                 "question"
               ]
-            },
-            "title": "markets"
+            }
           }
         },
         "additionalProperties": false,
@@ -176,23 +154,19 @@
         ]
       },
       "CreateWatchlistScopeSubscriptionJSONRequest": {
-        "title": "CreateWatchlistScopeSubscriptionJSONRequest",
         "type": "object",
         "properties": {
           "watchlistId": {
-            "type": "string",
-            "title": "watchlistId"
+            "type": "string"
           },
           "subscriptionTypeConfig": {
-            "$ref": "#/components/schemas/SubscriptionTypeConfig",
-            "title": "subscriptionTypeConfig"
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "channels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/WebhookNotificationChannel"
-            },
-            "title": "channels"
+            }
           }
         },
         "additionalProperties": false,
@@ -203,7 +177,6 @@
         ]
       },
       "SubscriptionTypeConfig": {
-        "title": "SubscriptionTypeConfig",
         "anyOf": [
           {
             "$ref": "#/components/schemas/CrossingSubscriptionTypeConfig"
@@ -229,16 +202,14 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
-        "title": "CrossingSubscriptionTypeConfig",
+        "title": "Lekkas",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.CROSSING",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig"
           }
         },
         "additionalProperties": false,
@@ -248,19 +219,16 @@
         ]
       },
       "SubscriptionType.CROSSING": {
-        "title": "SubscriptionType.CROSSING",
         "type": "string",
         "enum": [
           "Crossing"
         ]
       },
       "SubscriptionConfig": {
-        "title": "SubscriptionConfig",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T"
           }
         },
         "additionalProperties": false,
@@ -269,12 +237,10 @@
         ]
       },
       "CrossAnyParams": {
-        "title": "CrossAnyParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -286,16 +252,13 @@
         "$ref": "#/components/schemas/CrossAnyParams"
       },
       "CrossingUpSubscriptionTypeConfig": {
-        "title": "CrossingUpSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_1",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_1"
           }
         },
         "additionalProperties": false,
@@ -305,19 +268,16 @@
         ]
       },
       "SubscriptionType.CROSSING_UP": {
-        "title": "SubscriptionType.CROSSING_UP",
         "type": "string",
         "enum": [
           "Crossing Up"
         ]
       },
       "SubscriptionConfig_1": {
-        "title": "SubscriptionConfig_1",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_1",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_1"
           }
         },
         "additionalProperties": false,
@@ -326,12 +286,10 @@
         ]
       },
       "CrossUpParams": {
-        "title": "CrossUpParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -343,16 +301,13 @@
         "$ref": "#/components/schemas/CrossUpParams"
       },
       "CrossingDownSubscriptionTypeConfig": {
-        "title": "CrossingDownSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_2",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_2"
           }
         },
         "additionalProperties": false,
@@ -362,19 +317,16 @@
         ]
       },
       "SubscriptionType.CROSSING_DOWN": {
-        "title": "SubscriptionType.CROSSING_DOWN",
         "type": "string",
         "enum": [
           "Crossing Down"
         ]
       },
       "SubscriptionConfig_2": {
-        "title": "SubscriptionConfig_2",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_2",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_2"
           }
         },
         "additionalProperties": false,
@@ -383,12 +335,10 @@
         ]
       },
       "CrossDownParams": {
-        "title": "CrossDownParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -400,16 +350,13 @@
         "$ref": "#/components/schemas/CrossDownParams"
       },
       "CrossingStepSubscriptionTypeConfig": {
-        "title": "CrossingStepSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_3",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_3"
           }
         },
         "additionalProperties": false,
@@ -419,19 +366,16 @@
         ]
       },
       "SubscriptionType.CROSSING_STEP": {
-        "title": "SubscriptionType.CROSSING_STEP",
         "type": "string",
         "enum": [
           "Crossing Step"
         ]
       },
       "SubscriptionConfig_3": {
-        "title": "SubscriptionConfig_3",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_3",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_3"
           }
         },
         "additionalProperties": false,
@@ -440,12 +384,10 @@
         ]
       },
       "CrossStepParams": {
-        "title": "CrossStepParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -457,16 +399,13 @@
         "$ref": "#/components/schemas/CrossStepParams"
       },
       "GreaterThanSubscriptionTypeConfig": {
-        "title": "GreaterThanSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_4",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_4"
           }
         },
         "additionalProperties": false,
@@ -476,19 +415,16 @@
         ]
       },
       "SubscriptionType.GREATER_THAN": {
-        "title": "SubscriptionType.GREATER_THAN",
         "type": "string",
         "enum": [
           "Greater Than"
         ]
       },
       "SubscriptionConfig_4": {
-        "title": "SubscriptionConfig_4",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_4",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_4"
           }
         },
         "additionalProperties": false,
@@ -497,12 +433,10 @@
         ]
       },
       "GreaterThanParams": {
-        "title": "GreaterThanParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -514,16 +448,13 @@
         "$ref": "#/components/schemas/GreaterThanParams"
       },
       "LessThanSubscriptionTypeConfig": {
-        "title": "LessThanSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.LESS_THAN",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_5",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_5"
           }
         },
         "additionalProperties": false,
@@ -533,19 +464,16 @@
         ]
       },
       "SubscriptionType.LESS_THAN": {
-        "title": "SubscriptionType.LESS_THAN",
         "type": "string",
         "enum": [
           "Less Than"
         ]
       },
       "SubscriptionConfig_5": {
-        "title": "SubscriptionConfig_5",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_5",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_5"
           }
         },
         "additionalProperties": false,
@@ -554,12 +482,10 @@
         ]
       },
       "LessThanParams": {
-        "title": "LessThanParams",
         "type": "object",
         "properties": {
           "threshold_percent": {
-            "type": "number",
-            "title": "threshold_percent"
+            "type": "number"
           }
         },
         "additionalProperties": false,
@@ -571,16 +497,13 @@
         "$ref": "#/components/schemas/LessThanParams"
       },
       "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
-        "title": "EventAndMarketOpenStatusChangesSubscriptionTypeConfig",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES",
-            "title": "type"
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
           },
           "config": {
-            "$ref": "#/components/schemas/SubscriptionConfig_6",
-            "title": "config"
+            "$ref": "#/components/schemas/SubscriptionConfig_6"
           }
         },
         "additionalProperties": false,
@@ -590,19 +513,16 @@
         ]
       },
       "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
-        "title": "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES",
         "type": "string",
         "enum": [
           "New or closed events and markets"
         ]
       },
       "SubscriptionConfig_6": {
-        "title": "SubscriptionConfig_6",
         "type": "object",
         "properties": {
           "params": {
-            "$ref": "#/components/schemas/SubscriptionConfig.T_6",
-            "title": "params"
+            "$ref": "#/components/schemas/SubscriptionConfig.T_6"
           }
         },
         "additionalProperties": false,
@@ -611,7 +531,6 @@
         ]
       },
       "EmptyParams": {
-        "title": "EmptyParams",
         "type": "object",
         "additionalProperties": false
       },
@@ -619,26 +538,22 @@
         "$ref": "#/components/schemas/EmptyParams"
       },
       "WebhookNotificationChannel": {
-        "title": "WebhookNotificationChannel",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/NotificationChannelType.WEBHOOK",
-            "title": "type"
+            "$ref": "#/components/schemas/NotificationChannelType.WEBHOOK"
           },
           "settings": {
             "type": "object",
             "properties": {
               "webhookUrl": {
-                "type": "string",
-                "title": "webhookUrl"
+                "type": "string"
               }
             },
             "additionalProperties": false,
             "required": [
               "webhookUrl"
-            ],
-            "title": "settings"
+            ]
           }
         },
         "additionalProperties": false,
@@ -648,22 +563,19 @@
         ]
       },
       "NotificationChannelType.WEBHOOK": {
-        "title": "NotificationChannelType.WEBHOOK",
         "type": "string",
         "enum": [
           "Webhook"
         ]
       },
       "CreateWatchlistScopeSubscriptionJSONResponse": {
-        "title": "GetSubscriptionsJSONResponse",
         "type": "object",
         "properties": {
           "subscriptions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SubscriptionResponse"
-            },
-            "title": "subscriptions"
+            }
           }
         },
         "additionalProperties": false,
@@ -672,15 +584,13 @@
         ]
       },
       "GetSubscriptionsJSONResponse": {
-        "title": "GetSubscriptionsJSONResponse",
         "type": "object",
         "properties": {
           "subscriptions": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/SubscriptionResponse"
-            },
-            "title": "subscriptions"
+            }
           }
         },
         "additionalProperties": false,
@@ -689,86 +599,67 @@
         ]
       },
       "SubscriptionResponse": {
-        "title": "SubscriptionResponse",
         "type": "object",
         "properties": {
           "watchlistId": {
-            "type": "string",
-            "title": "watchlistId"
+            "type": "string"
           },
           "watchlistName": {
-            "type": "string",
-            "title": "watchlistName"
+            "type": "string"
           },
           "subscriptionId": {
-            "type": "string",
-            "title": "subscriptionId"
+            "type": "string"
           },
           "eventTitle": {
-            "type": "string",
-            "title": "eventTitle"
+            "type": "string"
           },
           "eventId": {
-            "type": "string",
-            "title": "eventId"
+            "type": "string"
           },
           "marketQuestion": {
-            "type": "string",
-            "title": "marketQuestion"
+            "type": "string"
           },
           "marketId": {
-            "type": "string",
-            "title": "marketId"
+            "type": "string"
           },
           "subscriptionScope": {
-            "$ref": "#/components/schemas/SubscriptionScope",
-            "title": "subscriptionScope"
+            "$ref": "#/components/schemas/SubscriptionScope"
           },
           "subscriptionTypeConfig": {
-            "$ref": "#/components/schemas/SubscriptionTypeConfig",
-            "title": "subscriptionTypeConfig"
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "createdAt": {
-            "type": "string",
-            "title": "createdAt"
+            "type": "string"
           },
           "expiresAt": {
             "type": "string",
-            "nullable": true,
-            "title": "expiresAt"
+            "nullable": true
           },
           "updatedAt": {
             "type": "string",
-            "nullable": true,
-            "title": "updatedAt"
+            "nullable": true
           },
           "status": {
-            "$ref": "#/components/schemas/SubscriptionStatus",
-            "title": "status"
+            "$ref": "#/components/schemas/SubscriptionStatus"
           },
           "triggerType": {
-            "$ref": "#/components/schemas/TriggerType",
-            "title": "triggerType"
+            "$ref": "#/components/schemas/TriggerType"
           },
           "triggerInterval": {
-            "$ref": "#/components/schemas/TriggerInterval",
-            "title": "triggerInterval"
+            "$ref": "#/components/schemas/TriggerInterval"
           },
           "triggerCount": {
-            "type": "number",
-            "title": "triggerCount"
+            "type": "number"
           },
           "lastTriggeredAt": {
             "type": "string",
-            "nullable": true,
-            "title": "lastTriggeredAt"
+            "nullable": true
           },
           "channels": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/NotificationChannel"
-            },
-            "title": "channels"
+            }
           }
         },
         "additionalProperties": false,
@@ -786,7 +677,6 @@
         ]
       },
       "SubscriptionScope": {
-        "title": "SubscriptionScope",
         "type": "string",
         "enum": [
           "Watchlist",
@@ -795,16 +685,13 @@
         ]
       },
       "SubscriptionStatus": {
-        "title": "SubscriptionStatus",
         "type": "object",
         "properties": {
           "enabled": {
-            "type": "boolean",
-            "title": "enabled"
+            "type": "boolean"
           },
           "reason": {
-            "$ref": "#/components/schemas/SubscriptionStatusReason",
-            "title": "reason"
+            "$ref": "#/components/schemas/SubscriptionStatusReason"
           }
         },
         "additionalProperties": false,
@@ -814,7 +701,6 @@
         ]
       },
       "SubscriptionStatusReason": {
-        "title": "SubscriptionStatusReason",
         "type": "string",
         "enum": [
           "Created",
@@ -827,7 +713,6 @@
         ]
       },
       "TriggerType": {
-        "title": "TriggerType",
         "type": "string",
         "enum": [
           "One Time",
@@ -835,7 +720,6 @@
         ]
       },
       "TriggerInterval": {
-        "title": "TriggerInterval",
         "enum": [
           "12h",
           "24h",
@@ -847,31 +731,25 @@
         "type": "string"
       },
       "NotificationChannel": {
-        "title": "NotificationChannel",
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/NotificationChannelType",
-            "title": "type"
+            "$ref": "#/components/schemas/NotificationChannelType"
           },
           "settings": {
             "type": "object",
             "properties": {
               "telegramChatId": {
-                "type": "number",
-                "title": "telegramChatId"
+                "type": "number"
               },
               "webhookUrl": {
-                "type": "string",
-                "title": "webhookUrl"
+                "type": "string"
               },
               "discordWebhookUrl": {
-                "type": "string",
-                "title": "discordWebhookUrl"
+                "type": "string"
               }
             },
-            "additionalProperties": false,
-            "title": "settings"
+            "additionalProperties": false
           },
           "status": {
             "enum": [
@@ -881,8 +759,7 @@
               "READ",
               "SENT"
             ],
-            "type": "string",
-            "title": "status"
+            "type": "string"
           }
         },
         "additionalProperties": false,
@@ -891,7 +768,6 @@
         ]
       },
       "NotificationChannelType": {
-        "title": "NotificationChannelType",
         "type": "string",
         "enum": [
           "In App",
