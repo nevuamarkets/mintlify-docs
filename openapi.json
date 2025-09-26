@@ -895,7 +895,7 @@
       "post": {
         "operationId": "searchByTagSlugs",
         "summary": "Search by Tag Slugs",
-        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [here](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
+        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [in the official Polymarket API documentation](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
         "tags": [
           "Search"
         ],
@@ -962,7 +962,7 @@
         "summary": "Create a watchlist subscription",
         "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger an alert based on the specified trigger conditions.  \n\nCurrently, the alert can be one or more webhooks.\n",
         "tags": [
-          "Subscriptions"
+          "Subscriptions and Alerts"
         ],
         "requestBody": {
           "required": true,
