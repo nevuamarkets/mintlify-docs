@@ -231,7 +231,7 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+        "description": "A 'Crossing' subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
         "title": "Crossing",
         "type": "object",
         "properties": {
@@ -282,7 +282,7 @@
         "$ref": "#/components/schemas/CrossAnyParams"
       },
       "CrossingUpSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price crosses the specified threshold upward.",
+        "description": "A 'Crossing Up' subscription will fire an alert if the price crosses the specified threshold upward.",
         "title": "Crossing Up",
         "type": "object",
         "properties": {
@@ -333,7 +333,7 @@
         "$ref": "#/components/schemas/CrossUpParams"
       },
       "CrossingDownSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price crosses the specified threshold downward.",
+        "description": "A 'Crossing Down' subscription will fire an alert if the price crosses the specified threshold downward.",
         "title": "Crossing Down",
         "type": "object",
         "properties": {
@@ -384,7 +384,7 @@
         "$ref": "#/components/schemas/CrossDownParams"
       },
       "CrossingStepSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price crosses threshold levels in predefined steps.",
+        "description": "The 'Crossing Step' subscription will fire an alert if the price crosses threshold levels in predefined steps.",
         "title": "Crossing Step",
         "type": "object",
         "properties": {
