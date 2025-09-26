@@ -1305,7 +1305,7 @@
           }
         ],
         "summary": "Create watchlist from tag search",
-        "description": "Creates a new watchlist by specifying tags.\n\nMatching events and markets will automatically be added to the watchlist. New matching events and markets will automatically be added as they are created if `automaticallyAddMatchingEvents` is set to true (default).\n",
+        "description": "Creates a new watchlist by specifying tags.\n\nMatching events and markets will automatically be added to the watchlist.\n\n**New** matching events and markets will automatically be added as they are created if `automaticallyAddMatchingEvents` is set to true (default).\n",
         "tags": [
           "Watchlists"
         ],
