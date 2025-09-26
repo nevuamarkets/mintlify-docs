@@ -202,7 +202,7 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
-        "description": "Fires an alert if the price crosses the specified value in either direction (up or down).",
+        "description": "Fires an alert if the price crosses the specified threshold in either direction (up or down).",
         "title": "Crossing",
         "type": "object",
         "properties": {
