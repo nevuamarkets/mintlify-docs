@@ -958,7 +958,7 @@
           }
         ],
         "summary": "Create a watchlist-scoped subscription",
-        "description": "Creates a subscription that monitors all markets in a watchlist for the specified trigger conditions. \nThis is a simplified endpoint specifically for watchlist-scoped subscriptions that only accepts webhook notification channels.\n",
+        "description": "Creates a subscription that monitors all markets in a watchlist for the specified trigger conditions. \nIt can accept multiple notification webhooks.\n",
         "tags": [
           "Subscriptions"
         ],
