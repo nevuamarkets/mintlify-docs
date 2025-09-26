@@ -486,7 +486,7 @@
         "$ref": "#/components/schemas/GreaterThanParams"
       },
       "LessThanSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price is less than the specified threshold.",
+        "description": "A 'Less Than' subscription will fire an alert if the price is less than the specified threshold.",
         "title": "Less Than",
         "type": "object",
         "properties": {
@@ -537,7 +537,7 @@
         "$ref": "#/components/schemas/LessThanParams"
       },
       "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert when new events and markets are created or when existing ones close.",
+        "description": "A 'New or closed events and markets' subscription will fire an alert when new events and markets are created or when existing ones close.",
         "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
