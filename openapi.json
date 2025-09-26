@@ -1160,7 +1160,7 @@
           }
         ],
         "summary": "Get watchlists",
-        "description": "Retrieves all watchlists or a specific one if watchlistId is provided. Watchlists are sorted by creation date (most recent first).\n",
+        "description": "Retrieves all watchlists, or a specific one if 'watchlistId' is provided. Watchlists are sorted by creation date (most recent first).\n",
         "tags": [
           "Watchlists"
         ],
