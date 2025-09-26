@@ -834,7 +834,7 @@
   },
   "security": [],
   "paths": {
-    "/search/": {
+    "/search": {
       "post": {
         "operationId": "searchEvents",
         "summary": "Search by Keyphrases",
