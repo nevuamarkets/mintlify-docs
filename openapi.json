@@ -814,7 +814,7 @@
           }
         ],
         "summary": "Search",
-        "description": "Search API for events using structured keyphrases. |\n**Authentication is optional.**\n",
+        "description": "Search API for events using structured keyphrases.\n**Authentication is optional.**\n",
         "tags": [
           "Search API"
         ],
