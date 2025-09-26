@@ -435,7 +435,7 @@
         "$ref": "#/components/schemas/CrossStepParams"
       },
       "GreaterThanSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert if the price is greater than the specified threshold.",
+        "description": "A 'Greater Than' subscription will fire an alert if the price is greater than the specified threshold.",
         "title": "Greater Than",
         "type": "object",
         "properties": {
