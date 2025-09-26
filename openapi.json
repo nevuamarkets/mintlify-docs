@@ -153,6 +153,47 @@
           "type"
         ]
       },
+      "SearchTagsJSONRequest": {
+        "type": "object",
+        "properties": {
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTag"
+            }
+          },
+          "searchMatchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "searchMatchOperator",
+          "tags"
+        ]
+      },
+      "SearchTag": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "include": {
+            "type": "boolean"
+          },
+          "type": {
+            "enum": [
+              "exclude",
+              "include"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "text"
+        ]
+      },
       "CreateWatchlistScopeSubscriptionJSONRequest": {
         "type": "object",
         "properties": {
@@ -819,6 +860,53 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SearchV2JSONRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchJSONResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tag-slugs": {
+      "post": {
+        "operationId": "searchByTagSlugs",
+        "summary": "Search by Tag Slugs",
+        "description": "Search API for events using tag slugs.\n",
+        "tags": [
+          "Search API"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchTagsJSONRequest"
               }
             }
           }
