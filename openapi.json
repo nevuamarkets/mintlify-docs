@@ -202,7 +202,7 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
-        "description": "Description",
+        "title": "Lekkas",
         "type": "object",
         "properties": {
           "type": {
