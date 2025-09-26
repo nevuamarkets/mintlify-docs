@@ -837,8 +837,8 @@
     "/search": {
       "post": {
         "operationId": "searchEvents",
-        "summary": "Search by Keyphrases",
-        "description": "Search API for events using keyphrases.\n",
+        "summary": "Search by keyphrases",
+        "description": "Search for events using keyphrases.\n",
         "tags": [
           "Search"
         ],
@@ -894,7 +894,7 @@
     "/search/tag-slugs": {
       "post": {
         "operationId": "searchByTagSlugs",
-        "summary": "Search by Tag Slugs",
+        "summary": "Search by tags",
         "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [in the official Polymarket API documentation](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
         "tags": [
           "Search"
