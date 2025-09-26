@@ -808,13 +808,8 @@
     "/v2/search": {
       "post": {
         "operationId": "searchEvents",
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
         "summary": "Search",
-        "description": "Search API for events using structured keyphrases.\n**Authentication is optional.**\n",
+        "description": "Search API for events using structured keyphrases.\n",
         "tags": [
           "Search API"
         ],
@@ -862,7 +857,7 @@
         "operationId": "createWatchlistSubscription",
         "security": [
           {
-            "bearerAuth": []
+            "apiKey": []
           }
         ],
         "summary": "Create a watchlist-scoped subscription",
