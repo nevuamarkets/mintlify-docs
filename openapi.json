@@ -1488,7 +1488,7 @@
           }
         ],
         "summary": "Delete a watchlist",
-        "description": "Permanently deletes a watchlist owned by the authenticated user. This action cannot be undone.\nOnly the owner of the watchlist can delete it.\n",
+        "description": "Permanently deletes a watchlist. Any subscriptions created for this watchlist will be cascade-deleted as well.\n\nThis action cannot be undone.\n",
         "tags": [
           "Watchlists"
         ],
