@@ -16,7 +16,7 @@
   },
   "components": {
     "schemas": {
-      "SearchV2JSONRequest": {
+      "SearchJSONRequest": {
         "type": "object",
         "properties": {
           "keyphrases": {
@@ -834,7 +834,7 @@
   },
   "security": [],
   "paths": {
-    "/search/v2": {
+    "/search/": {
       "post": {
         "operationId": "searchEvents",
         "summary": "Search by Keyphrases",
@@ -847,7 +847,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SearchV2JSONRequest"
+                "$ref": "#/components/schemas/SearchJSONRequest"
               },
               "example": {
                 "keyphrases": [
