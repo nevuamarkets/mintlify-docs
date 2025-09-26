@@ -840,7 +840,7 @@
         "summary": "Search by Keyphrases",
         "description": "Search API for events using keyphrases.\n",
         "tags": [
-          "Search API"
+          "Search"
         ],
         "requestBody": {
           "required": true,
@@ -895,9 +895,9 @@
       "post": {
         "operationId": "searchByTagSlugs",
         "summary": "Search by Tag Slugs",
-        "description": "Search API for events using tag slugs.\n",
+        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [here](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
         "tags": [
-          "Search API"
+          "Search"
         ],
         "requestBody": {
           "required": true,
