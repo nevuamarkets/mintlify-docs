@@ -1030,39 +1030,7 @@
                   "success": {
                     "summary": "Successful subscription creation",
                     "value": {
-                      "subscriptions": [
-                        {
-                          "watchlistId": "507f1f77bcf86cd799439011",
-                          "watchlistName": "Election Markets",
-                          "subscriptionId": "507f191e810c19729de860ea",
-                          "subscriptionScope": "Watchlist",
-                          "subscriptionTypeConfig": {
-                            "type": "New or closed events and markets",
-                            "config": {
-                              "params": {}
-                            }
-                          },
-                          "createdAt": "2024-09-26T10:30:00.000Z",
-                          "expiresAt": null,
-                          "updatedAt": null,
-                          "status": {
-                            "enabled": true,
-                            "reason": "Created"
-                          },
-                          "triggerType": "Recurring",
-                          "triggerInterval": "30m",
-                          "triggerCount": 0,
-                          "lastTriggeredAt": null,
-                          "channels": [
-                            {
-                              "type": "Webhook",
-                              "settings": {
-                                "webhookUrl": "https://your-webhook-endpoint.com/status-changes"
-                              }
-                            }
-                          ]
-                        }
-                      ]
+                      "subscriptionId": "507f191e810c19729de860ea"
                     }
                   }
                 }
