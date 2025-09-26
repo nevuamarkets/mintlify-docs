@@ -188,9 +188,11 @@
             "type": "string"
           },
           "subscriptionTypeConfig": {
-            "$ref": "#/components/schemas/SubscriptionTypeConfig"
+            "$ref": "#/components/schemas/SubscriptionTypeConfig",
+            "description": "The type of subscription to create."
           },
           "channels": {
+            "description": "The channels to send the alert to.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/WebhookNotificationChannel"
