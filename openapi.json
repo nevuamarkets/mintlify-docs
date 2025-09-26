@@ -903,8 +903,14 @@
               },
               "example": {
                 "tags": [
-                  "sports",
-                  "esports"
+                  {
+                    "text": "sports",
+                    "include": true
+                  },
+                  {
+                    "text": "esports",
+                    "include": true
+                  }
                 ],
                 "searchMatchOperator": "OR"
               }
