@@ -202,7 +202,7 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
-        "title": "Lekkas\n\nThis is a cross subscription type config",
+        "title": "Lekkas#\n\nThis is a cross subscription type config",
         "type": "object",
         "properties": {
           "type": {
