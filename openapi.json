@@ -508,7 +508,7 @@
         "$ref": "#/components/schemas/LessThanParams"
       },
       "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
-        "description": "This subscription will fire an alert when new events and markets are created or when existing ones change status.",
+        "description": "This subscription will fire an alert when new events and markets are created or when existing ones close.",
         "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
