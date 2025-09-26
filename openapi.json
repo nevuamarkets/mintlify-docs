@@ -1151,9 +1151,9 @@
         }
       }
     },
-    "/watchlist/{watchlistId}": {
+    "/watchlists/{watchlistId}": {
       "get": {
-        "operationId": "getWatchlist",
+        "operationId": "getWatchlists",
         "security": [
           {
             "apiKey": []
@@ -1296,7 +1296,7 @@
         }
       }
     },
-    "/watchlist/v2/create": {
+    "/watchlists/v2/create": {
       "post": {
         "operationId": "createWatchlistFromTags",
         "security": [
@@ -1305,7 +1305,7 @@
           }
         ],
         "summary": "Create watchlist from tag search",
-        "description": "Creates a new watchlist by specifying tags.\n\nMatching events and markets will automatically be added to the watchlist.\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
+        "description": "Creates a new watchlist by specifying tags; matching events and markets will be added to the watchlist.\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
         "tags": [
           "Watchlists"
         ],
@@ -1479,7 +1479,7 @@
         }
       }
     },
-    "/watchlist/delete": {
+    "/watchlists/delete": {
       "post": {
         "operationId": "deleteWatchlist",
         "security": [
