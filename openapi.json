@@ -188,8 +188,7 @@
             "type": "string"
           },
           "subscriptionTypeConfig": {
-            "$ref": "#/components/schemas/SubscriptionTypeConfig",
-            "description": "The type of subscription to create."
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "channels": {
             "description": "The channels to send the alert to.",
