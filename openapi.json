@@ -849,7 +849,10 @@
               },
               "example": {
                 "keyphrases": [
-                  "will trump"
+                  {
+                    "text": "will trump",
+                    "include": true
+                  }
                 ],
                 "searchMatchOperator": "OR",
                 "partial": false
