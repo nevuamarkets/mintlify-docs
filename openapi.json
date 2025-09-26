@@ -384,7 +384,7 @@
         "$ref": "#/components/schemas/CrossDownParams"
       },
       "CrossingStepSubscriptionTypeConfig": {
-        "description": "A 'Crossing Step' subscription sends an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+        "description": "A 'Crossing Step' subscription will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
         "title": "Crossing Step",
         "type": "object",
         "properties": {
