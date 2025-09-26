@@ -229,6 +229,7 @@
         ]
       },
       "CrossingSubscriptionTypeConfig": {
+        "description": "Crossing subscription type configuration",
         "title": "CrossingSubscriptionTypeConfig",
         "type": "object",
         "properties": {
