@@ -835,8 +835,8 @@
     "/v2/search": {
       "post": {
         "operationId": "searchEvents",
-        "summary": "Search",
-        "description": "Search API for events using structured keyphrases.\n",
+        "summary": "Search by Keyphrases",
+        "description": "Search API for events using keyphrases.\n",
         "tags": [
           "Search API"
         ],
@@ -846,6 +846,13 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SearchV2JSONRequest"
+              },
+              "example": {
+                "keyphrases": [
+                  "will trump"
+                ],
+                "searchMatchOperator": "OR",
+                "partial": false
               }
             }
           }
@@ -893,6 +900,13 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/SearchTagsJSONRequest"
+              },
+              "example": {
+                "tags": [
+                  "sports",
+                  "esports"
+                ],
+                "searchMatchOperator": "OR"
               }
             }
           }
