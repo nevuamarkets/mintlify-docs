@@ -1304,8 +1304,8 @@
             "apiKey": []
           }
         ],
-        "summary": "Create watchlist from tag search",
-        "description": "Creates a new watchlist by specifying tags; matching events and markets will be added to the watchlist.\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
+        "summary": "Create live watchlist from tags",
+        "description": "Creates a watchlist by specifying tags; all matching events and markets will be added..\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
         "tags": [
           "Watchlists"
         ],
