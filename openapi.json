@@ -253,6 +253,8 @@
         "$ref": "#/components/schemas/CrossAnyParams"
       },
       "CrossingUpSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert if the price crosses the specified threshold upward.",
+        "title": "Crossing Up",
         "type": "object",
         "properties": {
           "type": {
@@ -302,6 +304,8 @@
         "$ref": "#/components/schemas/CrossUpParams"
       },
       "CrossingDownSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert if the price crosses the specified threshold downward.",
+        "title": "Crossing Down",
         "type": "object",
         "properties": {
           "type": {
@@ -351,6 +355,8 @@
         "$ref": "#/components/schemas/CrossDownParams"
       },
       "CrossingStepSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert if the price crosses threshold levels in predefined steps.",
+        "title": "Crossing Step",
         "type": "object",
         "properties": {
           "type": {
@@ -400,6 +406,8 @@
         "$ref": "#/components/schemas/CrossStepParams"
       },
       "GreaterThanSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert if the price is greater than the specified threshold.",
+        "title": "Greater Than",
         "type": "object",
         "properties": {
           "type": {
@@ -449,6 +457,8 @@
         "$ref": "#/components/schemas/GreaterThanParams"
       },
       "LessThanSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert if the price is less than the specified threshold.",
+        "title": "Less Than",
         "type": "object",
         "properties": {
           "type": {
@@ -498,6 +508,8 @@
         "$ref": "#/components/schemas/LessThanParams"
       },
       "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
+        "description": "This subscription will fire an alert when new events and markets are created or when existing ones change status.",
+        "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
           "type": {
