@@ -491,18 +491,7 @@
           },
           "params": {
             "type": "object",
-            "properties": {
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType.RECURRING"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "triggerType"
-            ]
+            "properties": {}
           }
         },
         "additionalProperties": false,
@@ -515,12 +504,6 @@
         "type": "string",
         "enum": [
           "New or closed events and markets"
-        ]
-      },
-      "TriggerType.RECURRING": {
-        "type": "string",
-        "enum": [
-          "Recurring"
         ]
       },
       "WebhookNotificationChannel": {
