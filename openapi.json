@@ -183,6 +183,9 @@
       "CreateWatchlistScopeSubscriptionJSONRequest": {
         "type": "object",
         "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/SubscriptionScope"
+          },
           "watchlistId": {
             "description": "The ID of the watchlist to create the subscription for.",
             "type": "string"
@@ -202,7 +205,16 @@
         "required": [
           "channels",
           "rule",
+          "scope",
           "watchlistId"
+        ]
+      },
+      "SubscriptionScope": {
+        "type": "string",
+        "enum": [
+          "Watchlist",
+          "Event",
+          "Market"
         ]
       },
       "SubscriptionRuleConfig": {
