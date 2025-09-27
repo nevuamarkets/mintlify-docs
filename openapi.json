@@ -1115,7 +1115,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "Creates a watchlist by specifying tags. All matching events and markets will be added to the watchlist.\n\n- **New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n\n- **Closed** events and markets will automatically be removed from the watchlist.\n",
+        "description": "Creates a watchlist by specifying tags. All matching events and markets will be added to the watchlist.\n\n- **New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n- **Closed** events and markets will automatically be removed from the watchlist.\n",
         "tags": [
           "Watchlists"
         ],
