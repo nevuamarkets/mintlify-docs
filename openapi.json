@@ -904,7 +904,7 @@
           }
         ],
         "summary": "Create a subscription",
-        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist. When the trigger rule condition is met, the subscription will make a POST request to all the configured webhooks.\n\n**Currently, subscriptions can only be created for watchlist scope** i.e. they will apply to **all** markets in the watchlist.\n",
+        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist. When the rule condition is met, the subscription will make a POST request to all the configured webhooks. We will soon support more refined `Market` and `Event` scopes.\n\nCurrently, subscriptions can only be created for the `Watchlist` scope i.e. they will apply to **all** markets in the watchlist.\n",
         "tags": [
           "Alerts"
         ],
