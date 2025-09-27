@@ -929,11 +929,7 @@
                   "value": {
                     "scope": "Watchlist",
                     "rule": {
-                      "type": "New or closed events and markets",
-                      "params": {
-                        "triggerType": "Recurring",
-                        "triggerInterval": "30m"
-                      }
+                      "type": "New or closed events and markets"
                     },
                     "channels": [
                       {
