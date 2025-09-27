@@ -238,6 +238,8 @@
         ]
       },
       "CrossingRule": {
+        "description": "A 'Crossing' rule will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+        "title": "Crossing",
         "type": "object",
         "properties": {
           "type": {
@@ -259,7 +261,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -284,17 +285,19 @@
         ]
       },
       "TriggerInterval": {
-        "type": "string",
         "enum": [
-          "5m",
-          "30m",
-          "60m",
-          "6h",
           "12h",
-          "24h"
-        ]
+          "24h",
+          "30m",
+          "5m",
+          "60m",
+          "6h"
+        ],
+        "type": "string"
       },
       "CrossingUpRule": {
+        "description": "A 'Crossing Up' rule will fire an alert if the price crosses the specified threshold upward.",
+        "title": "Crossing Up",
         "type": "object",
         "properties": {
           "type": {
@@ -316,7 +319,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -334,6 +336,8 @@
         ]
       },
       "CrossingDownRule": {
+        "description": "A 'Crossing Down' rule will fire an alert if the price crosses the specified threshold downward.",
+        "title": "Crossing Down",
         "type": "object",
         "properties": {
           "type": {
@@ -355,7 +359,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -373,6 +376,8 @@
         ]
       },
       "CrossingStepRule": {
+        "description": "A 'Crossing Step' rule will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+        "title": "Crossing Step",
         "type": "object",
         "properties": {
           "type": {
@@ -394,7 +399,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -412,6 +416,8 @@
         ]
       },
       "GreaterThanRule": {
+        "description": "A 'Greater Than' rule will fire an alert if the price is greater than the specified threshold.",
+        "title": "Greater Than",
         "type": "object",
         "properties": {
           "type": {
@@ -433,7 +439,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -451,6 +456,8 @@
         ]
       },
       "LessThanRule": {
+        "description": "A 'Less Than' rule will fire an alert if the price is less than the specified threshold.",
+        "title": "Less Than",
         "type": "object",
         "properties": {
           "type": {
@@ -472,7 +479,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -490,6 +496,8 @@
         ]
       },
       "EventAndMarketStatusChangesRule": {
+        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.",
+        "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
           "type": {
@@ -497,7 +505,18 @@
           },
           "params": {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType.RECURRING"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "triggerType"
+            ]
           }
         },
         "additionalProperties": false,
@@ -510,6 +529,12 @@
         "type": "string",
         "enum": [
           "New or closed events and markets"
+        ]
+      },
+      "TriggerType.RECURRING": {
+        "type": "string",
+        "enum": [
+          "Recurring"
         ]
       },
       "WebhookNotificationChannel": {
