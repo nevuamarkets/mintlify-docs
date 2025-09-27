@@ -189,7 +189,7 @@
           },
           "rule": {
             "$ref": "#/components/schemas/SubscriptionRuleConfig",
-            "description": "The rule for the subscription."
+            "description": "The alert rule for the subscription."
           },
           "channels": {
             "description": "The channels to send the alert to.",
