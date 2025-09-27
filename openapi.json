@@ -261,6 +261,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -285,15 +286,15 @@
         ]
       },
       "TriggerInterval": {
+        "type": "string",
         "enum": [
-          "12h",
-          "24h",
-          "30m",
           "5m",
+          "30m",
           "60m",
-          "6h"
-        ],
-        "type": "string"
+          "6h",
+          "12h",
+          "24h"
+        ]
       },
       "CrossingUpRule": {
         "description": "A 'Crossing Up' rule will fire an alert if the price crosses the specified threshold upward.",
@@ -319,6 +320,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -359,6 +361,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -399,6 +402,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -439,6 +443,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -479,6 +484,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -505,18 +511,7 @@
           },
           "params": {
             "type": "object",
-            "properties": {
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType.RECURRING"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "triggerType"
-            ]
+            "properties": {}
           }
         },
         "additionalProperties": false,
@@ -529,12 +524,6 @@
         "type": "string",
         "enum": [
           "New or closed events and markets"
-        ]
-      },
-      "TriggerType.RECURRING": {
-        "type": "string",
-        "enum": [
-          "Recurring"
         ]
       },
       "WebhookNotificationChannel": {
