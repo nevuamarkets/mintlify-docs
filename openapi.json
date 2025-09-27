@@ -960,7 +960,7 @@
           }
         ],
         "summary": "Create a watchlist subscription",
-        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger an alert based on the specified trigger conditions.  \n\nCurrently, the alert can be one or more webhooks.\n",
+        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger alerts based on the specified trigger conditions.  \n\nAlerts are delivered to one or more webhook endpoints - HTTP URLs that receive the payload whenever an alert is triggered.\n",
         "tags": [
           "Subscriptions and Alerts"
         ],
