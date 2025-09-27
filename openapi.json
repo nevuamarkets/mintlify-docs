@@ -201,6 +201,7 @@
         "additionalProperties": false,
         "required": [
           "channels",
+          "rule",
           "watchlistId"
         ]
       },
