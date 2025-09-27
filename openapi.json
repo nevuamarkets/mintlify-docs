@@ -839,7 +839,7 @@
       "post": {
         "operationId": "searchByTagSlugs",
         "summary": "Search by tags",
-        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [in the official Polymarket API documentation](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
+        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs using the [/tags Polymarket API endpoint](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
         "tags": [
           "Search"
         ],
