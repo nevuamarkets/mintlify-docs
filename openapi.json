@@ -895,7 +895,7 @@
         }
       }
     },
-    "/subscriptions/watchlist/{watchlistId}": {
+    "/subscriptions/{watchlistId}": {
       "post": {
         "operationId": "createWatchlistSubscription",
         "security": [
