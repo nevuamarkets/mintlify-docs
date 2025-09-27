@@ -184,7 +184,8 @@
         "type": "object",
         "properties": {
           "scope": {
-            "$ref": "#/components/schemas/SubscriptionScope"
+            "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
+            "description": "The scope of the subscription. Currently only 'Watchlist' is supported."
           },
           "watchlistId": {
             "description": "The ID of the watchlist to create the subscription for.",
@@ -209,12 +210,10 @@
           "watchlistId"
         ]
       },
-      "SubscriptionScope": {
+      "SubscriptionScope.WATCHLIST": {
         "type": "string",
         "enum": [
-          "Watchlist",
-          "Event",
-          "Market"
+          "Watchlist"
         ]
       },
       "SubscriptionRuleConfig": {
