@@ -190,6 +190,9 @@
           "subscriptionTypeConfig": {
             "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
+          "rule": {
+            "$ref": "#/components/schemas/SubscriptionRuleConfig"
+          },
           "channels": {
             "description": "The channels to send the alert to.",
             "type": "array",
@@ -201,7 +204,6 @@
         "additionalProperties": false,
         "required": [
           "channels",
-          "subscriptionTypeConfig",
           "watchlistId"
         ]
       },
@@ -578,6 +580,275 @@
       },
       "SubscriptionConfig.T_6": {
         "$ref": "#/components/schemas/EmptyParams"
+      },
+      "SubscriptionRuleConfig": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CrossingRule"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingUpRule"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingDownRule"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingStepRule"
+          },
+          {
+            "$ref": "#/components/schemas/GreaterThanRule"
+          },
+          {
+            "$ref": "#/components/schemas/LessThanRule"
+          },
+          {
+            "$ref": "#/components/schemas/EventAndMarketStatusChangesRule"
+          }
+        ]
+      },
+      "CrossingRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "TriggerType": {
+        "type": "string",
+        "enum": [
+          "One Time",
+          "Recurring"
+        ]
+      },
+      "TriggerInterval": {
+        "enum": [
+          "12h",
+          "24h",
+          "30m",
+          "5m",
+          "60m",
+          "6h"
+        ],
+        "type": "string"
+      },
+      "CrossingUpRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "CrossingDownRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "CrossingStepRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "GreaterThanRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "LessThanRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "threshold_percent": {
+                "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "threshold_percent",
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "EventAndMarketStatusChangesRule": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
+          },
+          "params": {
+            "type": "object",
+            "properties": {
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType.RECURRING"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "triggerType"
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params",
+          "type"
+        ]
+      },
+      "TriggerType.RECURRING": {
+        "type": "string",
+        "enum": [
+          "Recurring"
+        ]
       },
       "WebhookNotificationChannel": {
         "type": "object",
