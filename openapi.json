@@ -259,6 +259,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -283,15 +284,15 @@
         ]
       },
       "TriggerInterval": {
+        "type": "string",
         "enum": [
-          "12h",
-          "24h",
-          "30m",
           "5m",
+          "30m",
           "60m",
-          "6h"
-        ],
-        "type": "string"
+          "6h",
+          "12h",
+          "24h"
+        ]
       },
       "CrossingUpRule": {
         "type": "object",
@@ -315,6 +316,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -353,6 +355,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -391,6 +394,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -429,6 +433,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
@@ -467,6 +472,7 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
+              "triggerInterval",
               "triggerType"
             ]
           }
