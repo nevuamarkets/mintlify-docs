@@ -617,11 +617,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -630,6 +637,24 @@
           "params",
           "type"
         ]
+      },
+      "TriggerType": {
+        "type": "string",
+        "enum": [
+          "One Time",
+          "Recurring"
+        ]
+      },
+      "TriggerInterval": {
+        "enum": [
+          "12h",
+          "24h",
+          "30m",
+          "5m",
+          "60m",
+          "6h"
+        ],
+        "type": "string"
       },
       "CrossingUpRule": {
         "type": "object",
@@ -642,11 +667,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -667,11 +699,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -692,11 +731,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -717,11 +763,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -742,11 +795,18 @@
             "properties": {
               "threshold_percent": {
                 "type": "number"
+              },
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent"
+              "threshold_percent",
+              "triggerType"
             ]
           }
         },
@@ -764,13 +824,27 @@
           },
           "params": {
             "type": "object",
-            "properties": {}
+            "properties": {
+              "triggerType": {
+                "$ref": "#/components/schemas/TriggerType.RECURRING"
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "triggerType"
+            ]
           }
         },
         "additionalProperties": false,
         "required": [
           "params",
           "type"
+        ]
+      },
+      "TriggerType.RECURRING": {
+        "type": "string",
+        "enum": [
+          "Recurring"
         ]
       },
       "WebhookNotificationChannel": {
