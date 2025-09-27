@@ -904,7 +904,7 @@
           }
         ],
         "summary": "Create a subscription",
-        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger one or more webhooks based on the specified trigger conditions.\n\n**Currently, subscriptions can only be created for watchlist scope**. i.e. they will apply to **all** markets in the watchlist.\n",
+        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger one or more webhooks based on the specified trigger conditions.\n\n**Currently, subscriptions can only be created for watchlist scope** i.e. they will apply to **all** markets in the watchlist.\n",
         "tags": [
           "Alerts"
         ],
