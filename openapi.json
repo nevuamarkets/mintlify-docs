@@ -185,7 +185,7 @@
         "properties": {
           "scope": {
             "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
-            "description": "The scope of the subscription. Currently only 'Watchlist' is supported."
+            "description": "The scope of the subscription. Currently only `Watchlist` is supported."
           },
           "rule": {
             "$ref": "#/components/schemas/SubscriptionRuleConfig",
