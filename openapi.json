@@ -187,8 +187,8 @@
             "description": "The ID of the watchlist to create the subscription for.",
             "type": "string"
           },
-          "rule": {
-            "$ref": "#/components/schemas/SubscriptionRuleConfig"
+          "subscriptionTypeConfig": {
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "channels": {
             "description": "The channels to send the alert to.",
@@ -201,64 +201,50 @@
         "additionalProperties": false,
         "required": [
           "channels",
-          "rule",
+          "subscriptionTypeConfig",
           "watchlistId"
         ]
       },
-      "SubscriptionRuleConfig": {
+      "SubscriptionTypeConfig": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/CrossingRule"
+            "$ref": "#/components/schemas/CrossingSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingUpRule"
+            "$ref": "#/components/schemas/CrossingUpSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingDownRule"
+            "$ref": "#/components/schemas/CrossingDownSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingStepRule"
+            "$ref": "#/components/schemas/CrossingStepSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/GreaterThanRule"
+            "$ref": "#/components/schemas/GreaterThanSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/LessThanRule"
+            "$ref": "#/components/schemas/LessThanSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/EventAndMarketStatusChangesRule"
+            "$ref": "#/components/schemas/EventAndMarketOpenStatusChangesSubscriptionTypeConfig"
           }
         ]
       },
-      "CrossingRule": {
+      "CrossingSubscriptionTypeConfig": {
+        "description": "A 'Crossing' subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+        "title": "Crossing",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -268,53 +254,48 @@
           "Crossing"
         ]
       },
-      "TriggerType": {
-        "type": "string",
-        "enum": [
-          "One Time",
-          "Recurring"
+      "SubscriptionConfig": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
         ]
       },
-      "TriggerInterval": {
-        "enum": [
-          "12h",
-          "24h",
-          "30m",
-          "5m",
-          "60m",
-          "6h"
-        ],
-        "type": "string"
+      "CrossAnyParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
       },
-      "CrossingUpRule": {
+      "SubscriptionConfig.T": {
+        "$ref": "#/components/schemas/CrossAnyParams"
+      },
+      "CrossingUpSubscriptionTypeConfig": {
+        "description": "A 'Crossing Up' subscription will fire an alert if the price crosses the specified threshold upward.",
+        "title": "Crossing Up",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_1"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -324,35 +305,48 @@
           "Crossing Up"
         ]
       },
-      "CrossingDownRule": {
+      "SubscriptionConfig_1": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossUpParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_1": {
+        "$ref": "#/components/schemas/CrossUpParams"
+      },
+      "CrossingDownSubscriptionTypeConfig": {
+        "description": "A 'Crossing Down' subscription will fire an alert if the price crosses the specified threshold downward.",
+        "title": "Crossing Down",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_2"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -362,35 +356,48 @@
           "Crossing Down"
         ]
       },
-      "CrossingStepRule": {
+      "SubscriptionConfig_2": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossDownParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_2": {
+        "$ref": "#/components/schemas/CrossDownParams"
+      },
+      "CrossingStepSubscriptionTypeConfig": {
+        "description": "A 'Crossing Step' subscription will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+        "title": "Crossing Step",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_3"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -400,35 +407,48 @@
           "Crossing Step"
         ]
       },
-      "GreaterThanRule": {
+      "SubscriptionConfig_3": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossStepParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_3": {
+        "$ref": "#/components/schemas/CrossStepParams"
+      },
+      "GreaterThanSubscriptionTypeConfig": {
+        "description": "A 'Greater Than' subscription will fire an alert if the price is greater than the specified threshold.",
+        "title": "Greater Than",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_4"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -438,35 +458,48 @@
           "Greater Than"
         ]
       },
-      "LessThanRule": {
+      "SubscriptionConfig_4": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "GreaterThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_4": {
+        "$ref": "#/components/schemas/GreaterThanParams"
+      },
+      "LessThanSubscriptionTypeConfig": {
+        "description": "A 'Less Than' subscription will fire an alert if the price is less than the specified threshold.",
+        "title": "Less Than",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_5"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -476,31 +509,48 @@
           "Less Than"
         ]
       },
-      "EventAndMarketStatusChangesRule": {
+      "SubscriptionConfig_5": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "LessThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_5": {
+        "$ref": "#/components/schemas/LessThanParams"
+      },
+      "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
+        "description": "A 'New or closed events and markets' subscription will fire an alert when new events and markets are created or when existing ones close.",
+        "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType.RECURRING"
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_6"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -510,11 +560,24 @@
           "New or closed events and markets"
         ]
       },
-      "TriggerType.RECURRING": {
-        "type": "string",
-        "enum": [
-          "Recurring"
+      "SubscriptionConfig_6": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
         ]
+      },
+      "EmptyParams": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscriptionConfig.T_6": {
+        "$ref": "#/components/schemas/EmptyParams"
       },
       "WebhookNotificationChannel": {
         "type": "object",
@@ -897,7 +960,7 @@
           }
         ],
         "summary": "Create a watchlist subscription",
-        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger alerts based on the specified trigger conditions.  \n\nAlerts are delivered to one or more webhook endpoints - HTTP URLs that receive the payload whenever an alert is triggered.\n",
+        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger an alert based on the specified trigger conditions.  \n\nCurrently, the alert can be one or more webhooks.\n",
         "tags": [
           "Subscriptions and Alerts"
         ],
