@@ -895,7 +895,7 @@
         }
       }
     },
-    "/subscriptions/create/watchlist": {
+    "/subscriptions/watchlist/{watchlistId}": {
       "post": {
         "operationId": "createWatchlistSubscription",
         "security": [
@@ -908,6 +908,17 @@
         "tags": [
           "Subscriptions and Alerts"
         ],
+        "parameters": [
+          {
+            "name": "watchlistId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The ID of the watchlist to create a subscription for"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -919,11 +930,12 @@
                 "event_status_changes": {
                   "summary": "New or closed events and markets",
                   "value": {
-                    "watchlistId": "507f1f77bcf86cd799439011",
-                    "subscriptionTypeConfig": {
+                    "scope": "Watchlist",
+                    "rule": {
                       "type": "New or closed events and markets",
-                      "config": {
-                        "params": {}
+                      "params": {
+                        "triggerType": "Recurring",
+                        "triggerInterval": "30m"
                       }
                     },
                     "channels": [
@@ -939,13 +951,12 @@
                 "crossing_alert": {
                   "summary": "Crossing threshold alert",
                   "value": {
-                    "watchlistId": "507f1f77bcf86cd799439011",
-                    "subscriptionTypeConfig": {
+                    "scope": "Watchlist",
+                    "rule": {
                       "type": "Crossing",
-                      "config": {
-                        "params": {
-                          "threshold_percent": 50
-                        }
+                      "params": {
+                        "threshold_percent": 50,
+                        "triggerType": "One Time"
                       }
                     },
                     "channels": [
@@ -1240,7 +1251,7 @@
         }
       }
     },
-    "/watchlists/v2/create": {
+    "/watchlists/create-from-tags": {
       "post": {
         "operationId": "createWatchlistFromTags",
         "security": [
@@ -1249,7 +1260,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "Creates a watchlist by specifying tags; all matching events and markets will be added..\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
+        "description": "Creates a watchlist by specifying tags; all matching events and markets will be added.\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
         "tags": [
           "Watchlists"
         ],
