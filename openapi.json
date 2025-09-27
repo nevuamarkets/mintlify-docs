@@ -827,6 +827,9 @@
             "properties": {
               "triggerType": {
                 "$ref": "#/components/schemas/TriggerType.RECURRING"
+              },
+              "triggerInterval": {
+                "$ref": "#/components/schemas/TriggerInterval"
               }
             },
             "additionalProperties": false,
