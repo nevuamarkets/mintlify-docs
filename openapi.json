@@ -949,7 +949,8 @@
                       "type": "Crossing",
                       "params": {
                         "threshold_percent": 50,
-                        "triggerType": "One Time"
+                        "triggerType": "One Time",
+                        "triggerInterval": "30m"
                       }
                     },
                     "channels": [
