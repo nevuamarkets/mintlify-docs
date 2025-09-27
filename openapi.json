@@ -508,15 +508,10 @@
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
-          },
-          "params": {
-            "type": "object",
-            "properties": {}
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
           "type"
         ]
       },
