@@ -501,7 +501,7 @@
         ]
       },
       "EventAndMarketStatusChangesRule": {
-        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.\n\nThis rule is always **Recurring** and will fire as soon as a change",
+        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.\n\nThis rule is always **Recurring** and will fire as soon as a market/event status change is detected.",
         "title": "Event and Market Status Changes",
         "type": "object",
         "properties": {
