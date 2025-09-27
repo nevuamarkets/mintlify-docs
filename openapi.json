@@ -187,12 +187,9 @@
             "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
             "description": "The scope of the subscription. Currently only 'Watchlist' is supported."
           },
-          "watchlistId": {
-            "description": "The ID of the watchlist to create the subscription for.",
-            "type": "string"
-          },
           "rule": {
-            "$ref": "#/components/schemas/SubscriptionRuleConfig"
+            "$ref": "#/components/schemas/SubscriptionRuleConfig",
+            "description": "The rule for the subscription."
           },
           "channels": {
             "description": "The channels to send the alert to.",
@@ -206,8 +203,7 @@
         "required": [
           "channels",
           "rule",
-          "scope",
-          "watchlistId"
+          "scope"
         ]
       },
       "SubscriptionScope.WATCHLIST": {
