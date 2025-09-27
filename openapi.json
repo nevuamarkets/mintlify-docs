@@ -566,6 +566,72 @@
           "subscriptionId"
         ]
       },
+      "CreateWatchListFromTagsJSONRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTag"
+            }
+          },
+          "searchMatchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          },
+          "automaticallyAddMatchingEvents": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "searchMatchOperator",
+          "tags"
+        ]
+      },
+      "CreateWatchListFromTagsJSONResponse": {
+        "type": "object",
+        "properties": {
+          "watchListId": {
+            "type": "string"
+          },
+          "watchListName": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "number"
+          },
+          "marketCount": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "eventCount",
+          "marketCount",
+          "watchListId",
+          "watchListName"
+        ]
+      },
+      "DeleteWatchListJSONRequest": {
+        "type": "object",
+        "properties": {
+          "watchListId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "watchListId"
+        ]
+      },
+      "DeleteWatchListJSONResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
       "GetWatchListJSONResponse": {
         "type": "object",
         "properties": {
@@ -695,72 +761,6 @@
             "markets"
           ]
         }
-      },
-      "CreateWatchListFromTagsJSONRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SearchTag"
-            }
-          },
-          "searchMatchOperator": {
-            "$ref": "#/components/schemas/SearchMatchOperator"
-          },
-          "automaticallyAddMatchingEvents": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "name",
-          "searchMatchOperator",
-          "tags"
-        ]
-      },
-      "CreateWatchListFromTagsJSONResponse": {
-        "type": "object",
-        "properties": {
-          "watchListId": {
-            "type": "string"
-          },
-          "watchListName": {
-            "type": "string"
-          },
-          "eventCount": {
-            "type": "number"
-          },
-          "marketCount": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "eventCount",
-          "marketCount",
-          "watchListId",
-          "watchListName"
-        ]
-      },
-      "DeleteWatchListJSONRequest": {
-        "type": "object",
-        "properties": {
-          "watchListId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "watchListId"
-        ]
-      },
-      "DeleteWatchListJSONResponse": {
-        "type": "object",
-        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -903,8 +903,8 @@
             "apiKey": []
           }
         ],
-        "summary": "Create a watchlist subscription",
-        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger an alert based on the specified trigger conditions.  \n\nCurrently, the alert can be one or more webhooks.\n",
+        "summary": "Create a subscription",
+        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger one or more webhooks based on the specified trigger conditions.\n\n**Currently, subscriptions can only be created for watchlist scope**. i.e. they will apply to **all** markets in the watchlist.\n",
         "tags": [
           "Alerts"
         ],
@@ -1097,151 +1097,6 @@
                     "summary": "Failed to create subscription",
                     "value": {
                       "error": "Failed to create subscription"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/watchlists/{watchlistId}": {
-      "get": {
-        "operationId": "getWatchlists",
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Get watchlists",
-        "description": "Retrieves all watchlists, or a specific one if `watchlistId` is provided. Watchlists are sorted by creation date (most recent first).\n",
-        "tags": [
-          "Watchlists"
-        ],
-        "parameters": [
-          {
-            "name": "watchlistId",
-            "in": "path",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Optional watchlist ID. If not provided, returns all user's watchlists.",
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved watchlists",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetWatchListJSONResponse"
-                },
-                "examples": {
-                  "all_watchlists": {
-                    "summary": "All user watchlists",
-                    "value": {
-                      "watchLists": [
-                        {
-                          "id": "507f1f77bcf86cd799439011",
-                          "name": "Election Markets",
-                          "query": {
-                            "keyphrases": [
-                              {
-                                "text": "election",
-                                "include": true
-                              }
-                            ],
-                            "tags": [],
-                            "searchMatchOperator": "OR",
-                            "createdAt": "2024-09-26T10:30:00.000Z"
-                          },
-                          "automaticallyAddMatchingEvents": true,
-                          "events": {
-                            "event123": {
-                              "autoFetch": true,
-                              "markets": [
-                                "market456",
-                                "market789"
-                              ]
-                            }
-                          },
-                          "createdAt": "2024-09-26T10:30:00.000Z",
-                          "updatedAt": "2024-09-26T11:00:00.000Z"
-                        }
-                      ]
-                    }
-                  },
-                  "specific_watchlist": {
-                    "summary": "Specific watchlist",
-                    "value": {
-                      "watchLists": [
-                        {
-                          "id": "507f1f77bcf86cd799439011",
-                          "name": "Sports Betting",
-                          "query": {
-                            "keyphrases": [],
-                            "tags": [
-                              {
-                                "text": "sports",
-                                "include": true
-                              }
-                            ],
-                            "searchMatchOperator": "AND",
-                            "createdAt": "2024-09-26T10:30:00.000Z"
-                          },
-                          "automaticallyAddMatchingEvents": true,
-                          "events": {},
-                          "createdAt": "2024-09-26T10:30:00.000Z"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized - invalid or missing authentication token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Rate limit exceeded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
                     }
                   }
                 }
@@ -1537,6 +1392,151 @@
                     "summary": "Watchlist not found",
                     "value": {
                       "error": "Watchlist not found or already deleted"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/watchlists/{watchlistId}": {
+      "get": {
+        "operationId": "getWatchlists",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get watchlists",
+        "description": "Retrieves all watchlists, or a specific one if `watchlistId` is provided. Watchlists are sorted by creation date (most recent first).\n",
+        "tags": [
+          "Watchlists"
+        ],
+        "parameters": [
+          {
+            "name": "watchlistId",
+            "in": "path",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional watchlist ID. If not provided, returns all user's watchlists.",
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved watchlists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWatchListJSONResponse"
+                },
+                "examples": {
+                  "all_watchlists": {
+                    "summary": "All user watchlists",
+                    "value": {
+                      "watchLists": [
+                        {
+                          "id": "507f1f77bcf86cd799439011",
+                          "name": "Election Markets",
+                          "query": {
+                            "keyphrases": [
+                              {
+                                "text": "election",
+                                "include": true
+                              }
+                            ],
+                            "tags": [],
+                            "searchMatchOperator": "OR",
+                            "createdAt": "2024-09-26T10:30:00.000Z"
+                          },
+                          "automaticallyAddMatchingEvents": true,
+                          "events": {
+                            "event123": {
+                              "autoFetch": true,
+                              "markets": [
+                                "market456",
+                                "market789"
+                              ]
+                            }
+                          },
+                          "createdAt": "2024-09-26T10:30:00.000Z",
+                          "updatedAt": "2024-09-26T11:00:00.000Z"
+                        }
+                      ]
+                    }
+                  },
+                  "specific_watchlist": {
+                    "summary": "Specific watchlist",
+                    "value": {
+                      "watchLists": [
+                        {
+                          "id": "507f1f77bcf86cd799439011",
+                          "name": "Sports Betting",
+                          "query": {
+                            "keyphrases": [],
+                            "tags": [
+                              {
+                                "text": "sports",
+                                "include": true
+                              }
+                            ],
+                            "searchMatchOperator": "AND",
+                            "createdAt": "2024-09-26T10:30:00.000Z"
+                          },
+                          "automaticallyAddMatchingEvents": true,
+                          "events": {},
+                          "createdAt": "2024-09-26T10:30:00.000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
                     }
                   }
                 }
