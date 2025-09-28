@@ -271,10 +271,12 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
+                "$ref": "#/components/schemas/TriggerType",
+                "description": "Controls if the rule will fire once or repeatedly."
               },
               "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
+                "$ref": "#/components/schemas/TriggerInterval",
+                "description": "Controls how often the rule will fire since the last trigger."
               }
             },
             "additionalProperties": false,
@@ -329,10 +331,12 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
+                "$ref": "#/components/schemas/TriggerType",
+                "description": "Controls if the rule will fire once or repeatedly."
               },
               "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
+                "$ref": "#/components/schemas/TriggerInterval",
+                "description": "Controls how often the rule will fire since the last trigger."
               }
             },
             "additionalProperties": false,
@@ -369,10 +373,12 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
+                "$ref": "#/components/schemas/TriggerType",
+                "description": "Controls if the rule will fire once or repeatedly."
               },
               "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
+                "$ref": "#/components/schemas/TriggerInterval",
+                "description": "Controls how often the rule will fire since the last trigger."
               }
             },
             "additionalProperties": false,
