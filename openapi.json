@@ -409,7 +409,8 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
+                "$ref": "#/components/schemas/TriggerType",
+                "description": "The type of trigger for the rule."
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval"
