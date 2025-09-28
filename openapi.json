@@ -410,11 +410,11 @@
               },
               "triggerType": {
                 "$ref": "#/components/schemas/TriggerType",
-                "description": "Configures if the rule will fire once or repeatedly."
+                "description": "Controls if the rule will fire once or repeatedly."
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Configures how often the rule will fire since the last trigger."
+                "description": "Controls how often the rule will fire since the last trigger."
               }
             },
             "additionalProperties": false,
