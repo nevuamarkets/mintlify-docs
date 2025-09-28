@@ -1109,7 +1109,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "Creates a watchlist by specifying tags. All matching events and markets will be immediately added to the watchlist as soon as it is created. Also:\n\n- When new **new** matching events and markets are created on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When **closed** events and markets are closed on Polymarket, they will automatically be removed from the watchlist.\n\nIn order to receive alerts when new events and markets are created or existing ones are closed, [you can create a `New or closed events and markets` subscription for the watchlist](/api-reference/alerts/create-a-subscription).\n",
+        "description": "This endpoint creates a live watchlist by specifying which tags to monitor.\n\n- When new **new** matching events and markets are created on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When **closed** events and markets are closed on Polymarket, they will automatically be removed from the watchlist.\n\nIn order to receive alerts when new events and markets are created or existing ones are closed, [you can create a `New or closed events and markets` subscription for the watchlist](/api-reference/alerts/create-a-subscription).\n",
         "tags": [
           "Watchlists"
         ],
