@@ -168,7 +168,7 @@
       "SearchTag": {
         "type": "object",
         "properties": {
-          "text": {
+          "tag": {
             "type": "string"
           },
           "include": {
@@ -177,7 +177,7 @@
         },
         "additionalProperties": false,
         "required": [
-          "text"
+          "tag"
         ]
       },
       "CreateWatchlistScopeSubscriptionJSONRequest": {
