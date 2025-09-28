@@ -409,7 +409,8 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType"
+                "$ref": "#/components/schemas/TriggerType",
+                "description": "Controls"
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval"
