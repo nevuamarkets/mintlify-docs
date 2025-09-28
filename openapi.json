@@ -414,7 +414,7 @@
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often a Recurring rule will fire after the last trigger."
+                "description": "Controls how  a Recurring rule will fire after the last trigger."
               }
             },
             "additionalProperties": false,
