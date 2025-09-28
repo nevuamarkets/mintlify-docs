@@ -409,8 +409,7 @@
                 "type": "number"
               },
               "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "The type of trigger"
+                "$ref": "#/components/schemas/TriggerType"
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval"
