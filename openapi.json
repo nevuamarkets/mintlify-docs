@@ -214,6 +214,9 @@
       "SubscriptionRuleConfig": {
         "anyOf": [
           {
+            "$ref": "#/components/schemas/EventAndMarketStatusChangesRule"
+          },
+          {
             "$ref": "#/components/schemas/CrossingRule"
           },
           {
@@ -230,10 +233,27 @@
           },
           {
             "$ref": "#/components/schemas/LessThanRule"
-          },
-          {
-            "$ref": "#/components/schemas/EventAndMarketStatusChangesRule"
           }
+        ]
+      },
+      "EventAndMarketStatusChangesRule": {
+        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.\n\nThis rule is always **Recurring** and will fire as soon as a market/event status change is detected.",
+        "title": "Event and Market Status Changes",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ]
+      },
+      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
+        "type": "string",
+        "enum": [
+          "New or closed events and markets"
         ]
       },
       "CrossingRule": {
@@ -498,26 +518,6 @@
         "type": "string",
         "enum": [
           "Less Than"
-        ]
-      },
-      "EventAndMarketStatusChangesRule": {
-        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.\n\nThis rule is always **Recurring** and will fire as soon as a market/event status change is detected.",
-        "title": "Event and Market Status Changes",
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "type"
-        ]
-      },
-      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
-        "type": "string",
-        "enum": [
-          "New or closed events and markets"
         ]
       },
       "WebhookNotificationChannel": {
