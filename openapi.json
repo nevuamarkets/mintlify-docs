@@ -410,7 +410,7 @@
               },
               "triggerType": {
                 "$ref": "#/components/schemas/TriggerType",
-                "description": "The type of trigger for the rule."
+                "description": "The type of trigger for the rule to"
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval"
