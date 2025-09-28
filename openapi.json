@@ -414,7 +414,7 @@
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how"
+                "description": "Controls how often the rule will fire sin"
               }
             },
             "additionalProperties": false,
