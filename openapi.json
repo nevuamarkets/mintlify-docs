@@ -1133,11 +1133,11 @@
                     "name": "Sports & Esports",
                     "tags": [
                       {
-                        "text": "sports",
+                        "tagSlug": "sports",
                         "include": true
                       },
                       {
-                        "text": "esports",
+                        "tagSlug": "esports",
                         "include": true
                       }
                     ],
@@ -1151,15 +1151,15 @@
                     "name": "Crypto Markets",
                     "tags": [
                       {
-                        "text": "crypto",
+                        "tagSlug": "crypto",
                         "include": true
                       },
                       {
-                        "text": "bitcoin",
+                        "tagSlug": "bitcoin",
                         "include": true
                       },
                       {
-                        "text": "ethereum",
+                        "tagSlug": "ethereum",
                         "include": true
                       }
                     ],
