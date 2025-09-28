@@ -410,10 +410,11 @@
               },
               "triggerType": {
                 "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls"
+                "description": "Controls how often the rule will fire."
               },
               "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval"
+                "$ref": "#/components/schemas/TriggerInterval",
+                "description": "Controls how often the rule will fire."
               }
             },
             "additionalProperties": false,
