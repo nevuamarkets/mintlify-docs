@@ -276,7 +276,7 @@
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger. Only applicable for recurring rules.\n\nDefault is 30 minutes."
+                "description": "Controls how often the rule will fire since the last trigger.\n\n- For once rules, this is ignored.\n- For recurring rules, this is required.\n\nDefault is 30 minutes."
               }
             },
             "additionalProperties": false,
