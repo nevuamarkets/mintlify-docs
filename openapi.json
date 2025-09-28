@@ -414,7 +414,7 @@
               },
               "triggerInterval": {
                 "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger."
+                "description": "Controls ho"
               }
             },
             "additionalProperties": false,
