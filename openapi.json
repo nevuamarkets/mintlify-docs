@@ -280,7 +280,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -305,15 +304,15 @@
         ]
       },
       "TriggerInterval": {
-        "type": "string",
         "enum": [
-          "5m",
-          "30m",
-          "60m",
-          "6h",
           "12h",
-          "24h"
-        ]
+          "24h",
+          "30m",
+          "5m",
+          "60m",
+          "6h"
+        ],
+        "type": "string"
       },
       "CrossingUpRule": {
         "description": "A 'Crossing Up' rule will fire an alert if the price crosses the specified threshold upward.",
@@ -339,7 +338,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -380,7 +378,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -421,7 +418,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -462,7 +458,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
@@ -503,7 +498,6 @@
             "additionalProperties": false,
             "required": [
               "threshold_percent",
-              "triggerInterval",
               "triggerType"
             ]
           }
