@@ -406,7 +406,6 @@
             "type": "object",
             "properties": {
               "threshold_percent": {
-                "description": "The threshold percentage for the rule.",
                 "type": "number"
               },
               "triggerType": {
