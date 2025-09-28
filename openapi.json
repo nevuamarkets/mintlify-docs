@@ -1109,7 +1109,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "Creates a watchlist by specifying tags. All matching events and markets will be immediately added to the watchlist as soon as it is created. Also:\n\n- **New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n- **Closed** events and markets will automatically be removed from the watchlist.\n",
+        "description": "Creates a watchlist by specifying tags. All matching events and markets will be immediately added to the watchlist as soon as it is created. Also:\n\n- When new **new** matching events and markets are created on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When **closed** events and markets are closed on Polymarket, they will automatically be removed from the watchlist. A webhook alert, notifying of the closed event/market, will be sent [if a `New or closed events and markets` subscription is created for the watchlist](/api-reference/subscriptions/create-subscription#new-or-closed-events-and-markets).\n",
         "tags": [
           "Watchlists"
         ],
