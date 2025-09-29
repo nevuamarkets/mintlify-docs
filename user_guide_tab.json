@@ -1,0 +1,31 @@
+{
+    "tab": "User Guide",
+    "groups": [
+      {
+        "group": "Getting started",
+        "icon": "play",
+        "pages": [
+          "quickstart",
+          {
+            "group": "Essentials",
+            "icon": "pencil",
+            "pages": [
+              "essentials/markdown",
+              "essentials/code",
+              "essentials/images",
+              "essentials/settings",
+              "essentials/navigation",
+              "essentials/reusable-snippets"
+            ]
+          }
+        ]
+      },
+      {
+        "group": "Development",
+        "icon": "code",
+        "pages": [
+          "development"
+        ]
+      }
+    ]
+  },
