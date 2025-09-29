@@ -569,6 +569,536 @@
           "subscriptionId"
         ]
       },
+      "WebhookPriceNotificationSchemaJSONRequest": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "$ref": "#/components/schemas/Date"
+          },
+          "title": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          },
+          "subscriptionId": {
+            "type": "string"
+          },
+          "watchlistId": {
+            "type": "string"
+          },
+          "watchlistName": {
+            "type": "string"
+          },
+          "eventId": {
+            "type": "string"
+          },
+          "eventTitle": {
+            "type": "string"
+          },
+          "marketId": {
+            "type": "string"
+          },
+          "marketQuestion": {
+            "type": "string"
+          },
+          "polymarketSlug": {
+            "type": "string"
+          },
+          "triggerType": {
+            "$ref": "#/components/schemas/TriggerType"
+          },
+          "detectedAt": {
+            "type": "string"
+          },
+          "detectedAtMs": {
+            "type": "number"
+          },
+          "sentToUserAtMs": {
+            "type": "number"
+          },
+          "clobTokenId": {
+            "type": "string"
+          },
+          "subscriptionScope": {
+            "$ref": "#/components/schemas/SubscriptionScope"
+          },
+          "subscriptionTypeConfig": {
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
+          },
+          "detectedValue": {
+            "type": "number"
+          },
+          "detectionDetails": {},
+          "sentFromPolymarketAtMs": {
+            "type": "number"
+          },
+          "readFromUserAtMs": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "polymarketSourceEvent": {}
+        },
+        "additionalProperties": false,
+        "required": [
+          "clobTokenId",
+          "createdAt",
+          "detectedAt",
+          "detectedAtMs",
+          "detectedValue",
+          "eventId",
+          "eventTitle",
+          "marketId",
+          "marketQuestion",
+          "polymarketSlug",
+          "sentFromPolymarketAtMs",
+          "subscriptionId",
+          "subscriptionScope",
+          "subscriptionTypeConfig",
+          "triggerType",
+          "type",
+          "watchlistId",
+          "watchlistName"
+        ]
+      },
+      "Date": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "NotificationType": {
+        "enum": [
+          "event_status_notification",
+          "price_notification"
+        ],
+        "type": "string"
+      },
+      "SubscriptionScope": {
+        "type": "string",
+        "enum": [
+          "Watchlist",
+          "Event",
+          "Market"
+        ]
+      },
+      "SubscriptionTypeConfig": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CrossingSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingUpSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingDownSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingStepSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/GreaterThanSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/LessThanSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/EventAndMarketOpenStatusChangesSubscriptionTypeConfig"
+          }
+        ]
+      },
+      "CrossingSubscriptionTypeConfig": {
+        "description": "A 'Crossing' subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+        "title": "Crossing",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossAnyParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T": {
+        "$ref": "#/components/schemas/CrossAnyParams"
+      },
+      "CrossingUpSubscriptionTypeConfig": {
+        "description": "A 'Crossing Up' subscription will fire an alert if the price crosses the specified threshold upward.",
+        "title": "Crossing Up",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_1": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossUpParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_1": {
+        "$ref": "#/components/schemas/CrossUpParams"
+      },
+      "CrossingDownSubscriptionTypeConfig": {
+        "description": "A 'Crossing Down' subscription will fire an alert if the price crosses the specified threshold downward.",
+        "title": "Crossing Down",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_2": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossDownParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_2": {
+        "$ref": "#/components/schemas/CrossDownParams"
+      },
+      "CrossingStepSubscriptionTypeConfig": {
+        "description": "A 'Crossing Step' subscription will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+        "title": "Crossing Step",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_3": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossStepParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_3": {
+        "$ref": "#/components/schemas/CrossStepParams"
+      },
+      "GreaterThanSubscriptionTypeConfig": {
+        "description": "A 'Greater Than' subscription will fire an alert if the price is greater than the specified threshold.",
+        "title": "Greater Than",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_4": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "GreaterThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_4": {
+        "$ref": "#/components/schemas/GreaterThanParams"
+      },
+      "LessThanSubscriptionTypeConfig": {
+        "description": "A 'Less Than' subscription will fire an alert if the price is less than the specified threshold.",
+        "title": "Less Than",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_5": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "LessThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_5": {
+        "$ref": "#/components/schemas/LessThanParams"
+      },
+      "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
+        "description": "A 'New or closed events and markets' subscription will fire an alert when new events and markets are created or when existing ones close.",
+        "title": "Event and Market Status Changes",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionConfig_6": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "EmptyParams": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscriptionConfig.T_6": {
+        "$ref": "#/components/schemas/EmptyParams"
+      },
+      "WebhookEventStatusNotificationSchemaJSONRequest": {
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "$ref": "#/components/schemas/Date"
+          },
+          "outcomePrices": {
+            "type": "string"
+          },
+          "outcomes": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/NotificationType"
+          },
+          "subscriptionId": {
+            "type": "string"
+          },
+          "watchlistId": {
+            "type": "string"
+          },
+          "watchlistName": {
+            "type": "string"
+          },
+          "eventId": {
+            "type": "string"
+          },
+          "eventTitle": {
+            "type": "string"
+          },
+          "marketId": {
+            "type": "string"
+          },
+          "marketQuestion": {
+            "type": "string"
+          },
+          "polymarketSlug": {
+            "type": "string"
+          },
+          "eventStatusScope": {
+            "$ref": "#/components/schemas/EventStatusScope"
+          },
+          "triggerType": {
+            "$ref": "#/components/schemas/EventStatusTriggerType"
+          },
+          "detectedAt": {
+            "type": "string"
+          },
+          "detectedAtMs": {
+            "type": "number"
+          },
+          "sentToUserAtMs": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "createdAt",
+          "detectedAt",
+          "detectedAtMs",
+          "eventId",
+          "eventStatusScope",
+          "eventTitle",
+          "polymarketSlug",
+          "subscriptionId",
+          "triggerType",
+          "type",
+          "watchlistId",
+          "watchlistName"
+        ]
+      },
+      "EventStatusScope": {
+        "type": "string",
+        "enum": [
+          "Market",
+          "Event"
+        ]
+      },
+      "EventStatusTriggerType": {
+        "type": "string",
+        "enum": [
+          "Open",
+          "Closed"
+        ]
+      },
       "CreateWatchListFromTagsJSONRequest": {
         "type": "object",
         "properties": {
@@ -907,7 +1437,7 @@
           }
         ],
         "summary": "Create a subscription",
-        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks.\n\n*Currently, subscriptions can only be created for the `Watchlist` scope i.e. they will apply to **all** markets in the watchlist. We will soon support more refined `Market` and `Event` scopes.*\n",
+        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks.\n\n*Currently, subscriptions can only be created for the `Watchlist` scope i.e. they will apply to **all** markets in the watchlist. We will soon support more refined `Market` and `Event` scopes.*\n\n## Webhook Notifications\n\nWhen a subscription condition is triggered, the system will send webhook notifications based on the subscription type:\n\n- **Price-based subscriptions** (Crossing, Crossing Up, Crossing Down, etc.) will receive `WebhookPriceNotificationSchemaJSONRequest`\n- **Event status subscriptions** (New or closed events and markets) will receive `WebhookEventStatusNotificationSchemaJSONRequest`\n",
         "tags": [
           "Alerts"
         ],
@@ -1098,6 +1628,140 @@
                     "value": {
                       "error": "Failed to create subscription"
                     }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "callbacks": {
+          "priceNotification": {
+            "{$request.body#/channels/0/settings/webhookUrl}": {
+              "post": {
+                "summary": "Price-based notification webhook",
+                "description": "Webhook callback for price-based subscription notifications (Crossing, Crossing Up, Crossing Down, Greater Than, Less Than).\nThis webhook is called when price conditions are met for markets in the subscribed watchlist.\n",
+                "requestBody": {
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/WebhookPriceNotificationSchemaJSONRequest"
+                      },
+                      "examples": {
+                        "crossing_notification": {
+                          "summary": "Market crossing threshold",
+                          "value": {
+                            "type": "price_notification",
+                            "createdAt": "2024-01-15T10:30:00.000Z",
+                            "subscriptionId": "507f191e810c19729de860ea",
+                            "watchlistId": "507f191e810c19729de860eb",
+                            "watchlistName": "My Election Markets",
+                            "eventId": "event_123",
+                            "eventTitle": "2024 Presidential Election",
+                            "marketId": "market_456",
+                            "marketQuestion": "Will Biden win the election?",
+                            "polymarketSlug": "biden-wins-2024",
+                            "clobTokenId": "token_789",
+                            "subscriptionScope": "Watchlist",
+                            "subscriptionTypeConfig": {
+                              "type": "Crossing",
+                              "config": {
+                                "params": {
+                                  "threshold_percent": 50
+                                }
+                              }
+                            },
+                            "triggerType": "Recurring",
+                            "detectedValue": 52.5,
+                            "sentFromPolymarketAtMs": 1705312200000,
+                            "detectedAt": "2024-01-15T10:30:00.000Z",
+                            "detectedAtMs": 1705312200000,
+                            "title": "Price Crossing Alert 🚀",
+                            "message": "Biden wins 2024 has crossed 50% threshold (now 52.5%)"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Webhook received successfully"
+                  },
+                  "4XX": {
+                    "description": "Client error - webhook will be retried"
+                  },
+                  "5XX": {
+                    "description": "Server error - webhook will be retried"
+                  }
+                }
+              }
+            }
+          },
+          "eventStatusNotification": {
+            "{$request.body#/channels/0/settings/webhookUrl}": {
+              "post": {
+                "summary": "Event status change notification webhook",
+                "description": "Webhook callback for event status change notifications (New or closed events and markets).\nThis webhook is called when events or markets open or close in the subscribed watchlist.\n",
+                "requestBody": {
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "$ref": "#/components/schemas/WebhookEventStatusNotificationSchemaJSONRequest"
+                      },
+                      "examples": {
+                        "market_opened": {
+                          "summary": "New market opened",
+                          "value": {
+                            "type": "event_status_notification",
+                            "createdAt": "2024-01-15T10:30:00.000Z",
+                            "subscriptionId": "507f191e810c19729de860ea",
+                            "watchlistId": "507f191e810c19729de860eb",
+                            "watchlistName": "My Election Markets",
+                            "eventId": "event_123",
+                            "eventTitle": "2024 Presidential Election",
+                            "marketId": "market_456",
+                            "marketQuestion": "Will Trump win the election?",
+                            "outcomes": "Yes,No",
+                            "outcomePrices": "0.45,0.55",
+                            "polymarketSlug": "trump-wins-2024",
+                            "eventStatusScope": "Market",
+                            "triggerType": "Open",
+                            "detectedAt": "2024-01-15T10:30:00.000Z",
+                            "detectedAtMs": 1705312200000
+                          }
+                        },
+                        "event_closed": {
+                          "summary": "Event closed",
+                          "value": {
+                            "type": "event_status_notification",
+                            "createdAt": "2024-01-15T10:30:00.000Z",
+                            "subscriptionId": "507f191e810c19729de860ea",
+                            "watchlistId": "507f191e810c19729de860eb",
+                            "watchlistName": "My Election Markets",
+                            "eventId": "event_123",
+                            "eventTitle": "2024 Presidential Election",
+                            "polymarketSlug": "trump-wins-2024",
+                            "eventStatusScope": "Event",
+                            "triggerType": "Closed",
+                            "detectedAt": "2024-01-15T10:30:00.000Z",
+                            "detectedAtMs": 1705312200000
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Webhook received successfully"
+                  },
+                  "4XX": {
+                    "description": "Client error - webhook will be retried"
+                  },
+                  "5XX": {
+                    "description": "Server error - webhook will be retried"
                   }
                 }
               }
