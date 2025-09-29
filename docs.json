@@ -15,6 +15,12 @@
           {
             "group": "API Documentation",
             "openapi": "openapi.json"
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "webhooks/webhook-schemas"
+            ]
           }
         ]
       }
