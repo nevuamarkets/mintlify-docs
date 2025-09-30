@@ -453,7 +453,7 @@
           "params": {
             "type": "object",
             "properties": {
-              "thresholdPercent": {
+              "threshold_percent": {
                 "type": "number"
               },
               "triggerType": {
@@ -467,7 +467,7 @@
             },
             "additionalProperties": false,
             "required": [
-              "thresholdPercent",
+              "threshold_percent",
               "triggerType"
             ]
           }
@@ -495,7 +495,7 @@
           "params": {
             "type": "object",
             "properties": {
-              "thresholdPercent": {
+              "threshold_percent": {
                 "type": "number"
               },
               "triggerType": {
@@ -509,7 +509,7 @@
             },
             "additionalProperties": false,
             "required": [
-              "thresholdPercent",
+              "threshold_percent",
               "triggerType"
             ]
           }
