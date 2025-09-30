@@ -139,14 +139,15 @@ that event.
 | `watchlistName` | `string` | The name of the watchlist |
 | `eventId` | `string` | The Polymarket event ID |
 | `eventTitle` | `string` | The title of the event |
-| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
-| `detectedAt` | `string` (ISO 8601) | When the status change was detected |
-| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
-| `channels` | `array` | Array of notification channels used for delivery |
 | `marketId` | `string` | [Optional] The market ID (present for market-level changes) |
 | `marketQuestion` | `string` | [Optional] The market question (present for market-level changes) |
 | `outcomes` | `string` | [Optional] Available outcome options for the market |
 | `outcomePrices` | `string` | [Optional] Current prices for market outcomes |
+| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
+| `detectedAt` | `string` (ISO 8601) | When the status change was detected |
+| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
+| `channels` | `array` | Array of notification channels used for delivery |
+
 
 
 #### Example Event Status Notifications
