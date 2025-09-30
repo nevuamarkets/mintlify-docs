@@ -10,9 +10,6 @@
         "title": {
           "type": "string"
         },
-        "sentToUserAtMs": {
-          "type": "number"
-        },
         "type": {
           "$ref": "#/definitions/NotificationType"
         },
