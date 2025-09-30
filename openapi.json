@@ -168,7 +168,7 @@
       "SearchTag": {
         "type": "object",
         "properties": {
-          "tagSlug": {
+          "text": {
             "type": "string"
           },
           "include": {
@@ -177,18 +177,18 @@
         },
         "additionalProperties": false,
         "required": [
-          "tagSlug"
+          "text"
         ]
       },
       "CreateWatchlistScopeSubscriptionJSONRequest": {
         "type": "object",
         "properties": {
-          "scope": {
-            "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
-            "description": "The scope of the subscription. Currently only `Watchlist` is supported."
+          "watchlistId": {
+            "description": "The ID of the watchlist to create the subscription for.",
+            "type": "string"
           },
-          "rule": {
-            "$ref": "#/components/schemas/SubscriptionRuleConfig"
+          "subscriptionTypeConfig": {
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "channels": {
             "description": "The channels to send the alert to.",
@@ -201,94 +201,50 @@
         "additionalProperties": false,
         "required": [
           "channels",
-          "rule",
-          "scope"
+          "subscriptionTypeConfig",
+          "watchlistId"
         ]
       },
-      "SubscriptionScope.WATCHLIST": {
-        "type": "string",
-        "enum": [
-          "Watchlist"
-        ]
-      },
-      "SubscriptionRuleConfig": {
+      "SubscriptionTypeConfig": {
         "anyOf": [
           {
-            "$ref": "#/components/schemas/EventAndMarketStatusChangesRule"
+            "$ref": "#/components/schemas/CrossingSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingRule"
+            "$ref": "#/components/schemas/CrossingUpSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingUpRule"
+            "$ref": "#/components/schemas/CrossingDownSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingDownRule"
+            "$ref": "#/components/schemas/CrossingStepSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/CrossingStepRule"
+            "$ref": "#/components/schemas/GreaterThanSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/GreaterThanRule"
+            "$ref": "#/components/schemas/LessThanSubscriptionTypeConfig"
           },
           {
-            "$ref": "#/components/schemas/LessThanRule"
+            "$ref": "#/components/schemas/EventAndMarketOpenStatusChangesSubscriptionTypeConfig"
           }
         ]
       },
-      "EventAndMarketStatusChangesRule": {
-        "description": "A 'New or closed events and markets' rule will fire an alert when new events and markets are created or when existing ones close.\n\nThis rule is always **Recurring** and will fire as soon as a market/event status change is detected.",
-        "title": "Event and Market Status Changes",
-        "type": "object",
-        "properties": {
-          "type": {
-            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "type"
-        ]
-      },
-      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
-        "type": "string",
-        "enum": [
-          "New or closed events and markets"
-        ]
-      },
-      "CrossingRule": {
-        "description": "A 'Crossing' rule will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+      "CrossingSubscriptionTypeConfig": {
+        "description": "A 'Crossing' subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
         "title": "Crossing",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -298,57 +254,48 @@
           "Crossing"
         ]
       },
-      "TriggerType": {
-        "type": "string",
-        "enum": [
-          "One Time",
-          "Recurring"
+      "SubscriptionConfig": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
         ]
       },
-      "TriggerInterval": {
-        "enum": [
-          "12h",
-          "24h",
-          "30m",
-          "5m",
-          "60m",
-          "6h"
-        ],
-        "type": "string"
+      "CrossAnyParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
       },
-      "CrossingUpRule": {
-        "description": "A 'Crossing Up' rule will fire an alert if the price crosses the specified threshold upward.",
+      "SubscriptionConfig.T": {
+        "$ref": "#/components/schemas/CrossAnyParams"
+      },
+      "CrossingUpSubscriptionTypeConfig": {
+        "description": "A 'Crossing Up' subscription will fire an alert if the price crosses the specified threshold upward.",
         "title": "Crossing Up",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_1"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -358,39 +305,48 @@
           "Crossing Up"
         ]
       },
-      "CrossingDownRule": {
-        "description": "A 'Crossing Down' rule will fire an alert if the price crosses the specified threshold downward.",
+      "SubscriptionConfig_1": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossUpParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_1": {
+        "$ref": "#/components/schemas/CrossUpParams"
+      },
+      "CrossingDownSubscriptionTypeConfig": {
+        "description": "A 'Crossing Down' subscription will fire an alert if the price crosses the specified threshold downward.",
         "title": "Crossing Down",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_2"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -400,39 +356,48 @@
           "Crossing Down"
         ]
       },
-      "CrossingStepRule": {
-        "description": "A 'Crossing Step' rule will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+      "SubscriptionConfig_2": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossDownParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_2": {
+        "$ref": "#/components/schemas/CrossDownParams"
+      },
+      "CrossingStepSubscriptionTypeConfig": {
+        "description": "A 'Crossing Step' subscription will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
         "title": "Crossing Step",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_3"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -442,39 +407,48 @@
           "Crossing Step"
         ]
       },
-      "GreaterThanRule": {
-        "description": "A 'Greater Than' rule will fire an alert if the price is greater than the specified threshold.",
+      "SubscriptionConfig_3": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossStepParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_3": {
+        "$ref": "#/components/schemas/CrossStepParams"
+      },
+      "GreaterThanSubscriptionTypeConfig": {
+        "description": "A 'Greater Than' subscription will fire an alert if the price is greater than the specified threshold.",
         "title": "Greater Than",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_4"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -484,39 +458,48 @@
           "Greater Than"
         ]
       },
-      "LessThanRule": {
-        "description": "A 'Less Than' rule will fire an alert if the price is less than the specified threshold.",
+      "SubscriptionConfig_4": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "GreaterThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_4": {
+        "$ref": "#/components/schemas/GreaterThanParams"
+      },
+      "LessThanSubscriptionTypeConfig": {
+        "description": "A 'Less Than' subscription will fire an alert if the price is less than the specified threshold.",
         "title": "Less Than",
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
           },
-          "params": {
-            "type": "object",
-            "properties": {
-              "threshold_percent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "threshold_percent",
-              "triggerType"
-            ]
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_5"
           }
         },
         "additionalProperties": false,
         "required": [
-          "params",
+          "config",
           "type"
         ]
       },
@@ -525,6 +508,76 @@
         "enum": [
           "Less Than"
         ]
+      },
+      "SubscriptionConfig_5": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "LessThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_5": {
+        "$ref": "#/components/schemas/LessThanParams"
+      },
+      "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
+        "description": "A 'New or closed events and markets' subscription will fire an alert when new events and markets are created or when existing ones close.",
+        "title": "Event and Market Status Changes",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
+        "type": "string",
+        "enum": [
+          "New or closed events and markets"
+        ]
+      },
+      "SubscriptionConfig_6": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "EmptyParams": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscriptionConfig.T_6": {
+        "$ref": "#/components/schemas/EmptyParams"
       },
       "WebhookNotificationChannel": {
         "type": "object",
@@ -568,72 +621,6 @@
         "required": [
           "subscriptionId"
         ]
-      },
-      "CreateWatchListFromTagsJSONRequest": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SearchTag"
-            }
-          },
-          "searchMatchOperator": {
-            "$ref": "#/components/schemas/SearchMatchOperator"
-          },
-          "automaticallyAddMatchingEvents": {
-            "type": "boolean"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "name",
-          "searchMatchOperator",
-          "tags"
-        ]
-      },
-      "CreateWatchListFromTagsJSONResponse": {
-        "type": "object",
-        "properties": {
-          "watchListId": {
-            "type": "string"
-          },
-          "watchListName": {
-            "type": "string"
-          },
-          "eventCount": {
-            "type": "number"
-          },
-          "marketCount": {
-            "type": "number"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "eventCount",
-          "marketCount",
-          "watchListId",
-          "watchListName"
-        ]
-      },
-      "DeleteWatchListJSONRequest": {
-        "type": "object",
-        "properties": {
-          "watchListId": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false,
-        "required": [
-          "watchListId"
-        ]
-      },
-      "DeleteWatchListJSONResponse": {
-        "type": "object",
-        "additionalProperties": false
       },
       "GetWatchListJSONResponse": {
         "type": "object",
@@ -764,6 +751,72 @@
             "markets"
           ]
         }
+      },
+      "CreateWatchListFromTagsJSONRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTag"
+            }
+          },
+          "searchMatchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          },
+          "automaticallyAddMatchingEvents": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "searchMatchOperator",
+          "tags"
+        ]
+      },
+      "CreateWatchListFromTagsJSONResponse": {
+        "type": "object",
+        "properties": {
+          "watchListId": {
+            "type": "string"
+          },
+          "watchListName": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "number"
+          },
+          "marketCount": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "eventCount",
+          "marketCount",
+          "watchListId",
+          "watchListName"
+        ]
+      },
+      "DeleteWatchListJSONRequest": {
+        "type": "object",
+        "properties": {
+          "watchListId": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "watchListId"
+        ]
+      },
+      "DeleteWatchListJSONResponse": {
+        "type": "object",
+        "additionalProperties": false
       }
     },
     "securitySchemes": {
@@ -842,7 +895,7 @@
       "post": {
         "operationId": "searchByTagSlugs",
         "summary": "Search by tags",
-        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs using the [/tags Polymarket API endpoint](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
+        "description": "Search for events using tag slugs.\n\nYou can get the full list of tag slugs [in the official Polymarket API documentation](https://docs.polymarket.com/api-reference/tags/list-tags).\n",
         "tags": [
           "Search"
         ],
@@ -898,7 +951,7 @@
         }
       }
     },
-    "/subscriptions/{watchlistId}": {
+    "/subscriptions/create/watchlist": {
       "post": {
         "operationId": "createWatchlistSubscription",
         "security": [
@@ -906,21 +959,10 @@
             "apiKey": []
           }
         ],
-        "summary": "Create a subscription",
-        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks.\n\n*Currently, subscriptions can only be created for the `Watchlist` scope i.e. they will apply to **all** markets in the watchlist. We will soon support more refined `Market` and `Event` scopes.*\n",
+        "summary": "Create a watchlist subscription",
+        "description": "Creates a subscription that monitors all existing and newly added markets in a watchlist. The subscription will trigger an alert based on the specified trigger conditions.  \n\nCurrently, the alert can be one or more webhooks.\n",
         "tags": [
-          "Alerts"
-        ],
-        "parameters": [
-          {
-            "name": "watchlistId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            },
-            "description": "The ID of the watchlist to create a subscription for"
-          }
+          "Subscriptions and Alerts"
         ],
         "requestBody": {
           "required": true,
@@ -933,9 +975,12 @@
                 "event_status_changes": {
                   "summary": "New or closed events and markets",
                   "value": {
-                    "scope": "Watchlist",
-                    "rule": {
-                      "type": "New or closed events and markets"
+                    "watchlistId": "507f1f77bcf86cd799439011",
+                    "subscriptionTypeConfig": {
+                      "type": "New or closed events and markets",
+                      "config": {
+                        "params": {}
+                      }
                     },
                     "channels": [
                       {
@@ -950,13 +995,13 @@
                 "crossing_alert": {
                   "summary": "Crossing threshold alert",
                   "value": {
-                    "scope": "Watchlist",
-                    "rule": {
+                    "watchlistId": "507f1f77bcf86cd799439011",
+                    "subscriptionTypeConfig": {
                       "type": "Crossing",
-                      "params": {
-                        "threshold_percent": 50,
-                        "triggerType": "Recurring",
-                        "triggerInterval": "5m"
+                      "config": {
+                        "params": {
+                          "threshold_percent": 50
+                        }
                       }
                     },
                     "channels": [
@@ -1106,7 +1151,152 @@
         }
       }
     },
-    "/watchlists/create-from-tags": {
+    "/watchlists/{watchlistId}": {
+      "get": {
+        "operationId": "getWatchlists",
+        "security": [
+          {
+            "apiKey": []
+          }
+        ],
+        "summary": "Get watchlists",
+        "description": "Retrieves all watchlists, or a specific one if `watchlistId` is provided. Watchlists are sorted by creation date (most recent first).\n",
+        "tags": [
+          "Watchlists"
+        ],
+        "parameters": [
+          {
+            "name": "watchlistId",
+            "in": "path",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional watchlist ID. If not provided, returns all user's watchlists.",
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved watchlists",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWatchListJSONResponse"
+                },
+                "examples": {
+                  "all_watchlists": {
+                    "summary": "All user watchlists",
+                    "value": {
+                      "watchLists": [
+                        {
+                          "id": "507f1f77bcf86cd799439011",
+                          "name": "Election Markets",
+                          "query": {
+                            "keyphrases": [
+                              {
+                                "text": "election",
+                                "include": true
+                              }
+                            ],
+                            "tags": [],
+                            "searchMatchOperator": "OR",
+                            "createdAt": "2024-09-26T10:30:00.000Z"
+                          },
+                          "automaticallyAddMatchingEvents": true,
+                          "events": {
+                            "event123": {
+                              "autoFetch": true,
+                              "markets": [
+                                "market456",
+                                "market789"
+                              ]
+                            }
+                          },
+                          "createdAt": "2024-09-26T10:30:00.000Z",
+                          "updatedAt": "2024-09-26T11:00:00.000Z"
+                        }
+                      ]
+                    }
+                  },
+                  "specific_watchlist": {
+                    "summary": "Specific watchlist",
+                    "value": {
+                      "watchLists": [
+                        {
+                          "id": "507f1f77bcf86cd799439011",
+                          "name": "Sports Betting",
+                          "query": {
+                            "keyphrases": [],
+                            "tags": [
+                              {
+                                "text": "sports",
+                                "include": true
+                              }
+                            ],
+                            "searchMatchOperator": "AND",
+                            "createdAt": "2024-09-26T10:30:00.000Z"
+                          },
+                          "automaticallyAddMatchingEvents": true,
+                          "events": {},
+                          "createdAt": "2024-09-26T10:30:00.000Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/watchlists/v2/create": {
       "post": {
         "operationId": "createWatchlistFromTags",
         "security": [
@@ -1115,7 +1305,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "This endpoint creates a live watchlist by specifying which tags to monitor:\n\n- When **new** matching events and markets are **created** on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When events and markets are **closed** on Polymarket, they will automatically be removed from the watchlist.\n\nIn order to receive alerts when new events and markets are created or existing ones are closed, [you can create a `New or closed events and markets` subscription for the watchlist](/api-reference/alerts/create-a-subscription).\n",
+        "description": "Creates a watchlist by specifying tags; all matching events and markets will be added..\n\n**New** matching events and markets will automatically be added if `automaticallyAddMatchingEvents` is set to true (default).\n",
         "tags": [
           "Watchlists"
         ],
@@ -1130,14 +1320,14 @@
                 "sports_watchlist": {
                   "summary": "Sports watchlist with OR operator",
                   "value": {
-                    "name": "Sports & Esports",
+                    "name": "Sports & Entertainment",
                     "tags": [
                       {
-                        "tagSlug": "sports",
+                        "text": "sports",
                         "include": true
                       },
                       {
-                        "tagSlug": "esports",
+                        "text": "entertainment",
                         "include": true
                       }
                     ],
@@ -1151,20 +1341,16 @@
                     "name": "Crypto Markets",
                     "tags": [
                       {
-                        "tagSlug": "crypto",
+                        "text": "crypto",
                         "include": true
                       },
                       {
-                        "tagSlug": "bitcoin",
-                        "include": true
-                      },
-                      {
-                        "tagSlug": "ethereum",
+                        "text": "bitcoin",
                         "include": true
                       }
                     ],
-                    "searchMatchOperator": "OR",
-                    "automaticallyAddMatchingEvents": true
+                    "searchMatchOperator": "AND",
+                    "automaticallyAddMatchingEvents": false
                   }
                 }
               }
@@ -1396,151 +1582,6 @@
                     "summary": "Watchlist not found",
                     "value": {
                       "error": "Watchlist not found or already deleted"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "429": {
-            "description": "Rate limit exceeded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/watchlists/{watchlistId}": {
-      "get": {
-        "operationId": "getWatchlists",
-        "security": [
-          {
-            "apiKey": []
-          }
-        ],
-        "summary": "Get watchlists",
-        "description": "Retrieves all watchlists, or a specific one if `watchlistId` is provided. Watchlists are sorted by creation date - newest first.\n",
-        "tags": [
-          "Watchlists"
-        ],
-        "parameters": [
-          {
-            "name": "watchlistId",
-            "in": "path",
-            "required": false,
-            "schema": {
-              "type": "string"
-            },
-            "description": "Optional watchlist ID. If not provided, returns all user's watchlists.",
-            "example": "507f1f77bcf86cd799439011"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successfully retrieved watchlists",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetWatchListJSONResponse"
-                },
-                "examples": {
-                  "all_watchlists": {
-                    "summary": "All user watchlists",
-                    "value": {
-                      "watchLists": [
-                        {
-                          "id": "507f1f77bcf86cd799439011",
-                          "name": "Election Markets",
-                          "query": {
-                            "keyphrases": [
-                              {
-                                "text": "election",
-                                "include": true
-                              }
-                            ],
-                            "tags": [],
-                            "searchMatchOperator": "OR",
-                            "createdAt": "2024-09-26T10:30:00.000Z"
-                          },
-                          "automaticallyAddMatchingEvents": true,
-                          "events": {
-                            "event123": {
-                              "autoFetch": true,
-                              "markets": [
-                                "market456",
-                                "market789"
-                              ]
-                            }
-                          },
-                          "createdAt": "2024-09-26T10:30:00.000Z",
-                          "updatedAt": "2024-09-26T11:00:00.000Z"
-                        }
-                      ]
-                    }
-                  },
-                  "specific_watchlist": {
-                    "summary": "Specific watchlist",
-                    "value": {
-                      "watchLists": [
-                        {
-                          "id": "507f1f77bcf86cd799439011",
-                          "name": "Sports Betting",
-                          "query": {
-                            "keyphrases": [],
-                            "tags": [
-                              {
-                                "text": "sports",
-                                "include": true
-                              }
-                            ],
-                            "searchMatchOperator": "AND",
-                            "createdAt": "2024-09-26T10:30:00.000Z"
-                          },
-                          "automaticallyAddMatchingEvents": true,
-                          "events": {},
-                          "createdAt": "2024-09-26T10:30:00.000Z"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized - invalid or missing authentication token",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
                     }
                   }
                 }
