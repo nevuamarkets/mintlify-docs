@@ -5,8 +5,14 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string",
-          "const": ""
+          "enum": [
+            "FAILED",
+            "SENT"
+          ],
+          "type": "string"
+        },
+        "statusCode": {
+          "type": "number"
         },
         "createdAt": {
           "$ref": "#/definitions/Date"
@@ -67,6 +73,7 @@
         "eventTitle",
         "polymarketSlug",
         "status",
+        "statusCode",
         "subscriptionId",
         "triggerType",
         "type",
