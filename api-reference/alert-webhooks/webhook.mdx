@@ -1,20 +1,18 @@
 ---
-title: 'Webhook Notification Schemas'
-description: 'Webhook notification schemas for subscription alerts and event status changes'
+title: 'Webhooks'
+description: ''
 ---
 
-This document describes the webhook notification schemas that are sent when subscription alerts are triggered for the `/subscriptions/{watchlistId}` endpoint.
+This document describes the webhook notification schemas that are sent when subscription alerts are triggered for the `/subscriptions` endpoint.
 
 ## Overview
 
-When you create a subscription with webhook channels configured, the system will send HTTP POST requests to your configured webhook URLs when the subscription conditions are met. There are two types of notifications:
+When you create a subscription with webhook channels configured, Nevua Markets will send HTTP POST requests to your configured webhook URLs when the subscription conditions are met. There are two types of notifications:
 
 1. **Price Notifications** - Sent when price-based alert conditions are met (e.g., crossing thresholds)
 2. **Event Status Notifications** - Sent when event or market status changes occur (e.g., new events created, markets closed)
 
 ## Price Notification Schema
-
-### `WebhookPriceNotificationSchemaJSONRequest`
 
 This schema is used for all price-based alert notifications.
 

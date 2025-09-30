@@ -14,7 +14,35 @@
         "groups": [
           {
             "group": "API Documentation",
-            "openapi": "openapi.json"
+            "openapi": {
+              "directory": "api-reference",
+              "source": "openapi.json"
+            },
+            "pages": [
+              {
+                "group": "Search",
+                "pages": [
+                  "POST /search",
+                  "POST /search/tag-slugs"
+                ]
+              },
+              {
+                "group": "Alerts",
+                "pages": [
+                  "POST /subscriptions/{watchlistId}",
+                  "api-reference/alert-webhooks/webhook"
+
+                ]
+              },
+              {
+                "group": "Watchlists",
+                "pages": [
+                  "POST /watchlists/create-from-tags",
+                  "POST /watchlists/delete",
+                  "GET /watchlists/{watchlistId}"
+                ]
+              }
+            ]
           },
           {
             "group": "Webhooks",
