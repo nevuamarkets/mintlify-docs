@@ -4,16 +4,6 @@
     "WebhookPriceNotificationSchemaJSONRequest": {
       "type": "object",
       "properties": {
-        "status": {
-          "enum": [
-            "DELIVERED",
-            "FAILED"
-          ],
-          "type": "string"
-        },
-        "statusCode": {
-          "type": "number"
-        },
         "createdAt": {
           "$ref": "#/definitions/Date"
         },
@@ -90,8 +80,6 @@
         "marketQuestion",
         "polymarketSlug",
         "sentFromPolymarketAtMs",
-        "status",
-        "statusCode",
         "subscriptionId",
         "subscriptionScope",
         "subscriptionTypeConfig",
