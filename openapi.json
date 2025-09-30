@@ -453,7 +453,7 @@
           "params": {
             "type": "object",
             "properties": {
-              "threshold_percent": {
+              "thresholdPercent": {
                 "type": "number"
               },
               "triggerType": {
@@ -467,7 +467,7 @@
             },
             "additionalProperties": false,
             "required": [
-              "threshold_percent",
+              "thresholdPercent",
               "triggerType"
             ]
           }
