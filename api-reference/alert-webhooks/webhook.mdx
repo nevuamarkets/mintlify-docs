@@ -52,32 +52,61 @@ This schema is used for all price-based alert notifications.
 ```json
 {
   "type": "price_notification",
-  "createdAt": "2024-01-15T10:30:00Z",
-  "subscriptionId": "507f191e810c19729de860ea",
-  "watchlistId": "507f191e810c19729de860eb",
-  "watchlistName": "2024 Election Markets",
-  "eventId": "0x123...",
-  "eventTitle": "2024 Presidential Election",
-  "marketId": "0x456...",
-  "marketQuestion": "Will Donald Trump win the 2024 Presidential Election?",
-  "polymarketSlug": "will-donald-trump-win-the-2024-presidential-election",
-  "clobTokenId": "123456",
+  "userId": "67d1ac50ff34ab5a5ab571fe",
+  "createdAt": "2025-09-30T12:48:14.109Z",
+  "watchlistId": "68dbd18b92cd0e76ed506d16",
+  "watchlistName": "Test Watchlist",
+  "eventId": "32228",
+  "eventTitle": "Balance of Power: 2026 Midterms",
+  "marketId": "562828",
+  "marketQuestion": "2026 Balance of Power: D Senate, D House",
+  "polymarketSlug": "balance-of-power-2026-midterms",
+  "subscriptionId": "68dbd18c92cd0e76ed506d18",
+  "clobTokenId": "34722410608062854697106861099776685947172185964394483545370684749662285977831",
   "subscriptionScope": "Watchlist",
   "subscriptionTypeConfig": {
-    "type": "Crossing",
+    "type": "Less Than",
     "config": {
       "params": {
-        "threshold_percent": 50
+        "threshold_percent": 90
       }
     }
   },
-  "triggerType": "Recurring",
-  "detectedValue": 52.3,
-  "detectedAt": "2024-01-15T10:29:45Z",
-  "detectedAtMs": 1705316985000,
-  "sentFromPolymarketAtMs": 1705316980000,
-  "title": "Price Alert: Threshold Crossed",
-  "message": "Market has crossed the 50% threshold, now at 52.3%"
+  "triggerType": "One Time",
+  "detectedValue": 0.235,
+  "detectionDetails": {
+    "detectedValue": 0.235,
+    "detectedTimeMs": 1759236494109,
+    "priceChangeTimeMs": "1759236494020"
+  },
+  "sentFromPolymarketAtMs": 1759236494020,
+  "detectedAt": "2025-09-30T12:48:14.109Z",
+  "detectedAtMs": 1759236494109,
+  "channels": [
+    {
+      "type": "Webhook",
+      "settings": {
+        "webhookUrl": "https://dev-webhook.nevua.markets/webhook"
+      }
+    }
+  ],
+  "polymarketSourceEvent": {
+    "market": "0x16c63b7cc37f012b9f59ee164ec03877914c701d06d48291ae8d6fc08a088b0d",
+    "price_changes": [
+      {
+        "asset_id": "34722410608062854697106861099776685947172185964394483545370684749662285977831",
+        "price": "0.04",
+        "size": "0",
+        "side": "BUY",
+        "hash": "e364191ad922c97239ce0f5ebc20fdabff098c98",
+        "best_bid": "0.23",
+        "best_ask": "0.24"
+      }
+    ],
+    "timestamp": "1759236494020",
+    "event_type": "price_change"
+  },
+  "_id": "68dbd18ef6ae9b7dfa90d219"
 }
 ```
 
