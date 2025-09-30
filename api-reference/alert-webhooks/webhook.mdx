@@ -158,23 +158,21 @@ This schema is used for event and market status change notifications.
 All webhook notifications are delivered as HTTP POST requests with the following characteristics:
 
 - **Content-Type**: `application/json`
-- **User-Agent**: `Polyterminal-Webhook/1.0`
+- **User-Agent**: `NevuaMarkets-Webhook/1.0`
 - **Body**: JSON payload matching one of the schemas above
 
 ### Response Requirements
 
 Your webhook endpoint should:
 - Respond with a 2xx HTTP status code to indicate successful receipt
-- Respond within 30 seconds to avoid timeout
+- Respond within 5 seconds to avoid timeout
 - Handle duplicate notifications gracefully (notifications may be retried)
 
 ### Retry Policy
 
-Failed webhook deliveries will be retried with exponential backoff:
-- Initial retry: 1 minute
-- Subsequent retries: 2, 4, 8, 16, 32 minutes
-- Maximum retries: 5 attempts
-- Total retry window: ~1 hour
+Failed webhook deliveries will be retried 2 times:
+- Retry delay: 1 second
+- Maximum retries: 2 retries, 3 attempts in total including the first.
 
 ### Security Considerations
 
