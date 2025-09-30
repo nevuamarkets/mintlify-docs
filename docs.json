@@ -27,7 +27,7 @@
                 ]
               },
               {
-                "group": "Alerts",
+                "group": "Subscriptions and Alerts",
                 "pages": [
                   "POST /subscriptions/{watchlistId}",
                   "api-reference/alert-webhooks/webhook"

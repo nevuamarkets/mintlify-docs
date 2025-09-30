@@ -180,36 +180,498 @@
           "tagSlug"
         ]
       },
-      "CreateWatchlistScopeSubscriptionJSONRequest": {
+      "BulkSubscriptionsJSONRequest": {
         "type": "object",
         "properties": {
-          "scope": {
-            "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
-            "description": "The scope of the subscription. Currently only `Watchlist` is supported."
+          "subscriptionIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "subscriptionIds"
+        ]
+      },
+      "GetSubscriptionsJSONResponse": {
+        "type": "object",
+        "properties": {
+          "subscriptions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SubscriptionResponse"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "subscriptions"
+        ]
+      },
+      "SubscriptionResponse": {
+        "type": "object",
+        "properties": {
+          "watchlistId": {
+            "type": "string"
+          },
+          "watchlistName": {
+            "type": "string"
+          },
+          "subscriptionId": {
+            "type": "string"
+          },
+          "eventTitle": {
+            "type": "string"
+          },
+          "eventId": {
+            "type": "string"
+          },
+          "marketQuestion": {
+            "type": "string"
+          },
+          "marketId": {
+            "type": "string"
+          },
+          "subscriptionScope": {
+            "$ref": "#/components/schemas/SubscriptionScope"
+          },
+          "subscriptionTypeConfig": {
+            "$ref": "#/components/schemas/SubscriptionTypeConfig"
           },
           "rule": {
             "$ref": "#/components/schemas/SubscriptionRuleConfig"
           },
+          "createdAt": {
+            "type": "string"
+          },
+          "expiresAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/SubscriptionStatus"
+          },
+          "triggerType": {
+            "$ref": "#/components/schemas/TriggerType"
+          },
+          "triggerInterval": {
+            "$ref": "#/components/schemas/TriggerInterval"
+          },
+          "triggerCount": {
+            "type": "number"
+          },
+          "lastTriggeredAt": {
+            "type": "string",
+            "nullable": true
+          },
           "channels": {
-            "description": "The channels to send the alert to.",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/WebhookNotificationChannel"
+              "$ref": "#/components/schemas/NotificationChannel"
             }
           }
         },
         "additionalProperties": false,
         "required": [
           "channels",
-          "rule",
-          "scope"
+          "createdAt",
+          "expiresAt",
+          "status",
+          "subscriptionId",
+          "subscriptionScope",
+          "subscriptionTypeConfig",
+          "triggerType",
+          "watchlistId",
+          "watchlistName"
         ]
       },
-      "SubscriptionScope.WATCHLIST": {
+      "SubscriptionScope": {
         "type": "string",
         "enum": [
-          "Watchlist"
+          "Watchlist",
+          "Event",
+          "Market"
         ]
+      },
+      "SubscriptionTypeConfig": {
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/CrossingSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingUpSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingDownSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/CrossingStepSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/GreaterThanSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/LessThanSubscriptionTypeConfig"
+          },
+          {
+            "$ref": "#/components/schemas/EventAndMarketOpenStatusChangesSubscriptionTypeConfig"
+          }
+        ]
+      },
+      "CrossingSubscriptionTypeConfig": {
+        "description": "A 'Crossing' subscription will fire an alert if the price crosses the specified threshold in either direction (up or down).",
+        "title": "Crossing",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.CROSSING": {
+        "type": "string",
+        "enum": [
+          "Crossing"
+        ]
+      },
+      "SubscriptionConfig": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossAnyParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T": {
+        "$ref": "#/components/schemas/CrossAnyParams"
+      },
+      "CrossingUpSubscriptionTypeConfig": {
+        "description": "A 'Crossing Up' subscription will fire an alert if the price crosses the specified threshold upward.",
+        "title": "Crossing Up",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_UP"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.CROSSING_UP": {
+        "type": "string",
+        "enum": [
+          "Crossing Up"
+        ]
+      },
+      "SubscriptionConfig_1": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_1"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossUpParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_1": {
+        "$ref": "#/components/schemas/CrossUpParams"
+      },
+      "CrossingDownSubscriptionTypeConfig": {
+        "description": "A 'Crossing Down' subscription will fire an alert if the price crosses the specified threshold downward.",
+        "title": "Crossing Down",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_DOWN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.CROSSING_DOWN": {
+        "type": "string",
+        "enum": [
+          "Crossing Down"
+        ]
+      },
+      "SubscriptionConfig_2": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_2"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossDownParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_2": {
+        "$ref": "#/components/schemas/CrossDownParams"
+      },
+      "CrossingStepSubscriptionTypeConfig": {
+        "description": "A 'Crossing Step' subscription will fire an alert whenever the price crosses set step thresholds. For instance, with a 10% step, you'll get alerts at 10%, 20%, 30%, 40%, and so on, for both up and down movements.",
+        "title": "Crossing Step",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.CROSSING_STEP"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.CROSSING_STEP": {
+        "type": "string",
+        "enum": [
+          "Crossing Step"
+        ]
+      },
+      "SubscriptionConfig_3": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_3"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "CrossStepParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_3": {
+        "$ref": "#/components/schemas/CrossStepParams"
+      },
+      "GreaterThanSubscriptionTypeConfig": {
+        "description": "A 'Greater Than' subscription will fire an alert if the price is greater than the specified threshold.",
+        "title": "Greater Than",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.GREATER_THAN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.GREATER_THAN": {
+        "type": "string",
+        "enum": [
+          "Greater Than"
+        ]
+      },
+      "SubscriptionConfig_4": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_4"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "GreaterThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_4": {
+        "$ref": "#/components/schemas/GreaterThanParams"
+      },
+      "LessThanSubscriptionTypeConfig": {
+        "description": "A 'Less Than' subscription will fire an alert if the price is less than the specified threshold.",
+        "title": "Less Than",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.LESS_THAN"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.LESS_THAN": {
+        "type": "string",
+        "enum": [
+          "Less Than"
+        ]
+      },
+      "SubscriptionConfig_5": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_5"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "LessThanParams": {
+        "type": "object",
+        "properties": {
+          "threshold_percent": {
+            "type": "number"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "threshold_percent"
+        ]
+      },
+      "SubscriptionConfig.T_5": {
+        "$ref": "#/components/schemas/LessThanParams"
+      },
+      "EventAndMarketOpenStatusChangesSubscriptionTypeConfig": {
+        "description": "A 'New or closed events and markets' subscription will fire an alert when new events and markets are created or when existing ones close.",
+        "title": "Event and Market Status Changes",
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES"
+          },
+          "config": {
+            "$ref": "#/components/schemas/SubscriptionConfig_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "config",
+          "type"
+        ]
+      },
+      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
+        "type": "string",
+        "enum": [
+          "New or closed events and markets"
+        ]
+      },
+      "SubscriptionConfig_6": {
+        "type": "object",
+        "properties": {
+          "params": {
+            "$ref": "#/components/schemas/SubscriptionConfig.T_6"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "params"
+        ]
+      },
+      "EmptyParams": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "SubscriptionConfig.T_6": {
+        "$ref": "#/components/schemas/EmptyParams"
       },
       "SubscriptionRuleConfig": {
         "anyOf": [
@@ -250,12 +712,6 @@
           "type"
         ]
       },
-      "SubscriptionType.EVENT_AND_MARKET_OPEN_STATUS_CHANGES": {
-        "type": "string",
-        "enum": [
-          "New or closed events and markets"
-        ]
-      },
       "CrossingRule": {
         "description": "A 'Crossing' rule will fire an alert if the price crosses the specified threshold in either direction (up or down).",
         "title": "Crossing",
@@ -272,12 +728,6 @@
         "required": [
           "params",
           "type"
-        ]
-      },
-      "SubscriptionType.CROSSING": {
-        "type": "string",
-        "enum": [
-          "Crossing"
         ]
       },
       "ThresholdPercentRuleParams": {
@@ -337,12 +787,6 @@
           "type"
         ]
       },
-      "SubscriptionType.CROSSING_UP": {
-        "type": "string",
-        "enum": [
-          "Crossing Up"
-        ]
-      },
       "CrossingDownRule": {
         "description": "A 'Crossing Down' rule will fire an alert if the price crosses the specified threshold downward.",
         "title": "Crossing Down",
@@ -359,12 +803,6 @@
         "required": [
           "params",
           "type"
-        ]
-      },
-      "SubscriptionType.CROSSING_DOWN": {
-        "type": "string",
-        "enum": [
-          "Crossing Down"
         ]
       },
       "CrossingStepRule": {
@@ -385,12 +823,6 @@
           "type"
         ]
       },
-      "SubscriptionType.CROSSING_STEP": {
-        "type": "string",
-        "enum": [
-          "Crossing Step"
-        ]
-      },
       "GreaterThanRule": {
         "description": "A 'Greater Than' rule will fire an alert if the price is greater than the specified threshold.",
         "title": "Greater Than",
@@ -407,12 +839,6 @@
         "required": [
           "params",
           "type"
-        ]
-      },
-      "SubscriptionType.GREATER_THAN": {
-        "type": "string",
-        "enum": [
-          "Greater Than"
         ]
       },
       "LessThanRule": {
@@ -433,10 +859,109 @@
           "type"
         ]
       },
-      "SubscriptionType.LESS_THAN": {
+      "SubscriptionStatus": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/SubscriptionStatusReason"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "enabled",
+          "reason"
+        ]
+      },
+      "SubscriptionStatusReason": {
         "type": "string",
         "enum": [
-          "Less Than"
+          "Created",
+          "Updated",
+          "Triggered",
+          "Paused by user",
+          "Restarted by user",
+          "Event closed",
+          "Market closed"
+        ]
+      },
+      "NotificationChannel": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/NotificationChannelType"
+          },
+          "settings": {
+            "type": "object",
+            "properties": {
+              "telegramChatId": {
+                "type": "number"
+              },
+              "webhookUrl": {
+                "type": "string"
+              },
+              "discordWebhookUrl": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "status": {
+            "enum": [
+              "BLOCKED_BY_USER",
+              "FAILED",
+              "PENDING",
+              "READ",
+              "SENT"
+            ],
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "type"
+        ]
+      },
+      "NotificationChannelType": {
+        "type": "string",
+        "enum": [
+          "In App",
+          "Webhook",
+          "Discord",
+          "Telegram"
+        ]
+      },
+      "CreateWatchlistScopeSubscriptionJSONRequest": {
+        "type": "object",
+        "properties": {
+          "scope": {
+            "$ref": "#/components/schemas/SubscriptionScope.WATCHLIST",
+            "description": "The scope of the subscription. Currently only `Watchlist` is supported."
+          },
+          "rule": {
+            "$ref": "#/components/schemas/SubscriptionRuleConfig"
+          },
+          "channels": {
+            "description": "The channels to send the alert to.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WebhookNotificationChannel"
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "channels",
+          "rule",
+          "scope"
+        ]
+      },
+      "SubscriptionScope.WATCHLIST": {
+        "type": "string",
+        "enum": [
+          "Watchlist"
         ]
       },
       "WebhookNotificationChannel": {
@@ -811,15 +1336,310 @@
         }
       }
     },
+    "/subscriptions/delete": {
+      "post": {
+        "operationId": "deleteSubscriptions",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Delete subscriptions",
+        "description": "Delete one or more subscriptions by their IDs. Only subscriptions belonging to the authenticated user can be deleted.\n",
+        "tags": [
+          "Alerts"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkSubscriptionsJSONRequest"
+              },
+              "examples": {
+                "single_subscription": {
+                  "summary": "Delete single subscription",
+                  "value": {
+                    "subscriptionIds": [
+                      "507f191e810c19729de860ea"
+                    ]
+                  }
+                },
+                "multiple_subscriptions": {
+                  "summary": "Delete multiple subscriptions",
+                  "value": {
+                    "subscriptionIds": [
+                      "507f191e810c19729de860ea",
+                      "507f191e810c19729de860eb",
+                      "507f191e810c19729de860ec"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Subscriptions deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Successful deletion",
+                    "value": {}
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "no_subscription_ids": {
+                    "summary": "No subscription IDs provided",
+                    "value": {
+                      "error": "No subscription IDs provided"
+                    }
+                  },
+                  "invalid_request_body": {
+                    "summary": "Invalid request body format",
+                    "value": {
+                      "error": "Request body validation failed"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/subscriptions/{watchlistId}": {
+      "get": {
+        "operationId": "getSubscriptions",
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "Get subscriptions",
+        "description": "Fetch all subscriptions for the authenticated user. If a watchlistId is provided, only subscriptions for that specific watchlist are returned.\n",
+        "tags": [
+          "Alerts"
+        ],
+        "parameters": [
+          {
+            "name": "watchlistId",
+            "in": "path",
+            "required": false,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Optional watchlist ID to filter subscriptions. If not provided, returns all user subscriptions."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Subscriptions retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetSubscriptionsJSONResponse"
+                },
+                "examples": {
+                  "all_subscriptions": {
+                    "summary": "All user subscriptions",
+                    "value": {
+                      "subscriptions": [
+                        {
+                          "subscriptionId": "507f191e810c19729de860ea",
+                          "watchlistId": "507f191e810c19729de860eb",
+                          "watchlistName": "My Watchlist",
+                          "subscriptionScope": "Watchlist",
+                          "subscriptionTypeConfig": {
+                            "type": "Crossing",
+                            "config": {
+                              "params": {
+                                "threshold_percent": 50
+                              }
+                            }
+                          },
+                          "createdAt": "2023-01-01T00:00:00Z",
+                          "expiresAt": null,
+                          "status": {
+                            "enabled": true,
+                            "reason": "Created"
+                          },
+                          "triggerType": "Recurring",
+                          "triggerInterval": "30m",
+                          "triggerCount": 0,
+                          "lastTriggeredAt": null,
+                          "channels": [
+                            {
+                              "type": "Webhook",
+                              "settings": {
+                                "webhookUrl": "https://example.com/webhook"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  "watchlist_specific": {
+                    "summary": "Subscriptions for specific watchlist",
+                    "value": {
+                      "subscriptions": [
+                        {
+                          "subscriptionId": "507f191e810c19729de860ea",
+                          "watchlistId": "507f191e810c19729de860eb",
+                          "watchlistName": "Trading Signals",
+                          "subscriptionScope": "Watchlist",
+                          "subscriptionTypeConfig": {
+                            "type": "New or closed events and markets",
+                            "config": {
+                              "params": {}
+                            }
+                          },
+                          "createdAt": "2023-01-01T00:00:00Z",
+                          "expiresAt": null,
+                          "status": {
+                            "enabled": true,
+                            "reason": "Created"
+                          },
+                          "triggerType": "Recurring",
+                          "triggerCount": 2,
+                          "lastTriggeredAt": "2023-01-01T12:30:00Z",
+                          "channels": [
+                            {
+                              "type": "Webhook",
+                              "settings": {
+                                "webhookUrl": "https://example.com/status-webhook"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "post": {
         "operationId": "createWatchlistSubscription",
         "security": [
           {
-            "apiKey": []
+            "Bearer": []
           }
         ],
-        "summary": "Create a subscription",
+        "summary": "Create a watchlist subscription",
         "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks. See the [Webhooks](https://docs.nevua.markets//api-reference/alert-webhooks/webhook-payloads) documentation for more details on the webhook payloads.\n",
         "tags": [
           "Alerts"
