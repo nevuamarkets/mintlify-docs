@@ -6,8 +6,8 @@
       "properties": {
         "status": {
           "enum": [
-            "FAILED",
-            "SENT"
+            "DELIVERED",
+            "FAILED"
           ],
           "type": "string"
         },
