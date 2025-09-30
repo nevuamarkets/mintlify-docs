@@ -10,6 +10,9 @@
         "title": {
           "type": "string"
         },
+        "sentToUserAtMs": {
+          "type": "number"
+        },
         "type": {
           "$ref": "#/definitions/NotificationType"
         },
@@ -44,9 +47,6 @@
           "type": "string"
         },
         "detectedAtMs": {
-          "type": "number"
-        },
-        "sentToUserAtMs": {
           "type": "number"
         },
         "clobTokenId": {

@@ -51,9 +51,6 @@
         },
         "detectedAtMs": {
           "type": "number"
-        },
-        "sentToUserAtMs": {
-          "type": "number"
         }
       },
       "additionalProperties": false,
