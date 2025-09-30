@@ -1,0 +1,102 @@
+{
+  "$ref": "#/definitions/WebhookEventStatusNotificationSchemaJSONRequest",
+  "definitions": {
+    "WebhookEventStatusNotificationSchemaJSONRequest": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "$ref": "#/definitions/Date"
+        },
+        "outcomePrices": {
+          "type": "string"
+        },
+        "outcomes": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/NotificationType"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "watchlistId": {
+          "type": "string"
+        },
+        "watchlistName": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "eventTitle": {
+          "type": "string"
+        },
+        "marketId": {
+          "type": "string"
+        },
+        "marketQuestion": {
+          "type": "string"
+        },
+        "polymarketSlug": {
+          "type": "string"
+        },
+        "eventStatusScope": {
+          "$ref": "#/definitions/EventStatusScope"
+        },
+        "triggerType": {
+          "$ref": "#/definitions/EventStatusTriggerType"
+        },
+        "detectedAt": {
+          "type": "string"
+        },
+        "detectedAtMs": {
+          "type": "number"
+        },
+        "sentToUserAtMs": {
+          "type": "number"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "createdAt",
+        "detectedAt",
+        "detectedAtMs",
+        "eventId",
+        "eventStatusScope",
+        "eventTitle",
+        "polymarketSlug",
+        "subscriptionId",
+        "triggerType",
+        "type",
+        "watchlistId",
+        "watchlistName"
+      ]
+    },
+    "Date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "NotificationType": {
+      "enum": [
+        "event_status_notification",
+        "price_notification"
+      ],
+      "type": "string"
+    },
+    "EventStatusScope": {
+      "type": "string",
+      "enum": [
+        "Market",
+        "Event"
+      ]
+    },
+    "EventStatusTriggerType": {
+      "type": "string",
+      "enum": [
+        "Open",
+        "Closed"
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
