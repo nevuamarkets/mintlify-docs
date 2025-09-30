@@ -27,7 +27,7 @@
                 ]
               },
               {
-                "group": "Subscriptions and Alerts",
+                "group": "Alerts",
                 "pages": [
                   "POST /subscriptions/{watchlistId}",
                   "GET /subscriptions/{watchlistId}",
@@ -40,8 +40,8 @@
                 "group": "Watchlists",
                 "pages": [
                   "POST /watchlists/create-from-tags",
-                  "POST /watchlists/delete",
-                  "GET /watchlists/{watchlistId}"
+                  "GET /watchlists/{watchlistId}",
+                  "POST /watchlists/delete"
                 ]
               }
             ]
