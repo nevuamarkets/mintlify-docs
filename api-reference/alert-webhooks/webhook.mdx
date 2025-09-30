@@ -18,34 +18,34 @@ This schema is used for all price-based alert notifications.
 
 #### Properties
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `type` | `"price_notification"` | ✅ | The notification type |
-| `createdAt` | `string` (ISO 8601) | ✅ | When the notification was created |
-| `subscriptionId` | `string` | ✅ | The ID of the subscription that triggered this notification |
-| `watchlistId` | `string` | ✅ | The ID of the watchlist being monitored |
-| `watchlistName` | `string` | ✅ | The name of the watchlist |
-| `eventId` | `string` | ✅ | The Polymarket event ID |
-| `eventTitle` | `string` | ✅ | The title of the event |
-| `marketId` | `string` | ✅ | The Polymarket market ID |
-| `marketQuestion` | `string` | ✅ | The market question/title |
-| `polymarketSlug` | `string` | ✅ | The Polymarket URL slug for this event |
-| `clobTokenId` | `string` | ✅ | The CLOB token identifier |
-| `subscriptionScope` | `"Watchlist" \| "Event" \| "Market"` | ✅ | The scope of the subscription |
-| `subscriptionTypeConfig` | `object` | ✅ | Configuration details for the subscription type |
-| `triggerType` | `"One Time" \| "Recurring"` | ✅ | Whether this is a one-time or recurring trigger |
-| `detectedValue` | `number` | ✅ | The price/percentage value that triggered the alert |
-| `detectedAt` | `string` (ISO 8601) | ✅ | When the condition was detected |
-| `detectedAtMs` | `number` | ✅ | Detection timestamp in milliseconds |
-| `sentFromPolymarketAtMs` | `number` | ✅ | When the data was received from Polymarket (milliseconds) |
-| `title` | `string` | ❌ | Optional notification title |
-| `message` | `string` | ❌ | Optional notification message |
-| `sentToUserAtMs` | `number` | ❌ | When notification was sent (milliseconds) |
-| `readFromUserAtMs` | `number` | ❌ | When user read the notification (milliseconds) |
-| `detectionDetails` | `object` | ❌ | Additional detection metadata |
-| `polymarketSourceEvent` | `object` | ❌ | Raw source event data from Polymarket |
+| Field | Type | Description |
+|-------|------|-------------|
+| `type` | `"price_notification"` | The notification type |
+| `createdAt` | `string` (ISO 8601) | When the notification was created |
+| `subscriptionId` | `string` | The ID of the subscription that triggered this notification |
+| `watchlistId` | `string` | The ID of the watchlist being monitored |
+| `watchlistName` | `string` | The name of the watchlist |
+| `eventId` | `string` | The Polymarket event ID |
+| `eventTitle` | `string` | The title of the event |
+| `marketId` | `string` | The Polymarket market ID |
+| `marketQuestion` | `string` | The market question/title |
+| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
+| `clobTokenId` | `string` | The CLOB token identifier |
+| `subscriptionScope` | `"Watchlist" \| "Event" \| "Market"` | The scope of the subscription |
+| `subscriptionTypeConfig` | `object` | Configuration details for the subscription type. |
+| `triggerType` | `"One Time" \| "Recurring"` | Whether this is a one-time or recurring trigger |
+| `detectedValue` | `number` | The price/percentage value that triggered the alert |
+| `detectedAt` | `string` (ISO 8601) | When the condition was detected |
+| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
+| `sentFromPolymarketAtMs` | `number` | When the data was received from Polymarket (milliseconds) |
+| `title` | `string` | [Optional] Notification title |
+| `message` | `string` | [Optional] Notification message |
+| `detectionDetails` | `object` | [Optional] Additional detection metadata |
+| `polymarketSourceEvent` | `object` | [Optional] Raw source event data from Polymarket |
 
-```
+Changelog:
+- [30/09/2025]: `subscriptionTypeConfig` will soon be migrated to a `rules` object, which will also
+contain trigger context.
 
 #### Example Price Notification
 
@@ -112,31 +112,40 @@ This schema is used for all price-based alert notifications.
 
 ## Event Status Notification Schema
 
-### `WebhookEventStatusNotificationSchemaJSONRequest`
-
 This schema is used for event and market status change notifications.
+
+There are three types of event notifications:
+- Open Markets, with `eventStatusScope`: `Market` and `triggerType`: `Open`
+- Closed Markets, with `eventStatusScope`: `Market` and `triggerType`: `Closed`
+- Closed Events, with `eventStatusScope`: `Event` and `triggerType`: `Closed`
+
+If a closed event has only one market, then the webhook call will include that singular market
+context, i.e. its id, question and outcome.
+
+For new events with multiple markets, then a separate webhook call will be made for each market of
+that event.
 
 #### Properties
 
-| Field | Type | Required | Description |
-|-------|------|----------|-------------|
-| `type` | `"event_status_notification"` | ✅ | The notification type |
-| `createdAt` | `string` (ISO 8601) | ✅ | When the notification was created |
-| `subscriptionId` | `string` | ✅ | The ID of the subscription that triggered this notification |
-| `watchlistId` | `string` | ✅ | The ID of the watchlist being monitored |
-| `watchlistName` | `string` | ✅ | The name of the watchlist |
-| `eventId` | `string` | ✅ | The Polymarket event ID |
-| `eventTitle` | `string` | ✅ | The title of the event |
-| `polymarketSlug` | `string` | ✅ | The Polymarket URL slug for this event |
-| `eventStatusScope` | `"Market" \| "Event"` | ✅ | Whether this is a market-level or event-level status change |
-| `triggerType` | `"Open" \| "Closed"` | ✅ | Whether this is for opening or closing |
-| `detectedAt` | `string` (ISO 8601) | ✅ | When the status change was detected |
-| `detectedAtMs` | `number` | ✅ | Detection timestamp in milliseconds |
-| `marketId` | `string` | ❌ | The market ID (present for market-level changes) |
-| `marketQuestion` | `string` | ❌ | The market question (present for market-level changes) |
-| `outcomes` | `string` | ❌ | Available outcome options for the market |
-| `outcomePrices` | `string` | ❌ | Current prices for market outcomes |
-| `sentToUserAtMs` | `number` | ❌ | When notification was sent (milliseconds) |
+| Field | Type | Description |
+|-------|------|-------------|
+| `type` | `"event_status_notification"` | The notification type |
+| `eventStatusScope` | `"Market" \| "Event"` | Whether this is a market-level or event-level status change |
+| `triggerType` | `"Open" \| "Closed"` | Whether this is for opening or closing |
+| `createdAt` | `string` (ISO 8601) | When the notification was created |
+| `subscriptionId` | `string` | The ID of the subscription that triggered this notification |
+| `watchlistId` | `string` | The ID of the watchlist being monitored |
+| `watchlistName` | `string` | The name of the watchlist |
+| `eventId` | `string` | The Polymarket event ID |
+| `eventTitle` | `string` | The title of the event |
+| `marketId` | `string` | [Optional] The market ID (present for market-level changes) |
+| `marketQuestion` | `string` | [Optional] The market question (present for market-level changes) |
+| `outcomes` | `string` | [Optional] Available outcome options for the market |
+| `outcomePrices` | `string` | [Optional] Current prices for market outcomes |
+| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
+| `detectedAt` | `string` (ISO 8601) | When the status change was detected |
+| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
+
 
 #### Example Event Status Notifications
 
