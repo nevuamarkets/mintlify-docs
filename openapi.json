@@ -1207,8 +1207,7 @@
     "securitySchemes": {
       "bearerAuth": {
         "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "scheme": "bearer"
       },
       "apiKey": {
         "type": "apiKey",
@@ -1341,7 +1340,7 @@
         "operationId": "deleteSubscriptions",
         "security": [
           {
-            "Bearer": []
+            "bearerAuth": []
           }
         ],
         "summary": "Delete subscriptions",
@@ -1478,7 +1477,7 @@
         "operationId": "getSubscriptions",
         "security": [
           {
-            "Bearer": []
+            "bearerAuth": []
           }
         ],
         "summary": "Get subscriptions",
@@ -1636,7 +1635,7 @@
         "operationId": "createWatchlistSubscription",
         "security": [
           {
-            "Bearer": []
+            "bearerAuth": []
           }
         ],
         "summary": "Create a watchlist subscription",
@@ -1844,7 +1843,7 @@
         "operationId": "createWatchlistFromTags",
         "security": [
           {
-            "apiKey": []
+            "bearerAuth": []
           }
         ],
         "summary": "Create live watchlist from tags",
@@ -2031,7 +2030,7 @@
         "operationId": "deleteWatchlist",
         "security": [
           {
-            "apiKey": []
+            "bearerAuth": []
           }
         ],
         "summary": "Delete a watchlist",
@@ -2173,7 +2172,7 @@
         "operationId": "getWatchlists",
         "security": [
           {
-            "apiKey": []
+            "bearerAuth": []
           }
         ],
         "summary": "Get watchlists",
