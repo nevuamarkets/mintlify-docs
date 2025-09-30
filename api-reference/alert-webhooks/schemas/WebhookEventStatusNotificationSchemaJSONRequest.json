@@ -16,6 +16,9 @@
         "type": {
           "$ref": "#/definitions/NotificationType"
         },
+        "userId": {
+          "type": "string"
+        },
         "subscriptionId": {
           "type": "string"
         },
@@ -46,6 +49,12 @@
         "triggerType": {
           "$ref": "#/definitions/EventStatusTriggerType"
         },
+        "channels": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NotificationChannel"
+          }
+        },
         "detectedAt": {
           "type": "string"
         },
@@ -55,6 +64,7 @@
       },
       "additionalProperties": false,
       "required": [
+        "channels",
         "createdAt",
         "detectedAt",
         "detectedAtMs",
@@ -65,6 +75,7 @@
         "subscriptionId",
         "triggerType",
         "type",
+        "userId",
         "watchlistId",
         "watchlistName"
       ]
@@ -92,6 +103,52 @@
       "enum": [
         "Open",
         "Closed"
+      ]
+    },
+    "NotificationChannel": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "$ref": "#/definitions/NotificationChannelType"
+        },
+        "settings": {
+          "type": "object",
+          "properties": {
+            "telegramChatId": {
+              "type": "number"
+            },
+            "webhookUrl": {
+              "type": "string"
+            },
+            "discordWebhookUrl": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "status": {
+          "enum": [
+            "BLOCKED_BY_USER",
+            "FAILED",
+            "PENDING",
+            "READ",
+            "SENT"
+          ],
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    },
+    "NotificationChannelType": {
+      "type": "string",
+      "enum": [
+        "In App",
+        "Webhook",
+        "Discord",
+        "Telegram"
       ]
     }
   },
