@@ -265,25 +265,7 @@
             "$ref": "#/components/schemas/SubscriptionType.CROSSING"
           },
           "params": {
-            "type": "object",
-            "properties": {
-              "thresholdPercent": {
-                "type": "number"
-              },
-              "triggerType": {
-                "$ref": "#/components/schemas/TriggerType",
-                "description": "Controls if the rule will fire once or repeatedly."
-              },
-              "triggerInterval": {
-                "$ref": "#/components/schemas/TriggerInterval",
-                "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
-              }
-            },
-            "additionalProperties": false,
-            "required": [
-              "thresholdPercent",
-              "triggerType"
-            ]
+            "$ref": "#/components/schemas/ThresholdPercentRuleParams"
           }
         },
         "additionalProperties": false,
@@ -296,6 +278,27 @@
         "type": "string",
         "enum": [
           "Crossing"
+        ]
+      },
+      "ThresholdPercentRuleParams": {
+        "type": "object",
+        "properties": {
+          "thresholdPercent": {
+            "type": "number"
+          },
+          "triggerType": {
+            "$ref": "#/components/schemas/TriggerType",
+            "description": "Controls if the rule will fire once or repeatedly."
+          },
+          "triggerInterval": {
+            "$ref": "#/components/schemas/TriggerInterval",
+            "description": "Controls how often the rule will fire since the last trigger.\n\n- For `One Time` rules, this is ignored.\n- For `Recurring` rules, default is 30 minutes."
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "thresholdPercent",
+          "triggerType"
         ]
       },
       "TriggerType": {
