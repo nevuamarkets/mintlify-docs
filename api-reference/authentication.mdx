@@ -1,0 +1,41 @@
+---
+title: 'Authentication'
+description: 'Learn how to authenticate your API requests using Bearer tokens'
+---
+
+## Bearer Token Authentication
+
+For endpoints that require authentication, you must include a Bearer token in the Authorization header. This token identifies your account and provides access to your data.
+
+### How to Authenticate
+
+Include your API token in the `Authorization` header of every request using the Bearer authentication scheme:
+
+```bash
+Authorization: Bearer YOUR_API_TOKEN
+```
+
+### Example Request
+
+```bash
+curl -X GET "https://api.example.com/subscriptions" \
+  -H "Authorization: Bearer your_api_token_here" \
+  -H "Content-Type: application/json"
+```
+
+### Getting Your API Token
+
+TBD
+
+<Warning>
+Keep your API token secure! Never expose it in client-side code or public repositories. Store it as an environment variable or in a secure configuration file.
+</Warning>
+
+### Authentication Errors
+
+If authentication fails, you'll receive a `401 Unauthorized` response with details about the authentication error. Common causes include:
+
+- Missing Authorization header
+- Invalid or expired token
+- Malformed Bearer token format
+

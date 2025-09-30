@@ -20,6 +20,12 @@
             },
             "pages": [
               {
+                "group": "Introduction",
+                "pages": [
+                  "api-reference/authentication"
+                ]
+              },
+              {
                 "group": "Search",
                 "pages": [
                   "POST /search",
