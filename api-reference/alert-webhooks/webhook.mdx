@@ -140,21 +140,32 @@ This schema is used for event and market status change notifications.
 
 #### Example Event Status Notifications
 
-**New Event Created**
+**New Market Created**
 ```json
 {
   "type": "event_status_notification",
-  "createdAt": "2024-01-15T10:30:00Z",
-  "subscriptionId": "507f191e810c19729de860ea",
-  "watchlistId": "507f191e810c19729de860eb",
-  "watchlistName": "2024 Election Markets",
-  "eventId": "0x789...",
-  "eventTitle": "2024 Senate Elections",
-  "polymarketSlug": "2024-senate-elections",
-  "eventStatusScope": "Event",
+  "eventStatusScope": "Market",
   "triggerType": "Open",
-  "detectedAt": "2024-01-15T10:29:45Z",
-  "detectedAtMs": 1705316985000
+  "userId": "68ac76f15d97fa94e41ddf6a",
+  "createdAt": "2025-09-30T12:48:14.109Z",
+  "subscriptionId": "68ac770c5d97fa94e41ddf6f",
+  "watchlistId": "68ac770c5d97fa94e41ddf6e",
+  "watchlistName": "Esport Arena Highlights and Competitive Scenes",
+  "eventId": "40884",
+  "eventTitle": "League of Legends: Gen.G Global Academy vs. DN Freecs Challengers",
+  "marketId": "584650",
+  "marketQuestion": "League of Legends: Gen.G Global Academy vs. DN Freecs Challengers"
+  "polymarketSlug": "league-of-legends-geng-global-academy-vs-dn-freecs-challengers",
+  "detectedAt": "2025-09-01T01:58:41.129Z",
+  "detectedAtMs": 1756691921129,
+  "channels": [
+    {
+      "type": "Webhook",
+      "settings": {
+        "webhookUrl": "https://dev-webhook.nevua.markets/webhook"
+      }
+    }
+  ]
 }
 ```
 
@@ -162,23 +173,90 @@ This schema is used for event and market status change notifications.
 ```json
 {
   "type": "event_status_notification",
-  "createdAt": "2024-01-15T10:30:00Z",
-  "subscriptionId": "507f191e810c19729de860ea",
-  "watchlistId": "507f191e810c19729de860eb",
-  "watchlistName": "2024 Election Markets",
-  "eventId": "0x123...",
-  "eventTitle": "2024 Presidential Election",
-  "marketId": "0x456...",
-  "marketQuestion": "Will Donald Trump win the 2024 Presidential Election?",
-  "polymarketSlug": "will-donald-trump-win-the-2024-presidential-election",
   "eventStatusScope": "Market",
   "triggerType": "Closed",
-  "outcomes": "Yes,No",
-  "outcomePrices": "0.523,0.477",
-  "detectedAt": "2024-01-15T10:29:45Z",
-  "detectedAtMs": 1705316985000
+  "userId": "6850f3944f12f220ecc25514",
+  "createdAt": "2025-09-30T12:48:14.109Z",
+  "subscriptionId": "6850f41e4f12f220ecc25518",
+  "watchlistId": "6850f41e4f12f220ecc25517",
+  "watchlistName": "sports",
+  "eventId": "40057",
+  "eventTitle": "CS2: BLAST Open London 2025",
+  "marketId": "582357",
+  "marketQuestion": "Will GamerLegion win the BLAST Open London 2025 tournament?",
+  "outcomes": "[\"Yes\", \"No\"]",
+  "outcomePrices": "[\"0\", \"1\"]"
+  "polymarketSlug": "cs2-blast-open-london-2025",
+  "detectedAt": "2025-08-31T16:19:39.020Z",
+  "detectedAtMs": 1756657179020,
+  "channels": [
+    {
+      "type": "Webhook",
+      "settings": {
+        "webhookUrl": "https://dev-webhook.nevua.markets/webhook"
+      }
+    }
+  ]
+}
+
+```
+**Event Closed - single market**
+```json
+{
+  "type": "event_status_notification",
+  "eventStatusScope": "Event",
+  "triggerType": "Closed",
+  "userId": "68127a8ee0d25586bd0aeffd",
+  "createdAt": "2025-09-30T12:48:14.109Z",
+  "subscriptionId": "68132e17cff7571b55f629b5",
+  "watchlistId": "68132e17cff7571b55f629b4",
+  "watchlistName": "Bitcoin",
+  "eventId": "40364",
+  "eventTitle": "Bitcoin Up or Down - August 31, 6AM ET",
+  "outcomes": "[\"Up\", \"Down\"]",
+  "outcomePrices": "[\"1\", \"0\"]",
+  "marketId": "583034",
+  "marketQuestion": "Bitcoin Up or Down - August 31, 6AM ET"
+  "polymarketSlug": "bitcoin-up-or-down-august-31-6am-et",
+  "detectedAt": "2025-08-31T13:26:13.451Z",
+  "detectedAtMs": 1756646773451,
+  "channels": [
+    {
+      "type": "Webhook",
+      "settings": {
+        "webhookUrl": "https://dev-webhook.nevua.markets/webhook"
+      }
+    }
+  ]
 }
 ```
+**Event Closed - multiple markets**
+```json
+{
+  "type": "event_status_notification",
+  "eventStatusScope": "Event",
+  "triggerType": "Closed",
+  "userId": "685c205a15aa7e859743cbeb",
+  "createdAt": "2025-09-30T12:48:14.109Z",
+  "subscriptionId": "686fdfbbd20f44c15c33d93f",
+  "watchlistId": "686fdfbbd20f44c15c33d93e",
+  "watchlistName": "grok",
+  "eventId": "30367",
+  "eventTitle": "Which company has best AI model end of August?",
+  "polymarketSlug": "which-company-has-best-ai-model-end-of-august",
+  "detectedAt": "2025-08-31T20:12:04.976Z",
+  "detectedAtMs": 1756671124976,
+  "channels": [
+    {
+      "type": "Webhook",
+      "settings": {
+        "webhookUrl": "https://dev-webhook.nevua.markets/webhook"
+      }
+    }
+  ]
+}
+```
+**
 
 ## Webhook Delivery
 
