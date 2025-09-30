@@ -21,6 +21,7 @@ This schema is used for all price-based alert notifications.
 | Field | Type | Description |
 |-------|------|-------------|
 | `type` | `"price_notification"` | The notification type |
+| `userId` | `string` | The ID of the user who owns the subscription |
 | `createdAt` | `string` (ISO 8601) | When the notification was created |
 | `subscriptionId` | `string` | The ID of the subscription that triggered this notification |
 | `watchlistId` | `string` | The ID of the watchlist being monitored |
@@ -32,12 +33,13 @@ This schema is used for all price-based alert notifications.
 | `polymarketSlug` | `string` | The Polymarket URL slug for this event |
 | `clobTokenId` | `string` | The CLOB token identifier |
 | `subscriptionScope` | `"Watchlist" \| "Event" \| "Market"` | The scope of the subscription |
-| `subscriptionTypeConfig` | `object` | Configuration details for the subscription type. |
+| `subscriptionTypeConfig` | `object` | Configuration details for the subscription type |
 | `triggerType` | `"One Time" \| "Recurring"` | Whether this is a one-time or recurring trigger |
 | `detectedValue` | `number` | The price/percentage value that triggered the alert |
 | `detectedAt` | `string` (ISO 8601) | When the condition was detected |
 | `detectedAtMs` | `number` | Detection timestamp in milliseconds |
 | `sentFromPolymarketAtMs` | `number` | When the data was received from Polymarket (milliseconds) |
+| `channels` | `array` | Array of notification channels used for delivery |
 | `title` | `string` | [Optional] Notification title |
 | `message` | `string` | [Optional] Notification message |
 | `detectionDetails` | `object` | [Optional] Additional detection metadata |
@@ -130,6 +132,7 @@ that event.
 | Field | Type | Description |
 |-------|------|-------------|
 | `type` | `"event_status_notification"` | The notification type |
+| `userId` | `string` | The ID of the user who owns the subscription |
 | `eventStatusScope` | `"Market" \| "Event"` | Whether this is a market-level or event-level status change |
 | `triggerType` | `"Open" \| "Closed"` | Whether this is for opening or closing |
 | `createdAt` | `string` (ISO 8601) | When the notification was created |
@@ -138,13 +141,14 @@ that event.
 | `watchlistName` | `string` | The name of the watchlist |
 | `eventId` | `string` | The Polymarket event ID |
 | `eventTitle` | `string` | The title of the event |
+| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
+| `detectedAt` | `string` (ISO 8601) | When the status change was detected |
+| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
+| `channels` | `array` | Array of notification channels used for delivery |
 | `marketId` | `string` | [Optional] The market ID (present for market-level changes) |
 | `marketQuestion` | `string` | [Optional] The market question (present for market-level changes) |
 | `outcomes` | `string` | [Optional] Available outcome options for the market |
 | `outcomePrices` | `string` | [Optional] Current prices for market outcomes |
-| `polymarketSlug` | `string` | The Polymarket URL slug for this event |
-| `detectedAt` | `string` (ISO 8601) | When the status change was detected |
-| `detectedAtMs` | `number` | Detection timestamp in milliseconds |
 
 
 #### Example Event Status Notifications

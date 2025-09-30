@@ -7,9 +7,6 @@
         "createdAt": {
           "$ref": "#/definitions/Date"
         },
-        "title": {
-          "type": "string"
-        },
         "type": {
           "$ref": "#/definitions/NotificationType"
         },
@@ -70,9 +67,6 @@
         "detectionDetails": {},
         "sentFromPolymarketAtMs": {
           "type": "number"
-        },
-        "message": {
-          "type": "string"
         },
         "polymarketSourceEvent": {}
       },
