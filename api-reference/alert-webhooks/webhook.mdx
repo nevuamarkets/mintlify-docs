@@ -45,80 +45,6 @@ This schema is used for all price-based alert notifications.
 | `detectionDetails` | `object` | ❌ | Additional detection metadata |
 | `polymarketSourceEvent` | `object` | ❌ | Raw source event data from Polymarket |
 
-#### Subscription Type Configurations
-
-The `subscriptionTypeConfig` field varies based on the alert type:
-
-**Crossing Alert**
-```json
-{
-  "type": "Crossing",
-  "config": {
-    "params": {
-      "threshold_percent": 50
-    }
-  }
-}
-```
-
-**Crossing Up Alert**
-```json
-{
-  "type": "Crossing Up",
-  "config": {
-    "params": {
-      "threshold_percent": 60
-    }
-  }
-}
-```
-
-**Crossing Down Alert**
-```json
-{
-  "type": "Crossing Down",
-  "config": {
-    "params": {
-      "threshold_percent": 40
-    }
-  }
-}
-```
-
-**Crossing Step Alert**
-```json
-{
-  "type": "Crossing Step",
-  "config": {
-    "params": {
-      "threshold_percent": 10
-    }
-  }
-}
-```
-
-**Greater Than Alert**
-```json
-{
-  "type": "Greater Than",
-  "config": {
-    "params": {
-      "threshold_percent": 75
-    }
-  }
-}
-```
-
-**Less Than Alert**
-```json
-{
-  "type": "Less Than",
-  "config": {
-    "params": {
-      "threshold_percent": 25
-    }
-  }
-}
 ```
 
 #### Example Price Notification
@@ -182,16 +108,6 @@ This schema is used for event and market status change notifications.
 | `outcomes` | `string` | ❌ | Available outcome options for the market |
 | `outcomePrices` | `string` | ❌ | Current prices for market outcomes |
 | `sentToUserAtMs` | `number` | ❌ | When notification was sent (milliseconds) |
-
-#### Event Status Scope
-
-- **`"Event"`**: Indicates an event-level status change (entire event opened/closed)
-- **`"Market"`**: Indicates a market-level status change (individual market within an event opened/closed)
-
-#### Trigger Types
-
-- **`"Open"`**: A new event or market has been created/opened
-- **`"Closed"`**: An existing event or market has been closed
 
 #### Example Event Status Notifications
 

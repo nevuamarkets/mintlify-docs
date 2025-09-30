@@ -4,6 +4,10 @@
     "WebhookEventStatusNotificationSchemaJSONRequest": {
       "type": "object",
       "properties": {
+        "status": {
+          "type": "string",
+          "const": ""
+        },
         "createdAt": {
           "$ref": "#/definitions/Date"
         },
@@ -62,6 +66,7 @@
         "eventStatusScope",
         "eventTitle",
         "polymarketSlug",
+        "status",
         "subscriptionId",
         "triggerType",
         "type",
