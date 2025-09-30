@@ -820,7 +820,7 @@
           }
         ],
         "summary": "Create a subscription",
-        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks.\n\n*Currently, subscriptions can only be created for the `Watchlist` scope i.e. they will apply to **all** markets in the watchlist. We will soon support more refined `Market` and `Event` scopes.*\n",
+        "description": "This endpoint creates a subscription that monitors all existing and newly added markets in a watchlist.\n\nWhen the rule condition is met, the subscription will make a POST request to all the configured webhooks. See the [Webhooks](https://docs.nevua.markets//api-reference/alert-webhooks/webhook-payloads) documentation for more details on the webhook payloads.\n",
         "tags": [
           "Alerts"
         ],
