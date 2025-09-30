@@ -62,9 +62,6 @@
         "sentFromPolymarketAtMs": {
           "type": "number"
         },
-        "readFromUserAtMs": {
-          "type": "number"
-        },
         "message": {
           "type": "string"
         },
