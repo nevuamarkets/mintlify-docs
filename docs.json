@@ -10,6 +10,18 @@
   "navigation": {
     "tabs": [
       {
+        "tab": "User Guide",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "getting-started/what-is-nevua-markets.mdx",
+              "getting-started/how-to-sign-up.mdx"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "API",
         "groups": [
           {
@@ -21,12 +33,14 @@
             "pages": [
               {
                 "group": "Introduction",
+                "expanded": true,
                 "pages": [
                   "api-reference/authentication"
                 ]
               },
               {
                 "group": "Search",
+                "expanded": true,
                 "pages": [
                   "POST /search",
                   "POST /search/tag-slugs"
@@ -34,6 +48,7 @@
               },
               {
                 "group": "Alerts",
+                "expanded": true,
                 "pages": [
                   "POST /subscriptions/{watchlistId}",
                   "GET /subscriptions/{watchlistId}",
@@ -44,6 +59,7 @@
               },
               {
                 "group": "Watchlists",
+                "expanded": true,
                 "pages": [
                   "POST /watchlists/create-from-tags",
                   "GET /watchlists/{watchlistId}",
