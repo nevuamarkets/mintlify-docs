@@ -15,8 +15,8 @@
           {
             "group": "Getting Started",
             "pages": [
-              "getting-started/what-is-nevua-markets.mdx",
-              "getting-started/how-to-sign-up.mdx"
+              "getting-started/what-is-nevua-markets",
+              "getting-started/how-to-sign-up"
             ]
           }
         ]
