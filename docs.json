@@ -2,6 +2,10 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Nevua Markets",
+  "logo": {
+      "light": "/logo/nevua-markets-logo-400-150.svg",
+      "dark": "/logo/nevua-markets-logo-400-150-dark.svg"
+  },
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -13,10 +17,23 @@
         "tab": "User Guide",
         "groups": [
           {
-            "group": "Getting Started",
+            "group": "Introduction",
             "pages": [
-              "getting-started/what-is-nevua-markets",
-              "getting-started/how-to-sign-up"
+              "introduction/why-nevua-markets",
+              "introduction/how-to-sign-up"
+            ]
+          },
+          {
+            "group": "Watchlists",
+            "pages": [
+              "watchlists/creating-a-watchlist"
+            ]
+          },
+          {
+            "group": "Alerts",
+            "pages": [
+              "alerts/creating-a-price-alert",
+              "alerts/creating-a-market-status-alert"
             ]
           }
         ]
