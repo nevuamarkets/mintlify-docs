@@ -26,14 +26,14 @@
           {
             "group": "Watchlists",
             "pages": [
-              "watchlists/creating-a-watchlist"
+              "watchlists/create-a-watchlist"
             ]
           },
           {
             "group": "Alerts",
             "pages": [
-              "alerts/creating-a-price-alert",
-              "alerts/creating-a-market-status-alert"
+              "alerts/create-a-price-alert",
+              "alerts/create-a-market-status-alert"
             ]
           }
         ]
