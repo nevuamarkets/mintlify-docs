@@ -32,8 +32,22 @@
           {
             "group": "Alerts",
             "pages": [
+              
               "alerts/create-a-price-alert",
-              "alerts/create-a-market-status-alert"
+              "alerts/create-a-market-status-alert",
+              "alerts/conditions",
+              "alerts/trigger-frequency",
+              {
+                "group": "Notification Channels",
+                "expanded": true,
+                "pages": [
+                  "alerts/notification-channels/in-app",
+                  "alerts/notification-channels/telegram",
+                  "alerts/notification-channels/discord",
+                  "alerts/notification-channels/webhook"
+                ]
+              },
+              "alerts/alert-management"
             ]
           }
         ]
