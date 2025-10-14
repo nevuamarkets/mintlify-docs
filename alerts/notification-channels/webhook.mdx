@@ -1,4 +1,25 @@
 ---
 title: 'Webhook'
-description: ''
+description: 'Integrate alerts with your own systems using webhooks for custom automation and workflows.'
 ---
+
+## What are webhooks?
+
+Webhooks allow you to receive alert notifications as HTTP POST requests to your own endpoint. This enables you to integrate Nevua Markets alerts with your custom applications, automation tools, or third-party services.
+
+## Setting up webhook notifications
+
+When creating or editing an alert, select Webhook as a notification channel and provide your endpoint URL. Whenever the alert triggers, we'll send a POST request to your URL with the alert details.
+
+<video
+  autoPlay
+  muted
+  loop
+  playsInline
+  className="w-full aspect-video rounded-xl"
+  src="/alerts/content/webhook-notifications.mp4"
+></video>
+
+## Webhook payloads
+
+For detailed information about the webhook payload structure and schemas, see our [Webhook Payloads documentation](https://docs.nevua.markets/api-reference/alert-webhooks/webhook-payloads).
