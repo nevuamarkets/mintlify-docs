@@ -84,7 +84,7 @@
                   "POST /subscriptions/{watchlistId}",
                   "GET /subscriptions/{watchlistId}",
                   "POST /subscriptions/delete",
-                  "api-reference/alert-webhooks/webhook"
+                  "api-reference/alert-webhooks/webhook-payloads"
 
                 ]
               },
