@@ -28,6 +28,12 @@
           "searchMatchOperator": {
             "$ref": "#/components/schemas/SearchMatchOperator"
           },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "partial": {
             "type": "boolean"
           }
@@ -1146,6 +1152,12 @@
           },
           "searchMatchOperator": {
             "$ref": "#/components/schemas/SearchMatchOperator"
+          },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "createdAt": {
             "type": "string"
