@@ -4,22 +4,7 @@
     "WebhookPriceNotificationSchemaJSONRequest": {
       "type": "object",
       "properties": {
-        "createdAt": {
-          "$ref": "#/definitions/Date"
-        },
-        "type": {
-          "$ref": "#/definitions/NotificationType"
-        },
-        "userId": {
-          "type": "string"
-        },
-        "subscriptionId": {
-          "type": "string"
-        },
         "watchlistId": {
-          "type": "string"
-        },
-        "watchlistName": {
           "type": "string"
         },
         "eventId": {
@@ -32,6 +17,24 @@
           "type": "string"
         },
         "marketQuestion": {
+          "type": "string"
+        },
+        "createdAt": {
+          "$ref": "#/definitions/Date"
+        },
+        "clobTokenId": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/NotificationType"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "subscriptionId": {
+          "type": "string"
+        },
+        "watchlistName": {
           "type": "string"
         },
         "polymarketSlug": {
@@ -51,9 +54,6 @@
         },
         "detectedAtMs": {
           "type": "number"
-        },
-        "clobTokenId": {
-          "type": "string"
         },
         "subscriptionScope": {
           "$ref": "#/definitions/SubscriptionScope"

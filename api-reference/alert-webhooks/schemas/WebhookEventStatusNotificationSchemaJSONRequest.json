@@ -4,6 +4,21 @@
     "WebhookEventStatusNotificationSchemaJSONRequest": {
       "type": "object",
       "properties": {
+        "watchlistId": {
+          "type": "string"
+        },
+        "eventId": {
+          "type": "string"
+        },
+        "eventTitle": {
+          "type": "string"
+        },
+        "marketId": {
+          "type": "string"
+        },
+        "marketQuestion": {
+          "type": "string"
+        },
         "createdAt": {
           "$ref": "#/definitions/Date"
         },
@@ -22,22 +37,7 @@
         "subscriptionId": {
           "type": "string"
         },
-        "watchlistId": {
-          "type": "string"
-        },
         "watchlistName": {
-          "type": "string"
-        },
-        "eventId": {
-          "type": "string"
-        },
-        "eventTitle": {
-          "type": "string"
-        },
-        "marketId": {
-          "type": "string"
-        },
-        "marketQuestion": {
           "type": "string"
         },
         "polymarketSlug": {
