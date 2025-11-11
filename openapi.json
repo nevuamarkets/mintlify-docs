@@ -1057,6 +1057,32 @@
           "watchListName"
         ]
       },
+      "UpdateWatchListTagsJSONRequest": {
+        "type": "object",
+        "properties": {
+          "watchListId": {
+            "type": "string"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchTag"
+            }
+          },
+          "searchMatchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "tags",
+          "watchListId"
+        ]
+      },
+      "UpdateWatchListTagsJSONResponse": {
+        "type": "object",
+        "additionalProperties": false
+      },
       "DeleteWatchListJSONRequest": {
         "type": "object",
         "properties": {
@@ -1986,6 +2012,165 @@
                     "summary": "User not found",
                     "value": {
                       "error": "User not found and/or invalid API key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/watchlists/update/query/tags": {
+      "patch": {
+        "operationId": "updateWatchlistQueryTags",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Update watchlist tags query",
+        "description": "Replaces the tag-based query of an existing watchlist. This endpoint requires that the watchlist\ncurrently uses tags (not keyphrases) and that at least one valid tag is provided.\n",
+        "tags": [
+          "Watchlists"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWatchListTagsJSONRequest"
+              },
+              "examples": {
+                "update_tags_request": {
+                  "summary": "Replace watchlist tags",
+                  "value": {
+                    "watchListId": "507f1f77bcf86cd799439011",
+                    "tags": [
+                      {
+                        "tagSlug": "sports",
+                        "include": true
+                      },
+                      {
+                        "tagSlug": "esports",
+                        "include": true
+                      }
+                    ],
+                    "searchMatchOperator": "OR"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tags updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateWatchListTagsJSONResponse"
+                },
+                "examples": {
+                  "success": {
+                    "summary": "Updated tags",
+                    "value": {}
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - validation error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "empty_tags": {
+                    "summary": "Tags list is empty",
+                    "value": {
+                      "error": "Tags list is empty"
+                    }
+                  },
+                  "mixed_query": {
+                    "summary": "Watchlist has keyphrases",
+                    "value": {
+                      "error": "Watchlists with existing \"keyphrases\" cannot have \"tags\" added. This will be supported in the future."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing authentication token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Watchlist not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "not_found": {
+                    "summary": "Watchlist not found",
+                    "value": {
+                      "error": "Watchlist not found"
                     }
                   }
                 }
