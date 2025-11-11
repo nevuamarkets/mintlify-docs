@@ -1060,9 +1060,6 @@
       "UpdateWatchListTagsJSONRequest": {
         "type": "object",
         "properties": {
-          "watchListId": {
-            "type": "string"
-          },
           "tags": {
             "type": "array",
             "items": {
@@ -1075,8 +1072,7 @@
         },
         "additionalProperties": false,
         "required": [
-          "tags",
-          "watchListId"
+          "tags"
         ]
       },
       "UpdateWatchListTagsJSONResponse": {
@@ -2051,7 +2047,7 @@
         }
       }
     },
-    "/watchlists/update/query/tags": {
+    "/watchlists/{watchlistId}/query/tags": {
       "patch": {
         "operationId": "updateWatchlistQueryTags",
         "security": [
@@ -2064,6 +2060,18 @@
         "tags": [
           "Watchlists"
         ],
+        "parameters": [
+          {
+            "name": "watchlistId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Watchlist identifier.",
+            "example": "507f1f77bcf86cd799439011"
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -2075,7 +2083,6 @@
                 "update_tags_request": {
                   "summary": "Replace watchlist tags",
                   "value": {
-                    "watchListId": "507f1f77bcf86cd799439011",
                     "tags": [
                       {
                         "tagSlug": "sports",

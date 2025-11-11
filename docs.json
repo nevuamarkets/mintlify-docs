@@ -93,6 +93,7 @@
                 "expanded": true,
                 "pages": [
                   "POST /watchlists/create-from-tags",
+                  "PATCH /watchlists/{watchlistId}/query/tags",
                   "GET /watchlists/{watchlistId}",
                   "POST /watchlists/delete"
                 ]
