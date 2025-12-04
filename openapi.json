@@ -1137,6 +1137,12 @@
               "type": "string"
             }
           },
+          "hiddenMarketIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "createdAt": {
             "type": "string"
           },
