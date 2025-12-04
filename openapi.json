@@ -1131,6 +1131,12 @@
           "hiddenEvents": {
             "$ref": "#/components/schemas/EventsMap"
           },
+          "hiddenEventIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "createdAt": {
             "type": "string"
           },
