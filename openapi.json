@@ -1128,9 +1128,6 @@
           "events": {
             "$ref": "#/components/schemas/EventsMapWithAutoFetch"
           },
-          "hiddenEvents": {
-            "$ref": "#/components/schemas/EventsMap"
-          },
           "hiddenEventIds": {
             "type": "array",
             "items": {
@@ -1215,27 +1212,6 @@
       },
       "EventsMapWithAutoFetch": {
         "$ref": "#/components/schemas/__type"
-      },
-      "EventsMap": {
-        "$ref": "#/components/schemas/EventsMap_1"
-      },
-      "EventsMap_1": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "object",
-          "properties": {
-            "markets": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "additionalProperties": false,
-          "required": [
-            "markets"
-          ]
-        }
       }
     },
     "securitySchemes": {
