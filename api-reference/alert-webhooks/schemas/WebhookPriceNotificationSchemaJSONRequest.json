@@ -56,7 +56,7 @@
           "type": "number"
         },
         "expiresAt": {
-          "$ref": "#/definitions/Date"
+          "$ref": "#/definitions/Date_1"
         },
         "subscriptionScope": {
           "$ref": "#/definitions/SubscriptionScope"
@@ -83,7 +83,6 @@
         "detectedValue",
         "eventId",
         "eventTitle",
-        "expiresAt",
         "marketId",
         "marketQuestion",
         "polymarketSlug",
@@ -161,6 +160,10 @@
         "Discord",
         "Telegram"
       ]
+    },
+    "Date_1": {
+      "type": "string",
+      "format": "date-time"
     },
     "SubscriptionScope": {
       "type": "string",
