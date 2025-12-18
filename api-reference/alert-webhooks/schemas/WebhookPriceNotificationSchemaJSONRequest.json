@@ -55,6 +55,9 @@
         "detectedAtMs": {
           "type": "number"
         },
+        "expiresAt": {
+          "$ref": "#/definitions/Date"
+        },
         "subscriptionScope": {
           "$ref": "#/definitions/SubscriptionScope"
         },
@@ -80,6 +83,7 @@
         "detectedValue",
         "eventId",
         "eventTitle",
+        "expiresAt",
         "marketId",
         "marketQuestion",
         "polymarketSlug",
