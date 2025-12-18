@@ -34,6 +34,9 @@
         "userId": {
           "type": "string"
         },
+        "expiresAt": {
+          "$ref": "#/definitions/Date_1"
+        },
         "subscriptionId": {
           "type": "string"
         },
@@ -90,6 +93,10 @@
         "price_notification"
       ],
       "type": "string"
+    },
+    "Date_1": {
+      "type": "string",
+      "format": "date-time"
     },
     "EventStatusScope": {
       "type": "string",
