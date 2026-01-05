@@ -64,6 +64,9 @@
         "subscriptionTypeConfig": {
           "$ref": "#/definitions/SubscriptionTypeConfig"
         },
+        "triggerInterval": {
+          "type": "string"
+        },
         "detectedValue": {
           "type": "number"
         },
