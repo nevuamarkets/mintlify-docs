@@ -1197,16 +1197,23 @@
               "type": "boolean"
             },
             "markets": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "$ref": "#/components/schemas/MarketsMap"
             }
           },
           "additionalProperties": false,
           "required": [
             "autoFetch",
             "markets"
+          ]
+        }
+      },
+      "MarketsMap": {
+        "description": "Object-based markets map for efficient MongoDB change stream detection.\nUsing object keys instead of arrays allows change streams to show exactly \nwhich markets were added/removed without needing fullDocumentBeforeChange.\n\nExample: { \"market123\": true, \"market456\": true }",
+        "type": "object",
+        "additionalProperties": {
+          "type": "boolean",
+          "enum": [
+            true
           ]
         }
       },
