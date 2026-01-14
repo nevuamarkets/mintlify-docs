@@ -1156,9 +1156,57 @@
         ]
       },
       "WatchlistQuery": {
-        "$ref": "#/components/schemas/WatchlistQuery_1"
+        "anyOf": [
+          {
+            "$ref": "#/components/schemas/WatchlistQueryV2"
+          },
+          {
+            "$ref": "#/components/schemas/WatchlistQueryV1"
+          }
+        ],
+        "description": "Union type for reading watchlist queries from DB.\nDuring migration, a query could be in either format."
       },
-      "WatchlistQuery_1": {
+      "WatchlistQueryV2": {
+        "description": "WatchlistQuery using the new SearchFilters structure.\nThis is the target format after migration.",
+        "type": "object",
+        "properties": {
+          "createdAt": {
+            "type": "string"
+          },
+          "includeKeyphrases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeKeyphrases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "includeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "createdAt"
+        ]
+      },
+      "WatchlistQueryV1": {
         "type": "object",
         "properties": {
           "keyphrases": {
@@ -1176,7 +1224,7 @@
             "nullable": true
           },
           "searchMatchOperator": {
-            "$ref": "#/components/schemas/SearchMatchOperator"
+            "$ref": "#/components/schemas/SearchMatchOperator_1"
           },
           "createdAt": {
             "type": "string"
@@ -1186,6 +1234,13 @@
         "required": [
           "createdAt",
           "searchMatchOperator"
+        ]
+      },
+      "SearchMatchOperator_1": {
+        "type": "string",
+        "enum": [
+          "AND",
+          "OR"
         ]
       },
       "__type": {
