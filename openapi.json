@@ -180,6 +180,43 @@
           "tagSlug"
         ]
       },
+      "SearchJSONRequestV2": {
+        "description": "Search API request body (v2).\nUses the new SearchFilters structure.",
+        "type": "object",
+        "properties": {
+          "partial": {
+            "type": "boolean"
+          },
+          "includeKeyphrases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeKeyphrases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "includeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          }
+        },
+        "additionalProperties": false
+      },
       "BulkSubscriptionsJSONRequest": {
         "type": "object",
         "properties": {
@@ -1007,6 +1044,38 @@
           "subscriptionId"
         ]
       },
+      "CreateWatchListFromTagsJSONRequestV2": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "includeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          },
+          "automaticallyAddMatchingEvents": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "includeTags",
+          "matchOperator",
+          "name"
+        ]
+      },
       "CreateWatchListFromTagsJSONRequest": {
         "type": "object",
         "properties": {
@@ -1056,6 +1125,27 @@
           "watchListId",
           "watchListName"
         ]
+      },
+      "UpdateWatchListTagsJSONRequestV2": {
+        "type": "object",
+        "properties": {
+          "includeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "excludeTags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matchOperator": {
+            "$ref": "#/components/schemas/SearchMatchOperator"
+          }
+        },
+        "additionalProperties": false
       },
       "UpdateWatchListTagsJSONRequest": {
         "type": "object",
@@ -1367,6 +1457,90 @@
                   }
                 ],
                 "searchMatchOperator": "OR"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful search response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchJSONResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/search/v2": {
+      "post": {
+        "operationId": "searchEventsV2",
+        "summary": "Search events (V2)",
+        "description": "Search for events using the V2 filter format with explicit include/exclude arrays.\n\nThis endpoint supports searching by both keyphrases and tags in a single request.\nWhen both are provided, results are AND-combined (must match keyphrases AND tags).\n\nThe `matchOperator` controls how terms within each filter type are combined:\n- `OR`: Match any of the include terms\n- `AND`: Match all of the include terms\n\nExclusion terms are always AND-combined (must NOT match any excluded term).\n",
+        "tags": [
+          "Search"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchJSONRequestV2"
+              },
+              "examples": {
+                "keyphrase_search": {
+                  "summary": "Search by keyphrases",
+                  "value": {
+                    "includeKeyphrases": [
+                      "trump",
+                      "election"
+                    ],
+                    "excludeKeyphrases": [
+                      "2020"
+                    ],
+                    "matchOperator": "OR"
+                  }
+                },
+                "tag_search": {
+                  "summary": "Search by tags",
+                  "value": {
+                    "includeTags": [
+                      "sports",
+                      "esports"
+                    ],
+                    "matchOperator": "OR"
+                  }
+                },
+                "combined_search": {
+                  "summary": "Combined keyphrase and tag search",
+                  "value": {
+                    "includeKeyphrases": [
+                      "championship"
+                    ],
+                    "includeTags": [
+                      "sports"
+                    ],
+                    "matchOperator": "AND"
+                  }
+                }
               }
             }
           }
@@ -1912,7 +2086,7 @@
           }
         ],
         "summary": "Create live watchlist from tags",
-        "description": "This endpoint creates a live watchlist by specifying which tags to monitor:\n\n- When **new** matching events and markets are **created** on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When events and markets are **closed** on Polymarket, they will automatically be removed from the watchlist.\n\nIn order to receive alerts when new events and markets are created or existing ones are closed, [you can create a `New or closed events and markets` subscription for the watchlist](/api-reference/alerts/create-a-subscription).\n",
+        "description": "This endpoint creates a live watchlist by specifying which tags to monitor:\n\n- When **new** matching events and markets are **created** on Polymarket, they will automatically be added to the watchlist if `automaticallyAddMatchingEvents` is set to true (default).\n- When events and markets are **closed** on Polymarket, they will automatically be removed from the watchlist.\n\nIn order to receive alerts when new events and markets are created or existing ones are closed, [you can create a `New or closed events and markets` subscription for the watchlist](/api-reference/alerts/create-a-subscription).\n\n## Request Formats\n\n### V2 Format (Recommended)\nUses explicit `includeTags`/`excludeTags` arrays:\n```json\n{\n  \"name\": \"Sports & Esports\",\n  \"includeTags\": [\"sports\", \"esports\"],\n  \"excludeTags\": [\"politics\"],\n  \"matchOperator\": \"OR\",\n  \"automaticallyAddMatchingEvents\": true\n}\n```\n\n### V1 Format (Deprecated - will be removed in future version)\nUses `tags` array with `include` boolean:\n```json\n{\n  \"name\": \"Sports & Esports\",\n  \"tags\": [\n    {\"tagSlug\": \"sports\", \"include\": true},\n    {\"tagSlug\": \"esports\", \"include\": true}\n  ],\n  \"searchMatchOperator\": \"OR\"\n}\n```\n",
         "tags": [
           "Watchlists"
         ],
@@ -1921,11 +2095,43 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/CreateWatchListFromTagsJSONRequest"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateWatchListFromTagsJSONRequestV2"
+                  },
+                  {
+                    "$ref": "#/components/schemas/CreateWatchListFromTagsJSONRequest"
+                  }
+                ]
               },
               "examples": {
-                "sports_watchlist": {
-                  "summary": "Sports watchlist with OR operator",
+                "v2_sports_watchlist": {
+                  "summary": "V2 - Sports watchlist (recommended)",
+                  "value": {
+                    "name": "Sports & Esports",
+                    "includeTags": [
+                      "sports",
+                      "esports"
+                    ],
+                    "matchOperator": "OR",
+                    "automaticallyAddMatchingEvents": true
+                  }
+                },
+                "v2_crypto_exclude": {
+                  "summary": "V2 - Crypto with exclusions",
+                  "value": {
+                    "name": "Crypto (no memes)",
+                    "includeTags": [
+                      "crypto"
+                    ],
+                    "excludeTags": [
+                      "meme-coins"
+                    ],
+                    "matchOperator": "OR"
+                  }
+                },
+                "v1_sports_watchlist": {
+                  "summary": "V1 - Sports watchlist (deprecated)",
                   "value": {
                     "name": "Sports & Esports",
                     "tags": [
@@ -1935,28 +2141,6 @@
                       },
                       {
                         "tagSlug": "esports",
-                        "include": true
-                      }
-                    ],
-                    "searchMatchOperator": "OR",
-                    "automaticallyAddMatchingEvents": true
-                  }
-                },
-                "crypto_watchlist": {
-                  "summary": "Crypto watchlist with AND operator",
-                  "value": {
-                    "name": "Crypto Markets",
-                    "tags": [
-                      {
-                        "tagSlug": "crypto",
-                        "include": true
-                      },
-                      {
-                        "tagSlug": "bitcoin",
-                        "include": true
-                      },
-                      {
-                        "tagSlug": "ethereum",
                         "include": true
                       }
                     ],
@@ -2099,7 +2283,7 @@
           }
         ],
         "summary": "Update watchlist tags query",
-        "description": "Replaces the tag-based query of an existing watchlist. This endpoint requires that the watchlist\ncurrently uses tags (not keyphrases) and that at least one valid tag is provided.\n",
+        "description": "Replaces the tag-based query of an existing watchlist. This endpoint requires that the watchlist\ncurrently uses tags (not keyphrases) and that at least one valid tag is provided.\n\n## Request Formats\n\n### V2 Format (Recommended)\nUses explicit `includeTags`/`excludeTags` arrays:\n```json\n{\n  \"includeTags\": [\"sports\", \"esports\"],\n  \"excludeTags\": [\"politics\"],\n  \"matchOperator\": \"OR\"\n}\n```\n\n### V1 Format (Deprecated - will be removed in future version)\nUses `tags` array with `include` boolean:\n```json\n{\n  \"tags\": [\n    {\"tagSlug\": \"sports\", \"include\": true}\n  ],\n  \"searchMatchOperator\": \"OR\"\n}\n```\n",
         "tags": [
           "Watchlists"
         ],
@@ -2120,11 +2304,40 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateWatchListTagsJSONRequest"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/UpdateWatchListTagsJSONRequestV2"
+                  },
+                  {
+                    "$ref": "#/components/schemas/UpdateWatchListTagsJSONRequest"
+                  }
+                ]
               },
               "examples": {
-                "update_tags_request": {
-                  "summary": "Replace watchlist tags",
+                "v2_update_tags": {
+                  "summary": "V2 - Update tags (recommended)",
+                  "value": {
+                    "includeTags": [
+                      "sports",
+                      "esports"
+                    ],
+                    "matchOperator": "OR"
+                  }
+                },
+                "v2_with_exclusions": {
+                  "summary": "V2 - Update with exclusions",
+                  "value": {
+                    "includeTags": [
+                      "crypto"
+                    ],
+                    "excludeTags": [
+                      "meme-coins"
+                    ],
+                    "matchOperator": "OR"
+                  }
+                },
+                "v1_update_tags_request": {
+                  "summary": "V1 - Replace watchlist tags (deprecated)",
                   "value": {
                     "tags": [
                       {
