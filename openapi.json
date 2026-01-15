@@ -191,25 +191,29 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "excludeKeyphrases": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "includeTags": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "excludeTags": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "matchOperator": {
             "$ref": "#/components/schemas/SearchMatchOperator"
@@ -1267,25 +1271,29 @@
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "excludeKeyphrases": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "includeTags": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "excludeTags": {
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "nullable": true
           },
           "matchOperator": {
             "$ref": "#/components/schemas/SearchMatchOperator"
