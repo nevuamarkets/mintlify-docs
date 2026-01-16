@@ -65,7 +65,7 @@
           "$ref": "#/definitions/SubscriptionTypeConfig"
         },
         "triggerInterval": {
-          "type": "string"
+          "$ref": "#/definitions/TriggerInterval"
         },
         "detectedValue": {
           "type": "number"
@@ -535,6 +535,18 @@
     },
     "SubscriptionConfig.T_6": {
       "$ref": "#/definitions/EmptyParams"
+    },
+    "TriggerInterval": {
+      "enum": [
+        "12h",
+        "1m",
+        "24h",
+        "30m",
+        "5m",
+        "60m",
+        "6h"
+      ],
+      "type": "string"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"
