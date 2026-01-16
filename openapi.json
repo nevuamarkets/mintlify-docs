@@ -801,13 +801,13 @@
       },
       "TriggerInterval": {
         "enum": [
+          "0m",
           "12h",
           "24h",
           "30m",
           "5m",
           "60m",
-          "6h",
-          "instant"
+          "6h"
         ],
         "type": "string"
       },
