@@ -801,6 +801,7 @@
       },
       "TriggerInterval": {
         "enum": [
+          "0m",
           "12h",
           "24h",
           "30m",
