@@ -538,8 +538,8 @@
     },
     "TriggerInterval": {
       "enum": [
+        "0m",
         "12h",
-        "1m",
         "24h",
         "30m",
         "5m",
