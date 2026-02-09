@@ -63,6 +63,10 @@
         },
         "detectedAtMs": {
           "type": "number"
+        },
+        "userTier": {
+          "$ref": "#/definitions/UserTier",
+          "description": "User tier for log TTL (community 7d / pro 30d). From subscription; if missing assume community."
         }
       },
       "additionalProperties": false,
@@ -157,6 +161,13 @@
         "Discord",
         "Telegram"
       ]
+    },
+    "UserTier": {
+      "enum": [
+        "community",
+        "pro"
+      ],
+      "type": "string"
     }
   },
   "$schema": "http://json-schema.org/draft-07/schema#"

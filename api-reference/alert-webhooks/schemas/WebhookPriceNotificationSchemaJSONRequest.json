@@ -58,6 +58,10 @@
         "detectedAtMs": {
           "type": "number"
         },
+        "userTier": {
+          "$ref": "#/definitions/UserTier",
+          "description": "User tier for log TTL (community 7d / pro 30d). From subscription; if missing assume community."
+        },
         "subscriptionScope": {
           "$ref": "#/definitions/SubscriptionScope"
         },
@@ -167,6 +171,13 @@
         "Discord",
         "Telegram"
       ]
+    },
+    "UserTier": {
+      "enum": [
+        "community",
+        "pro"
+      ],
+      "type": "string"
     },
     "SubscriptionScope": {
       "type": "string",
