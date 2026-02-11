@@ -176,7 +176,8 @@
       "description": "User billing tier; aligns with PricingTierId from shared pricing types.",
       "enum": [
         "community",
-        "pro"
+        "pro",
+        "scale"
       ],
       "type": "string"
     },
