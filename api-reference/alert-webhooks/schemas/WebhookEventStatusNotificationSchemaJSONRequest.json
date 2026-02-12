@@ -167,7 +167,8 @@
       "enum": [
         "community",
         "pro",
-        "scale"
+        "scale",
+        "starter"
       ],
       "type": "string"
     }
