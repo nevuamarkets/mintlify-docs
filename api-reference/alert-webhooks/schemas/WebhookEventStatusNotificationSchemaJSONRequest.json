@@ -65,7 +65,7 @@
           "type": "number"
         },
         "userTier": {
-          "$ref": "#/definitions/UserTier",
+          "$ref": "#/definitions/PricingTierName",
           "description": "User tier for log TTL (community 7d / pro 30d). From subscription; if missing assume community."
         },
         "userTierId": {
@@ -166,8 +166,8 @@
         "Telegram"
       ]
     },
-    "UserTier": {
-      "description": "User billing tier name (for display / legacy). Entitlements should use tierId when available.",
+    "PricingTierName": {
+      "description": "Tier name for display and grouping (community, starter, pro, scale).",
       "enum": [
         "community",
         "pro",
