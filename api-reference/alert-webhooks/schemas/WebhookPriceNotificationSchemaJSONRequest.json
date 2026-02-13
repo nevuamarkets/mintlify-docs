@@ -62,7 +62,7 @@
           "$ref": "#/definitions/UserTierId",
           "description": "User tier for log TTL. From subscription; if missing assume community."
         },
-        "tierVersionId": {
+        "userTierId": {
           "description": "Tier version id for TTL (logRetentionDays). From subscription.",
           "type": "string"
         },
