@@ -67,6 +67,10 @@
         "userTier": {
           "$ref": "#/definitions/UserTier",
           "description": "User tier for log TTL (community 7d / pro 30d). From subscription; if missing assume community."
+        },
+        "userTierId": {
+          "$ref": "#/definitions/PricingTierId",
+          "description": "Tier id for log TTL. When set, use for entitlements (logRetentionDays)."
         }
       },
       "additionalProperties": false,
@@ -163,12 +167,21 @@
       ]
     },
     "UserTier": {
-      "description": "User billing tier; aligns with PricingTierName from shared pricing types.",
+      "description": "User billing tier name (for display / legacy). Entitlements should use tierId when available.",
       "enum": [
         "community",
         "pro",
         "scale",
         "starter"
+      ],
+      "type": "string"
+    },
+    "PricingTierId": {
+      "enum": [
+        "community-v1",
+        "pro-v1",
+        "scale-v1",
+        "starter-v1"
       ],
       "type": "string"
     }
