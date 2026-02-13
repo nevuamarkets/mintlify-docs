@@ -177,21 +177,21 @@
       ]
     },
     "PricingTierName": {
-      "description": "Tier name for display and grouping (community, starter, pro, scale).",
+      "description": "Tier name for display and grouping (community, essential, pro, scale).",
       "enum": [
         "community",
+        "essential",
         "pro",
-        "scale",
-        "starter"
+        "scale"
       ],
       "type": "string"
     },
     "PricingTierId": {
       "enum": [
         "community-v1",
+        "essential-v1",
         "pro-v1",
-        "scale-v1",
-        "starter-v1"
+        "scale-v1"
       ],
       "type": "string"
     },
