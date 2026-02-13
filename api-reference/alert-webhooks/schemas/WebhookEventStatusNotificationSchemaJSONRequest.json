@@ -163,7 +163,7 @@
       ]
     },
     "UserTier": {
-      "description": "User billing tier; aligns with PricingTierId from shared pricing types.",
+      "description": "User billing tier; aligns with PricingTierName from shared pricing types.",
       "enum": [
         "community",
         "pro",
