@@ -65,12 +65,8 @@
           "type": "number"
         },
         "userTier": {
-          "$ref": "#/definitions/UserTierId",
-          "description": "User tier for log TTL. From subscription; if missing assume community."
-        },
-        "userTierId": {
-          "description": "Tier version id for TTL (logRetentionDays). From subscription.",
-          "type": "string"
+          "$ref": "#/definitions/UserTier",
+          "description": "User tier for log TTL (community 7d / pro 30d). From subscription; if missing assume community."
         }
       },
       "additionalProperties": false,
@@ -166,8 +162,8 @@
         "Telegram"
       ]
     },
-    "UserTierId": {
-      "description": "User billing tier name (community, starter, pro, scale); aligns with PricingTierId.",
+    "UserTier": {
+      "description": "User billing tier; aligns with PricingTierId from shared pricing types.",
       "enum": [
         "community",
         "pro",
