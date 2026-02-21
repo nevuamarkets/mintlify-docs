@@ -22,9 +22,6 @@
         "createdAt": {
           "$ref": "#/definitions/Date"
         },
-        "expiresAt": {
-          "$ref": "#/definitions/Date_1"
-        },
         "clobTokenId": {
           "type": "string"
         },
@@ -33,6 +30,9 @@
         },
         "userId": {
           "type": "string"
+        },
+        "expiresAt": {
+          "$ref": "#/definitions/Date_1"
         },
         "subscriptionId": {
           "type": "string"
@@ -112,16 +112,16 @@
       "type": "string",
       "format": "date-time"
     },
-    "Date_1": {
-      "type": "string",
-      "format": "date-time"
-    },
     "NotificationType": {
       "enum": [
         "event_status_notification",
         "price_notification"
       ],
       "type": "string"
+    },
+    "Date_1": {
+      "type": "string",
+      "format": "date-time"
     },
     "TriggerType": {
       "type": "string",
