@@ -27,15 +27,11 @@
           },
           "searchMatchOperator": {
             "$ref": "#/components/schemas/SearchMatchOperator"
-          },
-          "partial": {
-            "type": "boolean"
           }
         },
         "additionalProperties": false,
         "required": [
           "keyphrases",
-          "partial",
           "searchMatchOperator"
         ]
       },
@@ -184,9 +180,6 @@
         "description": "Search API request body (v2).\nUses the new SearchFilters structure.",
         "type": "object",
         "properties": {
-          "partial": {
-            "type": "boolean"
-          },
           "includeKeyphrases": {
             "type": "array",
             "items": {
@@ -1404,8 +1397,7 @@
                     "include": true
                   }
                 ],
-                "searchMatchOperator": "OR",
-                "partial": false
+                "searchMatchOperator": "OR"
               }
             }
           }
