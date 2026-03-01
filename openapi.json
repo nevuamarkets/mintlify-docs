@@ -1694,11 +1694,13 @@
                     },
                     "totalVolume": {
                       "type": "number",
-                      "description": "Latest total cumulative volume"
+                      "nullable": true,
+                      "description": "Latest total cumulative volume (null if missing)"
                     },
                     "latestLiquidity": {
                       "type": "number",
-                      "description": "Most recent liquidity value"
+                      "nullable": true,
+                      "description": "Most recent liquidity value (null if missing)"
                     },
                     "windows": {
                       "type": "object",
@@ -1708,11 +1710,13 @@
                         "properties": {
                           "volumeTraded": {
                             "type": "number",
-                            "description": "Volume traded in this window"
+                            "nullable": true,
+                            "description": "Volume traded in this window (null if volume data missing)"
                           },
                           "volumePercent": {
                             "type": "number",
-                            "description": "volumeTraded / totalVolume"
+                            "nullable": true,
+                            "description": "volumeTraded / totalVolume (null if totalVolume is 0 or missing)"
                           }
                         }
                       }
