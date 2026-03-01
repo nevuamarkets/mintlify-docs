@@ -97,6 +97,19 @@
                   "GET /watchlists/{watchlistId}",
                   "POST /watchlists/delete"
                 ]
+              },
+              {
+                "group": "Demo",
+                "expanded": true,
+                "pages": [
+                  "GET /demo/events",
+                  "POST /demo/webhooks",
+                  "GET /demo/webhooks",
+                  "DELETE /demo/webhooks/{id}",
+                  "GET /demo/markets/{marketId}/volume-stats",
+                  "GET /demo/markets/{marketId}/volume-raw",
+                  "api-reference/demo/webhook-payloads"
+                ]
               }
             ]
           }

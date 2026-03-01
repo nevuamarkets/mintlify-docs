@@ -1,0 +1,50 @@
+---
+title: 'Webhook Notification Payload'
+description: 'Payload format for demo webhook notifications'
+---
+
+When an event or market is opened or closed, all registered webhooks receive an HTTP POST with the following JSON body.
+
+## Payload Schema
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `type` | `string` | Always `"event_status_notification"` |
+| `eventId` | `string` | The event ID |
+| `eventTitle` | `string` | Event title |
+| `marketId` | `string?` | Market ID (present when `eventStatusScope` is `"Market"`) |
+| `marketQuestion` | `string?` | Market question text |
+| `outcomes` | `string?` | JSON-encoded outcomes array (present on close) |
+| `outcomePrices` | `string?` | JSON-encoded outcome prices (present on close) |
+| `polymarketSlug` | `string` | Polymarket event slug |
+| `eventStatusScope` | `string` | `"Event"` or `"Market"` |
+| `triggerType` | `string` | `"Open"` or `"Closed"` |
+| `detectedAt` | `string` | ISO 8601 timestamp of detection |
+
+## Example Payload
+
+```json
+{
+  "type": "event_status_notification",
+  "eventId": "123",
+  "eventTitle": "Will X happen?",
+  "marketId": "market-abc",
+  "marketQuestion": "Will X happen by June?",
+  "outcomes": "[\"Yes\", \"No\"]",
+  "outcomePrices": "[0.65, 0.35]",
+  "polymarketSlug": "will-x-happen",
+  "eventStatusScope": "Market",
+  "triggerType": "Closed",
+  "detectedAt": "2026-03-01T14:30:00.000Z"
+}
+```
+
+## Delivery Details
+
+- **Method**: HTTP POST
+- **Content-Type**: `application/json`
+- **User-Agent**: `NevuaMarkets-Webhook/1.0`
+- **Timeout**: 5 seconds per attempt
+- **Retries**: Up to 3 attempts (1 second apart)
+
+Your webhook endpoint should respond with a 2xx HTTP status code within 5 seconds to indicate successful receipt.
