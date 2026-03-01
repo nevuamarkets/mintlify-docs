@@ -1384,7 +1384,7 @@
           }
         ],
         "summary": "Fetch all events",
-        "description": "Returns paginated events from the events collection. Default page size is 200.\n",
+        "description": "Returns paginated events from the events collection. Default page size is 500.\n",
         "tags": [
           "Demo"
         ],
@@ -1405,7 +1405,7 @@
             "required": false,
             "schema": {
               "type": "integer",
-              "default": 200
+              "default": 500
             },
             "description": "Number of events per page"
           }
